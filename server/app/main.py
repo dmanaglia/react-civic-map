@@ -46,7 +46,7 @@ async def get_districts(state: str | None = Query(default=None)):
         gdf = gpd.read_file(shp_file)
 
         # Convert to GeoJSON
-        geojson = gdf.to_json()
+        geojson = gdf.__geo_interface__
 
     # Return as JSON response
     return JSONResponse(content=geojson)
