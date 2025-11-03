@@ -6,7 +6,7 @@ export default function MapContainer() {
   const [districtsData, setDistrictsData] = useState<any>(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/geojson/states") // from FastAPI
+    fetch("http://localhost:8000/geojson/states")
       .then((res) => res.json())
       .then(setStatesData);
   }, []);
@@ -14,13 +14,19 @@ export default function MapContainer() {
   const handleStateClick = async (stateId: string) => {
     const res = await fetch(`http://localhost:8000/geojson/districts/${stateId}`);
     const data = await res.json();
+    console.log(data);
     setDistrictsData(data);
   };
 
   return (
     <div>
-      {statesData && <UsMap statesGeoJson={statesData} onStateClick={handleStateClick} />}
-      {/* Later, overlay districts here */}
+      {statesData && (
+        <UsMap
+          statesGeoJson={statesData}
+          districtsGeoJson={districtsData}
+          onStateClick={handleStateClick}
+        />
+      )}
     </div>
   );
 }
