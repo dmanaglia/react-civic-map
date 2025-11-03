@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"cd client && npm run start\" \"cd pyserver && venv/bin/uvicorn app.main:app --reload\"",
+    "dev": "concurrently \"cd client && npm run start\" \"cd server && venv/bin/uvicorn app.main:app --reload\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
