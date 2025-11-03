@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 const DISTRICT_TYPES = [
-  { id: "sldl", label: "State House (SLDL)" },
-  { id: "sldu", label: "State Senate (SLDU)" },
-  { id: "cd", label: "Congressional Districts (CD)" },
-  { id: "county", label: "Counties" },
+    { id: "county", label: "Counties" },
+    { id: "sldl", label: "State House (SLDL)" },
+    { id: "sldu", label: "State Senate (SLDU)" },
+    { id: "cd", label: "Congressional Districts (CD)" },
 ];
 
-function MapHeader({ selectedTypes, setSelectedTypes }: { selectedTypes: string[], setSelectedTypes: (types: string[]) => void }) {
+export default function MapHeader({ selectedTypes, setSelectedTypes }: { selectedTypes: string[], setSelectedTypes: (types: string[]) => void }) {
   const toggleType = (typeId: string) => {
     //@ts-ignore
     setSelectedTypes((prev) =>
