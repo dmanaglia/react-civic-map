@@ -164,7 +164,11 @@ export default function UsMap({ statesGeoJson, districtsGeoJson, setStateId }: U
                 tooltip.style.visibility = "hidden";
             });
         }
-    }, [statesGeoJson, districtsGeoJson]);
+    }, [statesGeoJson, districtsGeoJson, setStateId]);
 
-    return <svg ref={svgRef} width={960} height={600}></svg>;
+    return (
+        <div style={{marginTop: 50}}>
+            <svg ref={svgRef} width={960} height={600}></svg>;
+        </div>
+    )
 }

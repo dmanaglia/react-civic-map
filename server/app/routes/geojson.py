@@ -6,10 +6,6 @@ import geopandas as gpd
 BASE_URL = "https://www2.census.gov/geo/tiger/GENZ2024/shp/"
 
 def fetch_and_filter_geojson(zip_url: str, state_filter: str | None = None) -> dict:
-    """
-    Download a shapefile from Census, optionally filter by state FIPS code,
-    and convert to GeoJSON.
-    """
     r = requests.get(zip_url)
     if r.status_code != 200:
         raise HTTPException(status_code=404, detail=f"Failed to download shapefile: {zip_url}")

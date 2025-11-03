@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 const DISTRICT_TYPES = [
     { id: "county", label: "Counties (county)" },
     { id: "sldl", label: "State House (sldl)" },
@@ -16,10 +14,8 @@ export default function MapHeader({ selectedType, setSelectedType }: { selectedT
       position: "absolute",
       top: 0,
       left: 0,
-      width: "100%",
       background: "rgba(255,255,255,0.9)",
       padding: "8px 16px",
-      zIndex: 10,
       display: "flex",
       gap: "16px",
       flexWrap: "wrap"
