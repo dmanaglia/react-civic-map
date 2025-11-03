@@ -2,12 +2,12 @@ import * as d3 from "d3";
 import { useEffect, useRef } from "react";
 
 interface UsMapProps {
-  statesGeoJson: any;
-  districtsGeoJson?: any; // optional districts overlay
-  onStateClick: (stateId: string) => void;
+    statesGeoJson: any;
+    districtsGeoJson?: any; // optional districts overlay
+    setStateId: (stateId: string) => void;
 }
 
-export default function UsMap({ statesGeoJson, districtsGeoJson, onStateClick }: UsMapProps) {
+export default function UsMap({ statesGeoJson, districtsGeoJson, setStateId }: UsMapProps) {
     const svgRef = useRef<SVGSVGElement | null>(null);
     const zoomRef = useRef<d3.ZoomTransform | null>(null);
     const gStatesRef = useRef<SVGGElement | null>(null);
@@ -87,7 +87,7 @@ export default function UsMap({ statesGeoJson, districtsGeoJson, onStateClick }:
                         .translate(-(x0 + x1) / 2, -(y0 + y1) / 2)
                     );
 
-                    onStateClick(feature.properties.STATEFP);
+                    setStateId(feature.properties.STATEFP);
                 }),
             update => update.attr("d", path as any)
         );

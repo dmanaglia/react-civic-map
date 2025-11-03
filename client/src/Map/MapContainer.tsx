@@ -3,33 +3,36 @@ import MapHeader from "./MapHeader";
 import UsMap from "./UsMap";
 
 export default function MapContainer() {
-  const [statesData, setStatesData] = useState<any>(null);
-  const [districtsData, setDistrictsData] = useState<any>(null);
-  const [selectedTypes, setSelectedTypes] = useState<string[]>(["county"]);
+    const [stateId, setStateId] = useState<string | null>(null);
+    const [statesData, setStatesData] = useState<any>(null);
+    const [districtsData, setDistrictsData] = useState<any>(null);
+    const [selectedType, setSelectedType] = useState<string>("county");
 
-  useEffect(() => {
-    fetch("http://localhost:8000/geojson/states")
-      .then((res) => res.json())
-      .then(setStatesData);
-  }, []);
+    useEffect(() => {
+        fetch("http://localhost:8000/geojson/states")
+        .then((res) => res.json())
+        .then(setStatesData);
+    }, []);
 
-  const handleStateClick = async (stateId: string) => {
-    const res = await fetch(`http://localhost:8000/geojson/districts/${stateId}`);
-    const data = await res.json();
-    console.log(data);
-    setDistrictsData(data);
-  };
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await fetch(`http://localhost:8000/geojson/${selectedType}/${stateId}`);
+            const data = await res.json();
+            setDistrictsData(data);
+        }
+        if(stateId) fetchData()
+    }, [stateId, selectedType]);
 
-  return (
-    <div>
-        <MapHeader selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} />
-        {statesData && (
-            <UsMap
-                statesGeoJson={statesData}
-                districtsGeoJson={districtsData}
-                onStateClick={handleStateClick}
-            />
-        )}
-    </div>
-  );
+    return (
+        <div>
+            <MapHeader selectedType={selectedType} setSelectedType={setSelectedType} />
+            {statesData && (
+                <UsMap
+                    statesGeoJson={statesData}
+                    districtsGeoJson={districtsData}
+                    setStateId={setStateId}
+                />
+            )}
+        </div>
+    );
 }

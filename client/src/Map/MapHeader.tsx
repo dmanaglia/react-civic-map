@@ -1,19 +1,15 @@
 import { useState } from "react";
 
 const DISTRICT_TYPES = [
-    { id: "county", label: "Counties" },
-    { id: "sldl", label: "State House (SLDL)" },
-    { id: "sldu", label: "State Senate (SLDU)" },
-    { id: "cd", label: "Congressional Districts (CD)" },
+    { id: "county", label: "Counties (county)" },
+    { id: "sldl", label: "State House (sldl)" },
+    { id: "sldu", label: "State Senate (sldu)" },
+    { id: "cd", label: "Congressional Districts (cd)" },
+    { id: "place", label: "City Boundaries (place)"},
+    { id: "cousub", label: "County Subdivisions (cousub)"}
 ];
 
-export default function MapHeader({ selectedTypes, setSelectedTypes }: { selectedTypes: string[], setSelectedTypes: (types: string[]) => void }) {
-  const toggleType = (typeId: string) => {
-    //@ts-ignore
-    setSelectedTypes((prev) =>
-      prev.includes(typeId) ? prev.filter((t : string) => t !== typeId) : [...prev, typeId]
-    );
-  };
+export default function MapHeader({ selectedType, setSelectedType }: { selectedType: string, setSelectedType: (types: string) => void }) {
 
   return (
     <div style={{
@@ -31,9 +27,9 @@ export default function MapHeader({ selectedTypes, setSelectedTypes }: { selecte
       {DISTRICT_TYPES.map((d) => (
         <label key={d.id} style={{ display: "flex", alignItems: "center", gap: "4px" }}>
           <input
-            type="checkbox"
-            checked={selectedTypes.includes(d.id)}
-            onChange={() => toggleType(d.id)}
+            type="radio"
+            checked={selectedType === d.id}
+            onChange={() => setSelectedType(d.id)}
           />
           {d.label}
         </label>
