@@ -15,17 +15,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/api/districts")
-async def get_districts(state: str | None = Query(default=None)):
+@app.get("/geojson/districts/{state}")
+async def get_districts(state: str):
     """
     Download a shapefile from the US Census TIGER/Line site,
     extract it, convert to GeoJSON, and return to frontend.
     """
 
-    print("Hello")
-
-    base_url = "https://www2.census.gov/geo/tiger/GENZ2024/shp/"
-    url = f"{base_url}cb_2024_us_sldl_500k.zip" if not state else f"{base_url}cb_2024_{state}_sldl_500k.zip"
+    url = f"https://www2.census.gov/geo/tiger/GENZ2024/shp/cb_2024_{state:02}_sldl_500k.zip"
 
     # Download the ZIP file
     r = requests.get(url)
@@ -49,6 +46,32 @@ async def get_districts(state: str | None = Query(default=None)):
         geojson = gdf.__geo_interface__
 
     # Return as JSON response
+    return JSONResponse(content=geojson)
+
+
+@app.get("/geojson/states")
+async def get_states():
+    """
+    Download the 2024 U.S. state and territory shapefile,
+    convert to GeoJSON, and return.
+    """
+    url = "https://www2.census.gov/geo/tiger/GENZ2024/shp/cb_2024_us_state_500k.zip"
+
+    r = requests.get(url)
+    if r.status_code != 200:
+        raise HTTPException(status_code=404, detail="Failed to download state shapefile")
+
+    with tempfile.TemporaryDirectory() as tmpdir:
+        with zipfile.ZipFile(io.BytesIO(r.content)) as z:
+            z.extractall(tmpdir)
+
+        shp_file = next((os.path.join(tmpdir, f) for f in os.listdir(tmpdir) if f.endswith(".shp")), None)
+        if not shp_file:
+            raise HTTPException(status_code=500, detail="No shapefile found")
+
+        gdf = gpd.read_file(shp_file)
+        geojson = gdf.__geo_interface__
+
     return JSONResponse(content=geojson)
 
 

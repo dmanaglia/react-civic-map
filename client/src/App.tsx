@@ -1,13 +1,12 @@
 import React from 'react';
-import "leaflet/dist/leaflet.css";
 import './App.css';
-import NationalMap from './Map/NationalMap';
+import MapContainer from './Map/MapContainer';
 
 function App() {
 
   return (
     <div className="App">
-      <NationalMap/>
+      <MapContainer/>
     </div>
   );
 }
