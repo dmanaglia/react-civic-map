@@ -11,6 +11,7 @@ interface UsMapProps {
   statesGeoJson: any;
   featureGeoJson?: any;
   type: string;
+  shrink: boolean;
   setState: (stateId: StateProps | null) => void;
   setFeature: (feature: FeatureProps | null) => void;
 }
@@ -19,6 +20,7 @@ export default function UsMap({
   statesGeoJson,
   featureGeoJson,
   type,
+  shrink,
   setState,
   setFeature,
 }: UsMapProps) {
@@ -101,7 +103,7 @@ export default function UsMap({
   return (
     <div className="usmap-container">
       <div className="usmap-svg-wrapper">
-        <svg ref={svgRef} className="usmap-svg">
+        <svg ref={svgRef} className="usmap-svg" viewBox="0 0 960 600" preserveAspectRatio="xMidYMid meet">
           <g ref={gStatesRef}></g>
           <g ref={gFeatureRef}></g>
         </svg>

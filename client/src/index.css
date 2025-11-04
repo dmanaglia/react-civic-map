@@ -1,0 +1,20 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #e6e8ec; /* soft grayish background */
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: #222;
+}
+
+/* Optional: if you want it slightly darker and cooler-toned */
+body.dark-bg {
+  background-color: #d1d3d8; /* deeper neutral tone */
+}
+
+/* Optional: Ensure your main root container centers properly */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: inherit;
+}

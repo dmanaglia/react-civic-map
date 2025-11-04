@@ -7,17 +7,24 @@ export function useOfficialsData(
   feature: FeatureProps | null,
   state: StateProps | null
 ) {
-  const [officialsData, setOfficialsData] = useState<OfficialProps>();
+  const [officialsData, setOfficialsData] = useState<OfficialProps | null>(null);
+  const [loadingOfficial, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!feature || !state) return;
-
+    //only congression district route is currently working...
+    if (feature?.type !== 'cd' || !state) return;
+    
+    setLoading(true)
     fetch(
       `http://localhost:8000/officials/${feature.type}/${state.code}/${feature.id}`
     )
       .then(res => res.json())
-      .then(data => setOfficialsData(data[0]));
+      .then((data) => {
+        setOfficialsData(data[0]);
+        console.log(data);
+        setLoading(false);
+      });
   }, [feature, state]);
 
-  return officialsData;
+  return {officialsData, setOfficialsData, loadingOfficial};
 }

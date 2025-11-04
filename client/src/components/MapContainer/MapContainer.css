@@ -1,0 +1,31 @@
+/* center page */
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  background: #f4f6f8;
+}
+
+/* main content uses CSS Grid: 1fr (map) and 0 or fixed width (sidebar) */
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 0px; /* default: sidebar collapsed */
+  gap: 24px;
+  width: 100%;
+  max-width: 1400px;
+  margin-top: 70px;
+  padding: 16px;
+  align-items: start;
+  transition: grid-template-columns 0.28s ease;
+  box-sizing: border-box;
+}
+
+.main-content.sidebar-open {
+  grid-template-columns: 1fr 360px; /* sidebar width when open */
+}
+
+/* small-screen behavior */
+@media (max-width: 900px) {
+  .main-content.sidebar-open {
+    grid-template-columns: 1fr; /* stack: sidebar overlays or move below on small screens */
+  }
+}

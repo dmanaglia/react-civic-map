@@ -7,7 +7,7 @@ export function useGeoData(
 ) {
   const [statesData, setStatesData] = useState<any>(null);
   const [featureData, setFeatureData] = useState<any>(null);
-  const [loading, setLoading] = useState(false);
+  const [loadingMap, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -30,5 +30,5 @@ export function useGeoData(
       });
   }, [state, type]);
 
-  return { statesData, featureData, loading };
+  return { statesData, featureData, loadingMap };
 }
