@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import MapHeader from "../MapHeader";
 import UsMap from "../UsMap/UsMap";
 import Spinner from "../Spinner";
@@ -9,15 +9,12 @@ import FeatureProps from "../../models/FeatureProps";
 import StateProps from "../../models/StateProps";
 
 export default function MapContainer() {
-  const [stateId, setStateIdRaw] = useState<StateProps | null>(null);
+  const [stateId, setStateId] = useState<StateProps | null>(null);
   const [selectedType, setSelectedType] = useState<string>("cd");
-  const [selectedFeature, setSelectedFeatureRaw] = useState<FeatureProps | null>(null);
+  const [selectedFeature, setSelectedFeature] = useState<FeatureProps | null>(null);
 
   const { statesData, districtsData, loading } = useGeoData(selectedType, stateId);
   const officialsData = useOfficialsData(selectedFeature, stateId);
-
-  const setStateId = useCallback((id: StateProps | null) => setStateIdRaw(id), []);
-  const setSelectedFeature = useCallback((feature: FeatureProps | null) => setSelectedFeatureRaw(feature), []);
 
   return (
     <div>
