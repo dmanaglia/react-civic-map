@@ -53,13 +53,14 @@ export default function UsMap({
           id: feature.properties.STATEFP,
           code: feature.properties.STUSPS,
         });
+        setFeature(null);
       })
       .on("mouseover", (event, feature: any) => showTooltip(feature.properties.NAME, event.pageX, event.pageY))
       .on("mousemove", (event, feature: any) => showTooltip(feature.properties.NAME, event.pageX, event.pageY))
       .on("mouseout", hideTooltip);
 
     applyCurrentTransform();
-  }, [applyCurrentTransform, hideTooltip, setState, showTooltip, statesGeoJson, zoomToBounds]);
+  }, [statesGeoJson, applyCurrentTransform, hideTooltip, setState, showTooltip, zoomToBounds, setFeature]);
 
   useEffect(() => {
     if (!featureGeoJson) return;
@@ -98,11 +99,13 @@ export default function UsMap({
   }, [applyCurrentTransform, featureGeoJson, hideTooltip, type, setFeature, showTooltip, zoomToBounds]);
 
   return (
-    <div style={{ marginTop: 100 }}>
-      <svg ref={svgRef}>
-        <g ref={gStatesRef}></g>
-        <g ref={gFeatureRef}></g>
-      </svg>
+    <div className="usmap-container">
+      <div className="usmap-svg-wrapper">
+        <svg ref={svgRef} className="usmap-svg">
+          <g ref={gStatesRef}></g>
+          <g ref={gFeatureRef}></g>
+        </svg>
+      </div>
     </div>
   );
 }
