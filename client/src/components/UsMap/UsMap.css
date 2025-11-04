@@ -1,0 +1,28 @@
+svg {
+  width: 960px;
+  height: 600px;
+}
+
+.state {
+  fill: #b0c4de;
+  stroke: #333;
+  cursor: pointer;
+  transition: fill 0.2s ease;
+  stroke-linejoin: round;
+}
+
+.state:hover {
+  fill: #a0b8d0;
+}
+
+.district {
+  fill: rgba(255, 165, 0, 0.3);
+  stroke: #ff8c00;
+  cursor: pointer;
+  transition: fill 0.2s ease;
+  stroke-linejoin: round;
+}
+
+.district:hover {
+  fill: rgba(255, 165, 0, 0.5);
+}

@@ -1,6 +1,4 @@
-import React from 'react';
-import './App.css';
-import MapContainer from './Map/MapContainer';
+import MapContainer from './components/MapContainer/MapContainer';
 
 function App() {
 

@@ -1,6 +1,6 @@
-import FeatureProps from "../models/FeatureProps";
-import OfficialProps from "../models/OfficialProps";
-import StateProps from "../models/StateProps";
+import FeatureProps from "../../models/FeatureProps";
+import OfficialProps from "../../models/OfficialProps";
+import StateProps from "../../models/StateProps";
 
 interface OfficialDataProps {
     selectedFeature: FeatureProps;
