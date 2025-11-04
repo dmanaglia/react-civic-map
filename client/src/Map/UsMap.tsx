@@ -1,18 +1,22 @@
 import * as d3 from "d3";
 import { useEffect, useRef } from "react";
+import StateProps from "../models/StateProps";
+import FeatureProps from "../models/FeatureProps";
 
 interface UsMapProps {
     statesGeoJson: any;
     districtsGeoJson?: any; // optional districts overlay
-    setStateId: (stateId: string) => void;
+    selectedType: string;
+    setStateId: (stateId: StateProps) => void;
+    setSelectedFeature: (stateId: FeatureProps | null) => void;
 }
 
-export default function UsMap({ statesGeoJson, districtsGeoJson, setStateId }: UsMapProps) {
+export default function UsMap({ statesGeoJson, districtsGeoJson, selectedType, setStateId, setSelectedFeature }: UsMapProps) {
     const svgRef = useRef<SVGSVGElement | null>(null);
     const zoomRef = useRef<d3.ZoomTransform | null>(null);
     const gStatesRef = useRef<SVGGElement | null>(null);
     const gDistrictsRef = useRef<SVGGElement | null>(null);
-      const tooltipRef = useRef<HTMLDivElement | null>(null);
+    const tooltipRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         // Create tooltip div if it doesn't exist
@@ -86,8 +90,11 @@ export default function UsMap({ statesGeoJson, districtsGeoJson, setStateId }: U
                         .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
                         .translate(-(x0 + x1) / 2, -(y0 + y1) / 2)
                     );
-
-                    setStateId(feature.properties.STATEFP);
+                    setStateId({
+                        name: feature.properties.NAME,
+                        id: feature.properties.STATEFP,
+                        code: feature.properties.STUSPS,
+                    });
                 }),
             update => update.attr("d", path as any)
         );
@@ -107,7 +114,23 @@ export default function UsMap({ statesGeoJson, districtsGeoJson, setStateId }: U
                     .attr("cursor", "pointer")
                     .on("click", (event, feature: any) => {
                     event.stopPropagation();
-                    console.log("District clicked:", feature.properties.GEOID, feature.properties.NAME);
+                        const [[x0, y0], [x1, y1]] = path.bounds(feature);
+
+                        svg
+                        .transition()
+                        .duration(750)
+                        .call(
+                            zoom.transform as any,
+                            d3.zoomIdentity
+                            .translate(width / 2, height / 2)
+                            .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
+                            .translate(-(x0 + x1) / 2, -(y0 + y1) / 2)
+                        );
+                        setSelectedFeature({
+                            type: selectedType,
+                            name: feature.properties.NAMELSAD,
+                            id: feature.properties?.[`CD${feature.properties.CDSESSN}FP`]
+                        });
                     }),
                 update => update.attr("d", path as any),
                 exit => exit.remove()
@@ -152,7 +175,7 @@ export default function UsMap({ statesGeoJson, districtsGeoJson, setStateId }: U
             .on("mouseover", (event, feature: any) => {
                 if (!tooltip) return;
                 tooltip.style.visibility = "visible";
-                tooltip.innerText = feature.properties.NAME; // or include GEOID
+                tooltip.innerText = selectedType === "cd" ? feature.properties.NAMELSAD : feature.properties.NAME; // or include GEOID
             })
             .on("mousemove", (event) => {
                 if (!tooltip) return;
@@ -164,11 +187,11 @@ export default function UsMap({ statesGeoJson, districtsGeoJson, setStateId }: U
                 tooltip.style.visibility = "hidden";
             });
         }
-    }, [statesGeoJson, districtsGeoJson, setStateId]);
+    }, [statesGeoJson, districtsGeoJson, selectedType, setSelectedFeature, setStateId]);
 
     return (
         <div style={{marginTop: 50}}>
-            <svg ref={svgRef} width={960} height={600}></svg>;
+            <svg ref={svgRef} width={960} height={600}></svg>
         </div>
     )
 }
