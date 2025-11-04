@@ -3,15 +3,15 @@ import OfficialProps from "../../models/OfficialProps";
 import StateProps from "../../models/StateProps";
 
 interface OfficialDataProps {
-    selectedFeature: FeatureProps;
-    stateId: StateProps;
+    state: StateProps;
+    feature: FeatureProps;
     officialsData: OfficialProps;
 }
 
-export default function OfficialData({selectedFeature, stateId, officialsData}: OfficialDataProps) {
+export default function OfficialData({state, feature, officialsData}: OfficialDataProps) {
     return (
         <div style={{marginTop: 80}}>
-            <h1>{stateId.name} {selectedFeature.name} Representative</h1>
+            <h1>{state.name} {feature.name} Representative</h1>
             <h2>{officialsData.name}</h2>
         </div>
     )

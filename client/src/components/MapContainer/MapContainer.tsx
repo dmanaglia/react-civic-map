@@ -9,30 +9,30 @@ import FeatureProps from "../../models/FeatureProps";
 import StateProps from "../../models/StateProps";
 
 export default function MapContainer() {
-  const [stateId, setStateId] = useState<StateProps | null>(null);
-  const [selectedType, setSelectedType] = useState<string>("cd");
-  const [selectedFeature, setSelectedFeature] = useState<FeatureProps | null>(null);
+  const [state, setState] = useState<StateProps | null>(null);
+  const [feature, setFeature] = useState<FeatureProps | null>(null);
+  const [type, setType] = useState<string>("cd");
 
-  const { statesData, districtsData, loading } = useGeoData(selectedType, stateId);
-  const officialsData = useOfficialsData(selectedFeature, stateId);
+  const { statesData, featureData, loading } = useGeoData(type, state);
+  const officialsData = useOfficialsData(feature, state);
 
   return (
     <div>
-      <MapHeader selectedType={selectedType} setSelectedType={setSelectedType} />
+      <MapHeader type={type} setType={setType} />
 
       {statesData && (
         <>
           <UsMap
             statesGeoJson={statesData}
-            districtsGeoJson={districtsData}
-            selectedType={selectedType}
-            setStateId={setStateId}
-            setSelectedFeature={setSelectedFeature}
+            featureGeoJson={featureData}
+            type={type}
+            setState={setState}
+            setFeature={setFeature}
           />
-          {officialsData && stateId && selectedFeature && (
+          {officialsData && state && feature && (
             <OfficialData
-              stateId={stateId}
-              selectedFeature={selectedFeature}
+              state={state}
+              feature={feature}
               officialsData={officialsData}
             />
           )}

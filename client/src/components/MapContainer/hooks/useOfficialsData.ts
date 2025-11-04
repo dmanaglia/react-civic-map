@@ -4,20 +4,20 @@ import StateProps from "../../../models/StateProps";
 import OfficialProps from "../../../models/OfficialProps";
 
 export function useOfficialsData(
-  selectedFeature: FeatureProps | null,
-  stateId: StateProps | null
+  feature: FeatureProps | null,
+  state: StateProps | null
 ) {
   const [officialsData, setOfficialsData] = useState<OfficialProps>();
 
   useEffect(() => {
-    if (!selectedFeature || !stateId) return;
+    if (!feature || !state) return;
 
     fetch(
-      `http://localhost:8000/officials/${selectedFeature.type}/${stateId.code}/${selectedFeature.id}`
+      `http://localhost:8000/officials/${feature.type}/${state.code}/${feature.id}`
     )
       .then(res => res.json())
       .then(data => setOfficialsData(data[0]));
-  }, [selectedFeature, stateId]);
+  }, [feature, state]);
 
   return officialsData;
 }

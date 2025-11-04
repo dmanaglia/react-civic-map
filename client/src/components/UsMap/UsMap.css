@@ -15,7 +15,7 @@ svg {
   fill: #a0b8d0;
 }
 
-.district {
+.feature {
   fill: rgba(255, 165, 0, 0.3);
   stroke: #ff8c00;
   cursor: pointer;
@@ -23,7 +23,7 @@ svg {
   stroke-linejoin: round;
 }
 
-.district:hover {
+.feature:hover {
   fill: rgba(255, 165, 0, 0.5);
 }
 

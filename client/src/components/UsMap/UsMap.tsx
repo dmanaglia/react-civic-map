@@ -9,25 +9,25 @@ import "./UsMap.css";
 
 interface UsMapProps {
   statesGeoJson: any;
-  districtsGeoJson?: any;
-  selectedType: string;
-  setStateId: (stateId: StateProps | null) => void;
-  setSelectedFeature: (feature: FeatureProps | null) => void;
+  featureGeoJson?: any;
+  type: string;
+  setState: (stateId: StateProps | null) => void;
+  setFeature: (feature: FeatureProps | null) => void;
 }
 
 export default function UsMap({
   statesGeoJson,
-  districtsGeoJson,
-  selectedType,
-  setStateId,
-  setSelectedFeature,
+  featureGeoJson,
+  type,
+  setState,
+  setFeature,
 }: UsMapProps) {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const gStatesRef = useRef<SVGGElement | null>(null);
-  const gDistrictsRef = useRef<SVGGElement | null>(null);
+  const gFeatureRef = useRef<SVGGElement | null>(null);
 
   const { showTooltip, hideTooltip } = useTooltip();
-  const { zoomToBounds, applyCurrentTransform } = useMapZoom(svgRef, gStatesRef, gDistrictsRef);
+  const { zoomToBounds, applyCurrentTransform } = useMapZoom(svgRef, gStatesRef, gFeatureRef);
 
   useEffect(() => {
     if (!statesGeoJson) return;
@@ -48,7 +48,7 @@ export default function UsMap({
         event.stopPropagation();
         const bounds = path.bounds(feature);
         zoomToBounds(bounds, width, height);
-        setStateId({
+        setState({
           name: feature.properties.NAME,
           id: feature.properties.STATEFP,
           code: feature.properties.STUSPS,
@@ -59,49 +59,49 @@ export default function UsMap({
       .on("mouseout", hideTooltip);
 
     applyCurrentTransform();
-  }, [applyCurrentTransform, hideTooltip, setStateId, showTooltip, statesGeoJson, zoomToBounds]);
+  }, [applyCurrentTransform, hideTooltip, setState, showTooltip, statesGeoJson, zoomToBounds]);
 
   useEffect(() => {
-    if (!districtsGeoJson) return;
+    if (!featureGeoJson) return;
     const svg = d3.select(svgRef.current);
-    const gDistricts = gDistrictsRef.current ? d3.select(gDistrictsRef.current) : svg.append("g");
+    const gFeature = gFeatureRef.current ? d3.select(gFeatureRef.current) : svg.append("g");
     const width = 960;
     const height = 600;
     const projection = d3.geoAlbersUsa().scale(1300).translate([480, 300]);
     const path = d3.geoPath().projection(projection);
 
-    gDistricts
+    gFeature
       .selectAll<SVGPathElement, any>("path")
-      .data(districtsGeoJson.features)
+      .data(featureGeoJson.features)
       .join("path")
-      .attr("class", "district")
+      .attr("class", "feature")
       .attr("d", path as any)
       .on("click", (event, feature: any) => {
         event.stopPropagation();
         const bounds = path.bounds(feature);
         zoomToBounds(bounds, width, height);
-        setSelectedFeature({
-          type: selectedType,
+        setFeature({
+          type: type,
           name: feature.properties.NAMELSAD,
           id: feature.properties?.[`CD${feature.properties.CDSESSN}FP`],
         });
       })
       .on("mouseover", (event, feature: any) =>
-        showTooltip(selectedType === "cd" ? feature.properties.NAMELSAD : feature.properties.NAME, event.pageX, event.pageY)
+        showTooltip(type === "cd" ? feature.properties.NAMELSAD : feature.properties.NAME, event.pageX, event.pageY)
       )
       .on("mousemove", (event, feature: any) =>
-        showTooltip(selectedType === "cd" ? feature.properties.NAMELSAD : feature.properties.NAME, event.pageX, event.pageY)
+        showTooltip(type === "cd" ? feature.properties.NAMELSAD : feature.properties.NAME, event.pageX, event.pageY)
       )
       .on("mouseout", hideTooltip);
 
     applyCurrentTransform();
-  }, [applyCurrentTransform, districtsGeoJson, hideTooltip, selectedType, setSelectedFeature, showTooltip, zoomToBounds]);
+  }, [applyCurrentTransform, featureGeoJson, hideTooltip, type, setFeature, showTooltip, zoomToBounds]);
 
   return (
-    <div style={{ marginTop: 50 }}>
+    <div style={{ marginTop: 100 }}>
       <svg ref={svgRef}>
         <g ref={gStatesRef}></g>
-        <g ref={gDistrictsRef}></g>
+        <g ref={gFeatureRef}></g>
       </svg>
     </div>
   );

@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import StateProps from "../../../models/StateProps";
 
-export function useGeoData(selectedType: string, stateId: StateProps | null) {
+export function useGeoData(
+  type: string,
+  state: StateProps | null
+) {
   const [statesData, setStatesData] = useState<any>(null);
-  const [districtsData, setDistrictsData] = useState<any>(null);
+  const [featureData, setFeatureData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -17,15 +20,15 @@ export function useGeoData(selectedType: string, stateId: StateProps | null) {
   }, []);
 
   useEffect(() => {
-    if (!stateId || !selectedType) return;
+    if (!state || !type) return;
     setLoading(true);
-    fetch(`http://localhost:8000/geojson/${selectedType}/${stateId.id}`)
+    fetch(`http://localhost:8000/geojson/${type}/${state.id}`)
       .then(res => res.json())
       .then(data => {
-        setDistrictsData(data);
+        setFeatureData(data);
         setLoading(false);
       });
-  }, [stateId, selectedType]);
+  }, [state, type]);
 
-  return { statesData, districtsData, loading };
+  return { statesData, featureData, loading };
 }
