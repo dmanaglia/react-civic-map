@@ -1,10 +1,10 @@
 import * as d3 from "d3";
-import { RefObject, useEffect, useRef } from "react";
+import { RefObject, useCallback, useEffect, useRef } from "react";
 
 export function useMapZoom(
   svgRef: RefObject<SVGSVGElement | null>,
   gStatesRef: RefObject<SVGGElement | null>,
-  gDistrictsRef: RefObject<SVGGElement | null>
+  gDistrictsRef: RefObject<SVGGElement | null>,
 ) {
   const zoomTransformRef = useRef<d3.ZoomTransform | null>(null);
   const zoomBehaviorRef = useRef<any>(null); // store the zoom behavior instance
@@ -49,7 +49,7 @@ export function useMapZoom(
     );
   };
 
-  const zoomToBounds = (
+  const zoomToBounds = useCallback((
     bounds: [[number, number], [number, number]],
     width: number,
     height: number
@@ -64,7 +64,20 @@ export function useMapZoom(
       .translate(-(x0 + x1) / 2, -(y0 + y1) / 2);
 
     svg.transition().duration(750).call(zoomBehaviorRef.current.transform, t);
-  };
+  }, [svgRef]);
 
-  return { zoomTransformRef, zoomToBounds, resetZoom };
+
+  const applyCurrentTransform = useCallback(() => {
+    if (!zoomTransformRef.current) return;
+    const gStates = d3.select(gStatesRef.current);
+    const gDistricts = d3.select(gDistrictsRef.current);
+    const t = zoomTransformRef.current;
+
+    gStates.attr("transform", t.toString());
+    gDistricts.attr("transform", t.toString());
+    gStates.selectAll("path").attr("stroke-width", 0.5 / t.k);
+    gDistricts.selectAll("path").attr("stroke-width", 0.5 / t.k);
+  }, [gDistrictsRef, gStatesRef]);
+
+  return { zoomTransformRef, zoomToBounds, resetZoom, applyCurrentTransform };
 }
