@@ -1,7 +1,8 @@
 import "./OfficialSidebar.css";
 import StateProps from "../../models/StateProps";
 import FeatureProps from "../../models/FeatureProps";
-import OfficialProps from "../../models/OfficialProps";
+import CdOfficialData from "./CdOfficialData";
+import StateLegislatorsData from "./StateLegislatorsData";
 
 interface OfficialSidebarProps {
     loading: boolean;
@@ -11,7 +12,7 @@ interface OfficialSidebarProps {
     state: StateProps | null;
     type: string;
     feature: FeatureProps | null;
-    officialsData: OfficialProps | null;
+    officialsData: any;
 }
 
 export default function OfficialSidebar({ loading, open, onToggle, onClose, state, type, feature, officialsData }: OfficialSidebarProps) {
@@ -44,24 +45,8 @@ export default function OfficialSidebar({ loading, open, onToggle, onClose, stat
                         </button>
                     </div>
                 </div>
-
-                <div className="sidebar-body">
-                {!officialsData && <p>Work in progress...</p>}
-                {officialsData && (
-                    <>
-                        <div className="official-header">
-                            <img src={officialsData.depiction.imageUrl} alt={officialsData.name}></img>
-                            <h2>{officialsData.name}</h2>
-                        </div>
-                        {officialsData.partyName && <p>Party: {officialsData.partyName}</p>}
-                        {officialsData.url && (
-                            <div className="contact-block">
-                            {officialsData.url && <p>URL: <a href={officialsData.url}>{officialsData.url}</a></p>}
-                            </div>
-                        )}
-                    </>
-                )}
-                </div>
+                {type === 'cd' && <CdOfficialData state={state} feature={feature} officialsData={officialsData} />}
+                {(type === 'sldl' || type === 'sldu') && <StateLegislatorsData state={state} feature={feature} officialsData={officialsData}/>}
             </aside>
         </div>
   );

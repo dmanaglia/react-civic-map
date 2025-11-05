@@ -81,12 +81,15 @@ export default function UsMap({
       .attr("d", path as any)
       .on("click", (event, feature: any) => {
         event.stopPropagation();
+        console.log(feature);
         const bounds = path.bounds(feature);
         zoomToBounds(bounds, width, height);
         setFeature({
           type: type,
           name: feature.properties.NAMELSAD,
-          id: feature.properties?.[`CD${feature.properties.CDSESSN}FP`],
+          id: type === 'cd'
+            ? feature.properties?.[`CD${feature.properties.CDSESSN}FP`]
+            : feature.properties.NAME,
         });
       })
       .on("mouseover", (event, feature: any) =>

@@ -34,7 +34,6 @@ router = APIRouter()
 @router.get("/states")
 async def get_states():
     url = f"{BASE_URL}cb_2024_us_state_500k.zip"
-    print(url)
     geojson = fetch_and_filter_geojson(url)
     return JSONResponse(content=geojson)
 
@@ -55,7 +54,6 @@ async def get_sldl(state: str):
 # Congressional Districts (cd)
 @router.get("/cd/{state}")
 async def get_cd(state: str):
-    print("found")
     url = f"{BASE_URL}cb_2024_us_cd119_500k.zip"  # Only national shapefile exists
     geojson = fetch_and_filter_geojson(url, state_filter=state)
     return JSONResponse(content=geojson)
