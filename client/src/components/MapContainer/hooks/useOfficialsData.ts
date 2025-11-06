@@ -18,19 +18,17 @@ export function useOfficialsData(
         )
         .then(res => res.json())
         .then((data) => {
-          console.log(data);
-          setOfficialsData(data);
+          setOfficialsData(data.summary);
           setLoading(false);
         });
     } else if (!feature){
       setLoading(true)
       fetch(
-          `http://localhost:8000/summary/${state?.code}`
+          `http://localhost:8000/summary/${state?.code}/legislative`
         )
         .then(res => res.json())
         .then((data) => {
-          console.log(data);
-          setOfficialsData(data[0]);
+          setOfficialsData(data.summary);
           setLoading(false);
         });
     } else if (feature && state){
@@ -40,12 +38,11 @@ export function useOfficialsData(
         )
         .then(res => res.json())
         .then((data) => {
-          console.log(data);
           setOfficialsData(data[0]);
           setLoading(false);
         });
     }
   }, [feature, state]);
 
-  return {officialsData, setOfficialsData, loadingOfficial};
+  return {officialsData, loadingOfficial};
 }

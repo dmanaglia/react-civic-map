@@ -11,7 +11,6 @@ interface UsMapProps {
   statesGeoJson: any;
   featureGeoJson?: any;
   type: string;
-  shrink: boolean;
   setState: (stateId: StateProps | null) => void;
   setFeature: (feature: FeatureProps | null) => void;
 }
@@ -20,7 +19,6 @@ export default function UsMap({
   statesGeoJson,
   featureGeoJson,
   type,
-  shrink,
   setState,
   setFeature,
 }: UsMapProps) {
@@ -81,15 +79,14 @@ export default function UsMap({
       .attr("d", path as any)
       .on("click", (event, feature: any) => {
         event.stopPropagation();
-        console.log(feature);
         const bounds = path.bounds(feature);
         zoomToBounds(bounds, width, height);
         setFeature({
           type: type,
           name: feature.properties.NAMELSAD,
           id: type === 'cd'
-            ? feature.properties?.[`CD${feature.properties.CDSESSN}FP`]
-            : feature.properties.NAME,
+            ? feature.properties.CD119FP
+            : feature.properties.NAME
         });
       })
       .on("mouseover", (event, feature: any) =>

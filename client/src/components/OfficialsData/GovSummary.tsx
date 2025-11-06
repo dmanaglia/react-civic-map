@@ -1,12 +1,12 @@
 import { useMemo, useState } from "react";
-import { FederalSummaryProps } from "../../models/OfficialProps";
+import { LegislativeSummaryProps } from "../../models/OfficialProps";
 import "./FederalSummary.css";
 
-interface FederalSummaryDataProps {
-    officialsData: FederalSummaryProps | null;
+interface GovSummaryDataProps {
+    officialsData: LegislativeSummaryProps | null;
 }
 
-export default function FederalSummary({officialsData}: FederalSummaryDataProps) {
+export default function GovSummary({officialsData}: GovSummaryDataProps) {
     const [activeBranch, setActiveBranch] = useState<"Legislative" | "Executive" | "Judicial">("Legislative");
     const [activeChamber, setActiveChamber] = useState<"House" | "Senate">("House");
 
@@ -25,8 +25,6 @@ export default function FederalSummary({officialsData}: FederalSummaryDataProps)
         if (!officialsData) return null;
         return activeChamber === "House" ? officialsData.house : officialsData.senate;
     }, [officialsData, activeChamber]);
-
-    console.log(chamberData);
 
     // Dial SVG parameters
     const Dial = ({ dem, rep, ind, vac=0 }: { dem: number; rep: number; ind: number, vac: number }) => {
@@ -125,8 +123,7 @@ export default function FederalSummary({officialsData}: FederalSummaryDataProps)
 
             <div className="leg-body">
                 <div className="leg-left">
-                    {/* @ts-ignore */}
-                    <Dial dem={chamberData.democrats} rep={chamberData.republicans} ind={chamberData.independents || 0} vac={chamberData.vacancies || 0}/>
+                    <Dial dem={chamberData.democrats} rep={chamberData.republicans} ind={chamberData.independents || 0} vac={chamberData?.vacancies || 0}/>
                     <div className="legend">
                         {chamberData.democrats > chamberData.republicans ? 
                             <>
@@ -155,17 +152,15 @@ export default function FederalSummary({officialsData}: FederalSummaryDataProps)
                             <span className="legend-swatch ind" /> <span className="legend-label">Independents</span>
                             <strong className="legend-value">{chamberData.independents ?? 0}</strong>
                         </div>
-                        {activeChamber === "House" && (
+                        {activeChamber === "House" && chamberData?.vacancies && chamberData?.non_voting && (
                             <>
                             <div className="legend-row">
                                 <span className="legend-swatch vac" /> <span className="legend-label">Vacancies</span>
-                                {/* @ts-ignore */}
-                                <strong className="legend-value">{chamberData.vacancies ?? 0}</strong>
+                                <strong className="legend-value">{chamberData?.vacancies ?? 0}</strong>
                             </div>
                             <div className="legend-row">
                                 <span className="legend-swatch nonv" /> <span className="legend-label">Non voting members</span>
-                                {/* @ts-ignore */}
-                                <strong className="legend-value">{chamberData.non_voting?.length ?? 0}</strong>
+                                <strong className="legend-value">{chamberData?.non_voting?.length ?? 0}</strong>
                             </div>
                             </>
                         )}

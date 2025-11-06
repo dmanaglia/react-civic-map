@@ -51,12 +51,10 @@ def get_district_info(state: str, chamber: str, district_name: str):
         "org_classification": chamber,  # "upper" = senate, "lower" = house
         "district": district_name,
     }
-    print(params)
     search_response = requests.get(search_url, headers=headers, params=params, timeout=10)
     if search_response.status_code != 200:
         raise HTTPException(status_code=search_response.status_code, detail="Error from OpenStates API")
 
-    print(search_response)
     data = search_response.json()
     return data['results']
 

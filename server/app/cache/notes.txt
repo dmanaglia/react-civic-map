@@ -1,0 +1,13 @@
+
+Some notes on state legislative branches:
+
+- Iowa's state senator for district 1 was recently elected, open states has not updated yet, so missing 1 senator in count (elected 2 months ago...)
+    -> IA missing 1 senator
+
+- Seems to be an "interim" senator for Michigan state senator district 35, not sure what that's about but open states does not have info so missing 1 from count
+    -> MI missing 1 senator
+
+- Minnesota district 34B state house rep recently won a special elction, and is not listed on open states, (about a month ago...)
+    -> MN missing 1 house rep
+    
+- 

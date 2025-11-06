@@ -1,0 +1,142 @@
+{
+  "house": {
+    "democrats": 213,
+    "republicans": 219,
+    "independents": 0,
+    "vacancies": 3,
+    "non_voting": [
+      {
+        "bioguideId": "H001103",
+        "depiction": {
+          "attribution": "Image courtesy of the Member",
+          "imageUrl": "https://www.congress.gov/img/member/67742d980b34857ecc9090e3_200.jpg"
+        },
+        "district": 0,
+        "name": "Hern\u00e1ndez, Pablo Jose",
+        "partyName": "Democratic",
+        "state": "Puerto Rico",
+        "terms": {
+          "item": [
+            {
+              "chamber": "House of Representatives",
+              "startYear": 2025
+            }
+          ]
+        },
+        "updateDate": "2025-09-24T07:40:20Z",
+        "url": "https://api.congress.gov/v3/member/H001103?format=json"
+      },
+      {
+        "bioguideId": "K000404",
+        "depiction": {
+          "attribution": "Image courtesy of the Member",
+          "imageUrl": "https://www.congress.gov/img/member/67742f0a0b34857ecc9090fb_200.jpg"
+        },
+        "district": 0,
+        "name": "King-Hinds, Kimberlyn",
+        "partyName": "Republican",
+        "state": "Northern Mariana Islands",
+        "terms": {
+          "item": [
+            {
+              "chamber": "House of Representatives",
+              "startYear": 2025
+            }
+          ]
+        },
+        "updateDate": "2025-09-24T07:40:19Z",
+        "url": "https://api.congress.gov/v3/member/K000404?format=json"
+      },
+      {
+        "bioguideId": "M001219",
+        "depiction": {
+          "attribution": "Image courtesy of the Member",
+          "imageUrl": "https://www.congress.gov/img/member/m001219_200.jpg"
+        },
+        "district": 0,
+        "name": "Moylan, James C.",
+        "partyName": "Republican",
+        "state": "Guam",
+        "terms": {
+          "item": [
+            {
+              "chamber": "House of Representatives",
+              "startYear": 2023
+            }
+          ]
+        },
+        "updateDate": "2025-09-24T07:40:18Z",
+        "url": "https://api.congress.gov/v3/member/M001219?format=json"
+      },
+      {
+        "bioguideId": "P000610",
+        "depiction": {
+          "attribution": "Congressional Pictorial Directory",
+          "imageUrl": "https://www.congress.gov/img/member/116_dg_vi_plaskett_stacey_200.jpg"
+        },
+        "district": 0,
+        "name": "Plaskett, Stacey E.",
+        "partyName": "Democratic",
+        "state": "Virgin Islands",
+        "terms": {
+          "item": [
+            {
+              "chamber": "House of Representatives",
+              "startYear": 2015
+            }
+          ]
+        },
+        "updateDate": "2025-09-24T07:40:14Z",
+        "url": "https://api.congress.gov/v3/member/P000610?format=json"
+      },
+      {
+        "bioguideId": "R000600",
+        "depiction": {
+          "attribution": "Image courtesy of the Member",
+          "imageUrl": "https://www.congress.gov/img/member/r000600_200.jpg"
+        },
+        "district": 0,
+        "name": "Radewagen, Aumua Amata Coleman",
+        "partyName": "Republican",
+        "state": "American Samoa",
+        "terms": {
+          "item": [
+            {
+              "chamber": "House of Representatives",
+              "startYear": 2015
+            }
+          ]
+        },
+        "updateDate": "2025-09-24T07:40:14Z",
+        "url": "https://api.congress.gov/v3/member/R000600?format=json"
+      },
+      {
+        "bioguideId": "N000147",
+        "depiction": {
+          "attribution": "Congressional Pictorial Directory",
+          "imageUrl": "https://www.congress.gov/img/member/116_dg_dc_norton_eleanor_200.jpg"
+        },
+        "district": 0,
+        "name": "Norton, Eleanor Holmes",
+        "partyName": "Democratic",
+        "state": "District of Columbia",
+        "terms": {
+          "item": [
+            {
+              "chamber": "House of Representatives",
+              "startYear": 1991
+            }
+          ]
+        },
+        "updateDate": "2025-09-24T07:40:13Z",
+        "url": "https://api.congress.gov/v3/member/N000147?format=json"
+      }
+    ]
+  },
+  "senate": {
+    "democrats": 45,
+    "republicans": 53,
+    "independents": 2
+  },
+  "lastUpdated": "2025-11-06T05:47:11.032199+00:00"
+}

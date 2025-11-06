@@ -1,22 +1,12 @@
-import asyncio
-from datetime import datetime, timedelta, timezone
-from dotenv import load_dotenv
+from datetime import datetime, timezone
 from fastapi import APIRouter
 import httpx
-import json
 import os
+from app.utils.cache import read_cache, write_cache
 
-# --- Cache setup ---
-CACHE_DURATION = timedelta(days=30)
-_cache_data = None
-_cache_timestamp = None
-
-load_dotenv()
-
-CONGRESS_NUMBER = 119
 CONGRESS_API_KEY = os.getenv("GPO_CONGRESS_APIKEY")
+CONGRESS_NUMBER = 119 # may want to generalize this at some point
 BASE_URL = f"https://api.congress.gov/v3/member/congress/{CONGRESS_NUMBER}"
-
 
 async def fetch_all_members():
     """Fetches all members of the given chamber (House or Senate) with pagination."""
@@ -30,7 +20,6 @@ async def fetch_all_members():
             url = data.get("pagination", {}).get("next")
             if url: url = f"{url}&api_key={CONGRESS_API_KEY}"
 
-        print("members length after fetch ======>",len(members))
         house_members = []
         non_voting_house_members = []
         senate_members = []
@@ -80,7 +69,7 @@ async def summarize_congress_data():
                    "republicans": 0, 
                    "independents": 0
                 },
-        "lastUpdated": datetime.now(timezone.utc)
+        "lastUpdated": datetime.now(timezone.utc).isoformat()
     }
 
     # Count House
@@ -105,26 +94,20 @@ async def summarize_congress_data():
 
     return summary
 
+
 router = APIRouter()
 
 @router.get("/legislative")
-async def get_congress_summary(force_refresh: bool = False):
+async def get_congress_summary():
     """
     Returns a cached summary of Congress data.
-    Set `force_refresh=true` to manually refresh.
     """
-    
-    global _cache_data, _cache_timestamp
 
-    now = datetime.now(timezone.utc)
+    cached = read_cache()
+    if cached:
+        return {"cached": True, "summary": cached}
 
-    if (
-        force_refresh
-        or _cache_data is None
-        or _cache_timestamp is None
-        or now - _cache_timestamp > CACHE_DURATION
-    ):
-        _cache_data = await summarize_congress_data()
-        _cache_timestamp = now
+    summary = await summarize_congress_data()
+    write_cache(summary)
 
-    return _cache_data
+    return {"cached": False, "summary": summary}
