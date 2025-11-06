@@ -1,0 +1,13 @@
+{
+  "house": {
+    "democrats": 0,
+    "republicans": 0,
+    "independents": 0
+  },
+  "senate": {
+    "democrats": 0,
+    "republicans": 0,
+    "independents": 0
+  },
+  "lastUpdated": "2025-11-06T22:36:01.602470+00:00"
+}

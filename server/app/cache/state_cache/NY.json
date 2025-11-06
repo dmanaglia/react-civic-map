@@ -1,0 +1,13 @@
+{
+  "house": {
+    "democrats": 103,
+    "republicans": 47,
+    "independents": 0
+  },
+  "senate": {
+    "democrats": 41,
+    "republicans": 22,
+    "independents": 0
+  },
+  "lastUpdated": "2025-11-06T22:08:12.264375+00:00"
+}
