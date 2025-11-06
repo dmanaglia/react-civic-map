@@ -13,7 +13,7 @@ export default function MapContainer() {
   const [state, setState] = useState<StateProps | null>(null);
   const [feature, setFeature] = useState<FeatureProps | null>(null);
   const [type, setType] = useState<string>("cd");
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const { statesData, featureData, loadingMap } = useGeoData(type, state);
   const {officialsData, setOfficialsData, loadingOfficial} = useOfficialsData(feature, state);
 
@@ -26,15 +26,15 @@ export default function MapContainer() {
   const handleSetFeature = useCallback((f: any) => {
     setFeature(f);
     setSidebarOpen(true);
-    // setOfficialsData(null);
   }, []);
 
   const handleSetType = useCallback((t: string) => {
     setType(t);
     setSidebarOpen(true);
     setFeature(null);
-    setOfficialsData(null);
-  }, [setOfficialsData]);
+    if(state)
+      setOfficialsData(null);
+  }, [state, setOfficialsData]);
 
   return (
     <div>
