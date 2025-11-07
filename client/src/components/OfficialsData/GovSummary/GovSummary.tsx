@@ -1,13 +1,14 @@
 import { useMemo, useState } from "react";
-import { LegislativeSummaryProps } from "../../models/OfficialProps";
-import "./FederalSummary.css";
+import { ChamberProps, GovSummaryProps, StateLegislatorsProps } from "../../../models/OfficialProps";
+import "./GovSummary.css";
 
 interface GovSummaryDataProps {
-    officialsData: LegislativeSummaryProps | null;
+    officialsData: GovSummaryProps | null;
+    state?: string;
 }
 
-export default function GovSummary({officialsData}: GovSummaryDataProps) {
-    const [activeBranch, setActiveBranch] = useState<"Legislative" | "Executive" | "Judicial">("Legislative");
+export default function GovSummary({officialsData, state}: GovSummaryDataProps) {
+    const [activeBranch, setActiveBranch] = useState<"Legislative" | "Executive" | "Judicial">("Executive");
     const [activeChamber, setActiveChamber] = useState<"House" | "Senate">("House");
 
     // Helper to compute dial percents (returns [demPercent, repPercent, indPercent])
@@ -21,10 +22,19 @@ export default function GovSummary({officialsData}: GovSummaryDataProps) {
     };
 
     // Choose active chamber dataset
-    const chamberData = useMemo(() => {
+    const summaryData = useMemo(() => {
         if (!officialsData) return null;
-        return activeChamber === "House" ? officialsData.house : officialsData.senate;
-    }, [officialsData, activeChamber]);
+        switch (activeBranch) {
+            case "Legislative":
+                return activeChamber === "House" ? officialsData.legislative.house as ChamberProps : officialsData.legislative.senate as ChamberProps;
+            case "Executive":
+                return officialsData?.executive || null;
+            case "Judicial":
+                return officialsData.judicial;
+            default:
+                break;
+        }
+    }, [officialsData, activeBranch, activeChamber]);
 
     // Dial SVG parameters
     const Dial = ({ dem, rep, ind, vac=0 }: { dem: number; rep: number; ind: number, vac: number }) => {
@@ -100,8 +110,8 @@ export default function GovSummary({officialsData}: GovSummaryDataProps) {
     };
 
     const renderLegislative = () => {
-        if (!officialsData || !chamberData) return <div className="empty-state">No legislative data available.</div>;
-
+        if (!officialsData || !summaryData) return <div className="empty-state">No legislative data available.</div>;
+        let data: ChamberProps = summaryData as ChamberProps;
         return (
         <div className="legislative">
             <div className="subtabs">
@@ -123,44 +133,44 @@ export default function GovSummary({officialsData}: GovSummaryDataProps) {
 
             <div className="leg-body">
                 <div className="leg-left">
-                    <Dial dem={chamberData.democrats} rep={chamberData.republicans} ind={chamberData.independents || 0} vac={chamberData?.vacancies || 0}/>
+                    <Dial dem={data.democrats} rep={data.republicans} ind={data.independents || 0} vac={data?.vacancies || 0}/>
                     <div className="legend">
-                        {chamberData.democrats > chamberData.republicans ? 
+                        {data.democrats > data.republicans ? 
                             <>
                                 <div className="legend-row">
                                     <span className="legend-swatch dem" /> <span className="legend-label">Democrats</span>
-                                    <strong className="legend-value">{chamberData.democrats}</strong>
+                                    <strong className="legend-value">{data.democrats}</strong>
                                 </div>
                                 <div className="legend-row">
                                     <span className="legend-swatch rep" /> <span className="legend-label">Republicans</span>
-                                    <strong className="legend-value">{chamberData.republicans}</strong>
+                                    <strong className="legend-value">{data.republicans}</strong>
                                 </div>
                             </>
                         :
                             <>
                                 <div className="legend-row">
                                     <span className="legend-swatch rep" /> <span className="legend-label">Republicans</span>
-                                    <strong className="legend-value">{chamberData.republicans}</strong>
+                                    <strong className="legend-value">{data.republicans}</strong>
                                 </div>
                                 <div className="legend-row">
                                     <span className="legend-swatch dem" /> <span className="legend-label">Democrats</span>
-                                    <strong className="legend-value">{chamberData.democrats}</strong>
+                                    <strong className="legend-value">{data.democrats}</strong>
                                 </div>
                             </>
                         }
                         <div className="legend-row">
                             <span className="legend-swatch ind" /> <span className="legend-label">Independents</span>
-                            <strong className="legend-value">{chamberData.independents ?? 0}</strong>
+                            <strong className="legend-value">{data.independents ?? 0}</strong>
                         </div>
-                        {activeChamber === "House" && chamberData?.vacancies && chamberData?.non_voting && (
+                        {activeChamber === "House" && data?.vacancies && data?.non_voting && (
                             <>
                             <div className="legend-row">
                                 <span className="legend-swatch vac" /> <span className="legend-label">Vacancies</span>
-                                <strong className="legend-value">{chamberData?.vacancies ?? 0}</strong>
+                                <strong className="legend-value">{data?.vacancies ?? 0}</strong>
                             </div>
                             <div className="legend-row">
                                 <span className="legend-swatch nonv" /> <span className="legend-label">Non voting members</span>
-                                <strong className="legend-value">{chamberData?.non_voting?.length ?? 0}</strong>
+                                <strong className="legend-value">{data?.non_voting?.length ?? 0}</strong>
                             </div>
                             </>
                         )}
@@ -172,11 +182,27 @@ export default function GovSummary({officialsData}: GovSummaryDataProps) {
     };
 
     const renderExecutive = () => {
+        let data = summaryData as StateLegislatorsProps[];
         return (
-        <div className="branch-placeholder">
-            <h4>Executive Branch</h4>
-            <p className="muted">Executive branch details (President, Vice President, major cabinet positions) will show here.</p>
-        </div>
+            !data ? <p>Work in progress...</p>
+            :
+            data.map((data) => 
+                <div className="branch-placeholder">
+                    {state ? <h4>{data.current_role.title}</h4> : <h4>Executive Branch</h4>}
+                    <div className="sidebar-body">
+                        {!data ? <p>Work in progress...</p>
+                        :
+                            <>
+                                <div className="official-header">
+                                    <img src={data.image} alt={data.name}></img>
+                                    <h2>{data.name}</h2>
+                                </div>
+                                {data.party && <p>Party: {data.party}</p>}
+                            </>
+                        }
+                    </div>
+                </div>
+            )
         );
     };
 

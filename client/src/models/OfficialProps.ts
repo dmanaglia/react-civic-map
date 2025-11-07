@@ -48,13 +48,17 @@ export interface StateLegislatorsProps {
     updated_at: string,
 }
 
-export interface LegislativeSummaryProps {
-    house: ChamberProps,
-    senate: ChamberProps,
+export interface GovSummaryProps {
+    executive: StateLegislatorsProps[],
+    legislative: {
+        house: ChamberProps,
+        senate: ChamberProps
+    },
+    judicial: any[],
     lastUpdated: Date
 }
 
-interface ChamberProps {
+export interface ChamberProps {
     democrats: number,
     independents: number,
     republicans: number,

@@ -1,13 +1,45 @@
 {
-  "house": {
-    "democrats": 20,
-    "republicans": 80,
-    "independents": 0
+  "executive": [
+    {
+      "id": "ocd-person/c7dbc1b4-67fb-4bb2-b1c5-cc5ef9356a5a",
+      "name": "Andy Beshear",
+      "party": "Democratic",
+      "current_role": {
+        "title": "Governor",
+        "org_classification": "executive",
+        "district": "",
+        "division_id": ""
+      },
+      "jurisdiction": {
+        "id": "ocd-jurisdiction/country:us/state:ky/government",
+        "name": "Kentucky",
+        "classification": "state"
+      },
+      "given_name": "Andy",
+      "family_name": "Beshear",
+      "image": "https://governor.ky.gov/PublishingImages/Governor-Beshear_Official-Picture.jpg",
+      "email": "",
+      "gender": "",
+      "birth_date": "1977-11-29",
+      "death_date": "",
+      "extras": {},
+      "created_at": "2020-08-04T05:08:30.863605+00:00",
+      "updated_at": "2024-10-18T15:19:53.649681+00:00",
+      "openstates_url": "https://openstates.org/person/andy-beshear-657tvqE4jAZJDHnjYEwnne/"
+    }
+  ],
+  "legislative": {
+    "house": {
+      "democrats": 20,
+      "republicans": 80,
+      "independents": 0
+    },
+    "senate": {
+      "democrats": 6,
+      "republicans": 32,
+      "independents": 0
+    }
   },
-  "senate": {
-    "democrats": 6,
-    "republicans": 32,
-    "independents": 0
-  },
-  "lastUpdated": "2025-11-06T05:09:17.869739+00:00"
+  "judicial": [],
+  "lastUpdated": "2025-11-07T14:40:55.661649+00:00"
 }

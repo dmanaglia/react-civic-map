@@ -59,16 +59,22 @@ async def summarize_congress_data():
     senate_members, house_members, non_voting_house_members = await fetch_all_members()
 
     summary = {
-        "house": {"democrats": 0, 
-                  "republicans": 0,
-                  "independents": 0, 
-                  "vacancies": 435 - len(house_members), 
-                  "non_voting": non_voting_house_members
-                },
-        "senate": {"democrats": 0, 
-                   "republicans": 0, 
-                   "independents": 0
-                },
+        "executive": [], #TODO
+        "legislative": {
+            "house": {
+                    "democrats": 0,
+                    "republicans": 0,
+                    "independents": 0, 
+                    "vacancies": 435 - len(house_members), 
+                    "non_voting": non_voting_house_members
+            },
+            "senate": {
+                "democrats": 0, 
+                "republicans": 0, 
+                "independents": 0
+            },
+        },
+        "judicial": [], #TODO
         "lastUpdated": datetime.now(timezone.utc).isoformat()
     }
 
@@ -76,28 +82,28 @@ async def summarize_congress_data():
     for m in house_members:
         party = m.get("partyName", "").lower()
         if "democrat" in party:
-            summary["house"]["democrats"] += 1
+            summary["legislative"]["house"]["democrats"] += 1
         elif "republican" in party:
-            summary["house"]["republicans"] += 1
+            summary["legislative"]["house"]["republicans"] += 1
         elif "independent" in party:
-            summary["house"]["independents"] += 1
+            summary["legislative"]["house"]["independents"] += 1
 
     # Count Senate
     for m in senate_members:
         party = m.get("partyName", "").lower()
         if "democrat" in party:
-            summary["senate"]["democrats"] += 1
+            summary["legislative"]["senate"]["democrats"] += 1
         elif "republican" in party:
-            summary["senate"]["republicans"] += 1
+            summary["legislative"]["senate"]["republicans"] += 1
         elif "independent" in party:
-            summary["senate"]["independents"] += 1
+            summary["legislative"]["senate"]["independents"] += 1
 
     return summary
 
 
 router = APIRouter()
 
-@router.get("/legislative")
+@router.get("/")
 async def get_congress_summary():
     """
     Returns a cached summary of Congress data.

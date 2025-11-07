@@ -1,13 +1,45 @@
 {
-  "house": {
-    "democrats": 78,
-    "republicans": 40,
-    "independents": 0
+  "executive": [
+    {
+      "id": "ocd-person/db3adc7a-d2f8-4e61-a017-bf5d3804ba33",
+      "name": "J. B. Pritzker",
+      "party": "Democratic",
+      "current_role": {
+        "title": "Governor",
+        "org_classification": "executive",
+        "district": "",
+        "division_id": ""
+      },
+      "jurisdiction": {
+        "id": "ocd-jurisdiction/country:us/state:il/government",
+        "name": "Illinois",
+        "classification": "state"
+      },
+      "given_name": "J. B.",
+      "family_name": "Pritzker",
+      "image": "https://www2.illinois.gov/sites/gov/about/PublishingImages/governor-pritzker-headshot.jpg",
+      "email": "",
+      "gender": "",
+      "birth_date": "1965-01-19",
+      "death_date": "",
+      "extras": {},
+      "created_at": "2020-08-04T05:06:54.279981+00:00",
+      "updated_at": "2023-02-13T19:12:48.717277+00:00",
+      "openstates_url": "https://openstates.org/person/j-b-pritzker-6fgDatdgS27qGT02HHG74l/"
+    }
+  ],
+  "legislative": {
+    "house": {
+      "democrats": 78,
+      "republicans": 40,
+      "independents": 0
+    },
+    "senate": {
+      "democrats": 40,
+      "republicans": 19,
+      "independents": 0
+    }
   },
-  "senate": {
-    "democrats": 40,
-    "republicans": 19,
-    "independents": 0
-  },
-  "lastUpdated": "2025-11-06T04:38:09.498970+00:00"
+  "judicial": [],
+  "lastUpdated": "2025-11-07T02:02:46.776116+00:00"
 }

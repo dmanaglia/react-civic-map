@@ -3,7 +3,7 @@ import StateProps from "../../models/StateProps";
 import FeatureProps from "../../models/FeatureProps";
 import CdOfficialData from "./CdOfficialData";
 import StateLegislatorsData from "./StateLegislatorsData";
-import GovSummary from "./GovSummary";
+import GovSummary from "./GovSummary/GovSummary";
 
 interface OfficialSidebarProps {
     loading: boolean;
@@ -47,7 +47,7 @@ export default function OfficialSidebar({ loading, open, onToggle, onClose, stat
                     </div>
                 </div>
                 {!feature ? 
-                    <GovSummary officialsData={officialsData}/> 
+                    <GovSummary officialsData={officialsData} state={state?.name}/> 
                 : 
                     <>
                         {type === 'cd' && <CdOfficialData state={state} feature={feature} officialsData={officialsData}/>}

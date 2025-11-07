@@ -14,7 +14,7 @@ export function useOfficialsData(
     if (!feature && !state) {
       setLoading(true)
       fetch(
-          `http://localhost:8000/summary/legislative`
+          `http://localhost:8000/summary`
         )
         .then(res => res.json())
         .then((data) => {
@@ -24,7 +24,7 @@ export function useOfficialsData(
     } else if (!feature){
       setLoading(true)
       fetch(
-          `http://localhost:8000/summary/${state?.code}/legislative`
+          `http://localhost:8000/summary/${state?.code}`
         )
         .then(res => res.json())
         .then((data) => {

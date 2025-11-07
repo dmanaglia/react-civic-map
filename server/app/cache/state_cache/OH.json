@@ -1,13 +1,72 @@
 {
-  "house": {
-    "democrats": 34,
-    "republicans": 65,
-    "independents": 0
+  "executive": [
+    {
+      "id": "ocd-person/eaeed96a-2f5c-43f2-aef4-fa3432d33451",
+      "name": "Frank LaRose",
+      "party": "Republican",
+      "current_role": {
+        "title": "Secretary Of State",
+        "org_classification": "executive",
+        "district": "",
+        "division_id": ""
+      },
+      "jurisdiction": {
+        "id": "ocd-jurisdiction/country:us/state:oh/government",
+        "name": "Ohio",
+        "classification": "state"
+      },
+      "given_name": "Frank",
+      "family_name": "LaRose",
+      "image": "https://www.sos.state.oh.us/globalassets/about/headshot/laroseheadshot-hires.jpg",
+      "email": "msheehan@ohiosecretaryofstate.gov",
+      "gender": "",
+      "birth_date": "",
+      "death_date": "",
+      "extras": {},
+      "created_at": "2020-10-27T22:38:45.521535+00:00",
+      "updated_at": "2023-01-10T19:49:44.658402+00:00",
+      "openstates_url": "https://openstates.org/person/frank-larose-79JMFlI33lBrvbE6xUKqo5/"
+    },
+    {
+      "id": "ocd-person/37478cd9-ed21-43f7-b2cc-578df43ad32d",
+      "name": "Mike DeWine",
+      "party": "Republican",
+      "current_role": {
+        "title": "Governor",
+        "org_classification": "executive",
+        "district": "",
+        "division_id": ""
+      },
+      "jurisdiction": {
+        "id": "ocd-jurisdiction/country:us/state:oh/government",
+        "name": "Ohio",
+        "classification": "state"
+      },
+      "given_name": "Mike",
+      "family_name": "DeWine",
+      "image": "https://governor.ohio.gov/wps/wcm/connect/gov/e9a970b4-a222-4dde-a817-29581c87f3e6/Gov-Mike-DeWine.jpg?MOD=AJPERES",
+      "email": "",
+      "gender": "",
+      "birth_date": "1947-01-05",
+      "death_date": "",
+      "extras": {},
+      "created_at": "2020-08-04T05:17:23.039007+00:00",
+      "updated_at": "2023-01-10T19:49:44.612612+00:00",
+      "openstates_url": "https://openstates.org/person/mike-dewine-1gJH8vmumkd6lFH5Aotnpd/"
+    }
+  ],
+  "legislative": {
+    "house": {
+      "democrats": 34,
+      "republicans": 65,
+      "independents": 0
+    },
+    "senate": {
+      "democrats": 9,
+      "republicans": 24,
+      "independents": 0
+    }
   },
-  "senate": {
-    "democrats": 9,
-    "republicans": 24,
-    "independents": 0
-  },
-  "lastUpdated": "2025-11-06T04:53:22.168824+00:00"
+  "judicial": [],
+  "lastUpdated": "2025-11-07T14:34:04.615662+00:00"
 }
