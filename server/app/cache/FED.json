@@ -1,146 +1,886 @@
 {
-  "executive": [],
-  "legislative": {
-    "house": {
-      "democrats": 213,
-      "republicans": 219,
-      "independents": 0,
-      "vacancies": 3,
-      "non_voting": [
-        {
-          "bioguideId": "H001103",
-          "depiction": {
-            "attribution": "Image courtesy of the Member",
-            "imageUrl": "https://www.congress.gov/img/member/67742d980b34857ecc9090e3_200.jpg"
+  "summary": {
+    "executive": [],
+    "legislative": {
+      "house": {
+        "democrats": 213,
+        "republicans": 219,
+        "independents": 0,
+        "vacancies": 3,
+        "non_voting": [
+          {
+            "bioguideId": "H001103",
+            "depiction": {
+              "attribution": "Image courtesy of the Member",
+              "imageUrl": "https://www.congress.gov/img/member/67742d980b34857ecc9090e3_200.jpg"
+            },
+            "district": 0,
+            "name": "Hern\u00e1ndez, Pablo Jose",
+            "partyName": "Democratic",
+            "state": "Puerto Rico",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "startYear": 2025
+                }
+              ]
+            },
+            "updateDate": "2025-09-24T07:40:20Z",
+            "url": "https://api.congress.gov/v3/member/H001103?format=json"
           },
-          "district": 0,
-          "name": "Hern\u00e1ndez, Pablo Jose",
-          "partyName": "Democratic",
-          "state": "Puerto Rico",
-          "terms": {
-            "item": [
-              {
-                "chamber": "House of Representatives",
-                "startYear": 2025
-              }
-            ]
+          {
+            "bioguideId": "K000404",
+            "depiction": {
+              "attribution": "Image courtesy of the Member",
+              "imageUrl": "https://www.congress.gov/img/member/67742f0a0b34857ecc9090fb_200.jpg"
+            },
+            "district": 0,
+            "name": "King-Hinds, Kimberlyn",
+            "partyName": "Republican",
+            "state": "Northern Mariana Islands",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "startYear": 2025
+                }
+              ]
+            },
+            "updateDate": "2025-09-24T07:40:19Z",
+            "url": "https://api.congress.gov/v3/member/K000404?format=json"
           },
-          "updateDate": "2025-09-24T07:40:20Z",
-          "url": "https://api.congress.gov/v3/member/H001103?format=json"
-        },
-        {
-          "bioguideId": "K000404",
-          "depiction": {
-            "attribution": "Image courtesy of the Member",
-            "imageUrl": "https://www.congress.gov/img/member/67742f0a0b34857ecc9090fb_200.jpg"
+          {
+            "bioguideId": "M001219",
+            "depiction": {
+              "attribution": "Image courtesy of the Member",
+              "imageUrl": "https://www.congress.gov/img/member/m001219_200.jpg"
+            },
+            "district": 0,
+            "name": "Moylan, James C.",
+            "partyName": "Republican",
+            "state": "Guam",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "startYear": 2023
+                }
+              ]
+            },
+            "updateDate": "2025-09-24T07:40:18Z",
+            "url": "https://api.congress.gov/v3/member/M001219?format=json"
           },
-          "district": 0,
-          "name": "King-Hinds, Kimberlyn",
-          "partyName": "Republican",
-          "state": "Northern Mariana Islands",
-          "terms": {
-            "item": [
-              {
-                "chamber": "House of Representatives",
-                "startYear": 2025
-              }
-            ]
+          {
+            "bioguideId": "P000610",
+            "depiction": {
+              "attribution": "Congressional Pictorial Directory",
+              "imageUrl": "https://www.congress.gov/img/member/116_dg_vi_plaskett_stacey_200.jpg"
+            },
+            "district": 0,
+            "name": "Plaskett, Stacey E.",
+            "partyName": "Democratic",
+            "state": "Virgin Islands",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "startYear": 2015
+                }
+              ]
+            },
+            "updateDate": "2025-09-24T07:40:14Z",
+            "url": "https://api.congress.gov/v3/member/P000610?format=json"
           },
-          "updateDate": "2025-09-24T07:40:19Z",
-          "url": "https://api.congress.gov/v3/member/K000404?format=json"
-        },
-        {
-          "bioguideId": "M001219",
-          "depiction": {
-            "attribution": "Image courtesy of the Member",
-            "imageUrl": "https://www.congress.gov/img/member/m001219_200.jpg"
+          {
+            "bioguideId": "R000600",
+            "depiction": {
+              "attribution": "Image courtesy of the Member",
+              "imageUrl": "https://www.congress.gov/img/member/r000600_200.jpg"
+            },
+            "district": 0,
+            "name": "Radewagen, Aumua Amata Coleman",
+            "partyName": "Republican",
+            "state": "American Samoa",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "startYear": 2015
+                }
+              ]
+            },
+            "updateDate": "2025-09-24T07:40:14Z",
+            "url": "https://api.congress.gov/v3/member/R000600?format=json"
           },
-          "district": 0,
-          "name": "Moylan, James C.",
-          "partyName": "Republican",
-          "state": "Guam",
-          "terms": {
-            "item": [
-              {
-                "chamber": "House of Representatives",
-                "startYear": 2023
-              }
-            ]
-          },
-          "updateDate": "2025-09-24T07:40:18Z",
-          "url": "https://api.congress.gov/v3/member/M001219?format=json"
-        },
-        {
-          "bioguideId": "P000610",
-          "depiction": {
-            "attribution": "Congressional Pictorial Directory",
-            "imageUrl": "https://www.congress.gov/img/member/116_dg_vi_plaskett_stacey_200.jpg"
-          },
-          "district": 0,
-          "name": "Plaskett, Stacey E.",
-          "partyName": "Democratic",
-          "state": "Virgin Islands",
-          "terms": {
-            "item": [
-              {
-                "chamber": "House of Representatives",
-                "startYear": 2015
-              }
-            ]
-          },
-          "updateDate": "2025-09-24T07:40:14Z",
-          "url": "https://api.congress.gov/v3/member/P000610?format=json"
-        },
-        {
-          "bioguideId": "R000600",
-          "depiction": {
-            "attribution": "Image courtesy of the Member",
-            "imageUrl": "https://www.congress.gov/img/member/r000600_200.jpg"
-          },
-          "district": 0,
-          "name": "Radewagen, Aumua Amata Coleman",
-          "partyName": "Republican",
-          "state": "American Samoa",
-          "terms": {
-            "item": [
-              {
-                "chamber": "House of Representatives",
-                "startYear": 2015
-              }
-            ]
-          },
-          "updateDate": "2025-09-24T07:40:14Z",
-          "url": "https://api.congress.gov/v3/member/R000600?format=json"
-        },
-        {
-          "bioguideId": "N000147",
-          "depiction": {
-            "attribution": "Congressional Pictorial Directory",
-            "imageUrl": "https://www.congress.gov/img/member/116_dg_dc_norton_eleanor_200.jpg"
-          },
-          "district": 0,
-          "name": "Norton, Eleanor Holmes",
-          "partyName": "Democratic",
-          "state": "District of Columbia",
-          "terms": {
-            "item": [
-              {
-                "chamber": "House of Representatives",
-                "startYear": 1991
-              }
-            ]
-          },
-          "updateDate": "2025-09-24T07:40:13Z",
-          "url": "https://api.congress.gov/v3/member/N000147?format=json"
-        }
-      ]
+          {
+            "bioguideId": "N000147",
+            "depiction": {
+              "attribution": "Congressional Pictorial Directory",
+              "imageUrl": "https://www.congress.gov/img/member/116_dg_dc_norton_eleanor_200.jpg"
+            },
+            "district": 0,
+            "name": "Norton, Eleanor Holmes",
+            "partyName": "Democratic",
+            "state": "District of Columbia",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "startYear": 1991
+                }
+              ]
+            },
+            "updateDate": "2025-09-24T07:40:13Z",
+            "url": "https://api.congress.gov/v3/member/N000147?format=json"
+          }
+        ]
+      },
+      "senate": {
+        "democrats": 45,
+        "republicans": 53,
+        "independents": 2
+      }
     },
+    "judicial": []
+  },
+  "map": {
     "senate": {
-      "democrats": 45,
-      "republicans": 53,
-      "independents": 2
+      "Indiana": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Oregon": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "Massachusetts": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "Rhode Island": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "Vermont": {
+        "1": "Democratic",
+        "2": "Independent"
+      },
+      "Mississippi": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Georgia": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "Alabama": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Virginia": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "Maryland": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "Minnesota": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "North Carolina": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Alaska": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "South Dakota": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Montana": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Florida": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Michigan": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "South Carolina": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "New Hampshire": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "Missouri": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Hawaii": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "New York": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "California": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "Nebraska": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Nevada": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "Kentucky": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Idaho": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Oklahoma": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Connecticut": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "Washington": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "Pennsylvania": {
+        "1": "Republican",
+        "2": "Democratic"
+      },
+      "Ohio": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Kansas": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Utah": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Wyoming": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "New Mexico": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "West Virginia": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Arizona": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "New Jersey": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "Louisiana": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Maine": {
+        "1": "Independent",
+        "2": "Republican"
+      },
+      "Wisconsin": {
+        "1": "Republican",
+        "2": "Democratic"
+      },
+      "Colorado": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "North Dakota": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Tennessee": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Iowa": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Texas": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Illinois": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "Arkansas": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Delaware": {
+        "1": "Democratic",
+        "2": "Democratic"
+      }
+    },
+    "house": {
+      "California": {
+        "27": "Democratic",
+        "30": "Democratic",
+        "20": "Republican",
+        "31": "Democratic",
+        "15": "Democratic",
+        "3": "Republican",
+        "37": "Democratic",
+        "42": "Democratic",
+        "23": "Republican",
+        "40": "Republican",
+        "51": "Democratic",
+        "9": "Democratic",
+        "19": "Democratic",
+        "36": "Democratic",
+        "33": "Democratic",
+        "10": "Democratic",
+        "50": "Democratic",
+        "52": "Democratic",
+        "39": "Democratic",
+        "25": "Democratic",
+        "22": "Republican",
+        "14": "Democratic",
+        "6": "Democratic",
+        "8": "Democratic",
+        "28": "Democratic",
+        "5": "Republican",
+        "7": "Democratic",
+        "11": "Democratic",
+        "4": "Democratic",
+        "32": "Democratic",
+        "21": "Democratic",
+        "48": "Republican",
+        "41": "Republican",
+        "18": "Democratic",
+        "49": "Democratic",
+        "34": "Democratic",
+        "46": "Democratic",
+        "44": "Democratic",
+        "24": "Democratic",
+        "47": "Democratic",
+        "17": "Democratic",
+        "35": "Democratic",
+        "45": "Democratic",
+        "26": "Democratic",
+        "2": "Democratic",
+        "1": "Republican",
+        "43": "Democratic",
+        "38": "Democratic",
+        "12": "Democratic",
+        "29": "Democratic",
+        "16": "Democratic",
+        "13": "Democratic"
+      },
+      "Florida": {
+        "6": "Republican",
+        "1": "Republican",
+        "8": "Republican",
+        "18": "Republican",
+        "23": "Democratic",
+        "7": "Republican",
+        "13": "Republican",
+        "15": "Republican",
+        "10": "Democratic",
+        "28": "Republican",
+        "21": "Republican",
+        "5": "Republican",
+        "22": "Democratic",
+        "25": "Democratic",
+        "26": "Republican",
+        "4": "Republican",
+        "20": "Democratic",
+        "27": "Republican",
+        "19": "Republican",
+        "3": "Republican",
+        "17": "Republican",
+        "9": "Democratic",
+        "2": "Republican",
+        "11": "Republican",
+        "24": "Democratic",
+        "16": "Republican",
+        "14": "Democratic",
+        "12": "Republican"
+      },
+      "Virginia": {
+        "7": "Democratic",
+        "10": "Democratic",
+        "5": "Republican",
+        "4": "Democratic",
+        "2": "Republican",
+        "6": "Republican",
+        "11": "Democratic",
+        "8": "Democratic",
+        "1": "Republican",
+        "9": "Republican",
+        "3": "Democratic"
+      },
+      "Ohio": {
+        "2": "Republican",
+        "6": "Republican",
+        "13": "Democratic",
+        "7": "Republican",
+        "1": "Democratic",
+        "15": "Republican",
+        "11": "Democratic",
+        "12": "Republican",
+        "8": "Republican",
+        "10": "Republican",
+        "14": "Republican",
+        "3": "Democratic",
+        "5": "Republican",
+        "4": "Republican",
+        "9": "Democratic"
+      },
+      "Indiana": {
+        "6": "Republican",
+        "8": "Republican",
+        "3": "Republican",
+        "9": "Republican",
+        "2": "Republican",
+        "5": "Republican",
+        "1": "Democratic",
+        "4": "Republican",
+        "7": "Democratic"
+      },
+      "Kansas": {
+        "2": "Republican",
+        "1": "Republican",
+        "3": "Democratic",
+        "4": "Republican"
+      },
+      "New York": {
+        "19": "Democratic",
+        "22": "Democratic",
+        "16": "Democratic",
+        "4": "Democratic",
+        "26": "Democratic",
+        "3": "Democratic",
+        "17": "Republican",
+        "23": "Republican",
+        "1": "Republican",
+        "10": "Democratic",
+        "18": "Democratic",
+        "24": "Republican",
+        "12": "Democratic",
+        "15": "Democratic",
+        "11": "Republican",
+        "2": "Republican",
+        "14": "Democratic",
+        "25": "Democratic",
+        "13": "Democratic",
+        "21": "Republican",
+        "9": "Democratic",
+        "20": "Democratic",
+        "5": "Democratic",
+        "7": "Democratic",
+        "8": "Democratic",
+        "6": "Democratic"
+      },
+      "New Jersey": {
+        "9": "Democratic",
+        "3": "Democratic",
+        "10": "Democratic",
+        "8": "Democratic",
+        "7": "Republican",
+        "2": "Republican",
+        "11": "Democratic",
+        "5": "Democratic",
+        "12": "Democratic",
+        "1": "Democratic",
+        "6": "Democratic",
+        "4": "Republican"
+      },
+      "Maryland": {
+        "2": "Democratic",
+        "6": "Democratic",
+        "3": "Democratic",
+        "4": "Democratic",
+        "7": "Democratic",
+        "8": "Democratic",
+        "1": "Republican",
+        "5": "Democratic"
+      },
+      "North Carolina": {
+        "6": "Republican",
+        "14": "Republican",
+        "13": "Republican",
+        "8": "Republican",
+        "10": "Republican",
+        "4": "Democratic",
+        "11": "Republican",
+        "1": "Democratic",
+        "9": "Republican",
+        "2": "Democratic",
+        "3": "Republican",
+        "7": "Republican",
+        "12": "Democratic",
+        "5": "Republican"
+      },
+      "Michigan": {
+        "8": "Democratic",
+        "7": "Republican",
+        "13": "Democratic",
+        "3": "Democratic",
+        "10": "Republican",
+        "9": "Republican",
+        "12": "Democratic",
+        "6": "Democratic",
+        "2": "Republican",
+        "4": "Republican",
+        "5": "Republican",
+        "11": "Democratic",
+        "1": "Republican"
+      },
+      "West Virginia": {
+        "2": "Republican",
+        "1": "Republican"
+      },
+      "Pennsylvania": {
+        "7": "Republican",
+        "8": "Republican",
+        "12": "Democratic",
+        "17": "Democratic",
+        "5": "Democratic",
+        "14": "Republican",
+        "13": "Republican",
+        "9": "Republican",
+        "6": "Democratic",
+        "4": "Democratic",
+        "11": "Republican",
+        "3": "Democratic",
+        "2": "Democratic",
+        "10": "Republican",
+        "16": "Republican",
+        "15": "Republican",
+        "1": "Republican"
+      },
+      "Utah": {
+        "3": "Republican",
+        "2": "Republican",
+        "4": "Republican",
+        "1": "Republican"
+      },
+      "Texas": {
+        "32": "Democratic",
+        "26": "Republican",
+        "12": "Republican",
+        "3": "Republican",
+        "1": "Republican",
+        "8": "Republican",
+        "38": "Republican",
+        "15": "Republican",
+        "30": "Democratic",
+        "35": "Democratic",
+        "34": "Democratic",
+        "9": "Democratic",
+        "37": "Democratic",
+        "6": "Republican",
+        "24": "Republican",
+        "22": "Republican",
+        "13": "Republican",
+        "23": "Republican",
+        "17": "Republican",
+        "11": "Republican",
+        "4": "Republican",
+        "29": "Democratic",
+        "21": "Republican",
+        "16": "Democratic",
+        "7": "Democratic",
+        "5": "Republican",
+        "2": "Republican",
+        "27": "Republican",
+        "19": "Republican",
+        "36": "Republican",
+        "33": "Democratic",
+        "25": "Republican",
+        "20": "Democratic",
+        "14": "Republican",
+        "28": "Democratic",
+        "10": "Republican",
+        "31": "Republican"
+      },
+      "New Hampshire": {
+        "2": "Democratic",
+        "1": "Democratic"
+      },
+      "North Dakota": {
+        "0": "Republican"
+      },
+      "Oregon": {
+        "3": "Democratic",
+        "5": "Democratic",
+        "6": "Democratic",
+        "4": "Democratic",
+        "2": "Republican",
+        "1": "Democratic"
+      },
+      "Montana": {
+        "2": "Republican",
+        "1": "Republican"
+      },
+      "South Carolina": {
+        "3": "Republican",
+        "7": "Republican",
+        "1": "Republican",
+        "4": "Republican",
+        "5": "Republican",
+        "2": "Republican",
+        "6": "Democratic"
+      },
+      "Washington": {
+        "5": "Republican",
+        "3": "Democratic",
+        "10": "Democratic",
+        "8": "Democratic",
+        "7": "Democratic",
+        "4": "Republican",
+        "1": "Democratic",
+        "6": "Democratic",
+        "9": "Democratic",
+        "2": "Democratic"
+      },
+      "Georgia": {
+        "7": "Republican",
+        "3": "Republican",
+        "14": "Republican",
+        "6": "Democratic",
+        "10": "Republican",
+        "5": "Democratic",
+        "9": "Republican",
+        "12": "Republican",
+        "11": "Republican",
+        "1": "Republican",
+        "8": "Republican",
+        "13": "Democratic",
+        "4": "Democratic",
+        "2": "Democratic"
+      },
+      "Louisiana": {
+        "6": "Democratic",
+        "2": "Democratic",
+        "5": "Republican",
+        "4": "Republican",
+        "3": "Republican",
+        "1": "Republican"
+      },
+      "Missouri": {
+        "3": "Republican",
+        "1": "Democratic",
+        "7": "Republican",
+        "4": "Republican",
+        "8": "Republican",
+        "2": "Republican",
+        "5": "Democratic",
+        "6": "Republican"
+      },
+      "Delaware": {
+        "0": "Democratic"
+      },
+      "Minnesota": {
+        "3": "Democratic",
+        "1": "Republican",
+        "7": "Republican",
+        "2": "Democratic",
+        "8": "Republican",
+        "5": "Democratic",
+        "6": "Republican",
+        "4": "Democratic"
+      },
+      "Alabama": {
+        "2": "Democratic",
+        "1": "Republican",
+        "5": "Republican",
+        "6": "Republican",
+        "7": "Democratic",
+        "4": "Republican",
+        "3": "Republican"
+      },
+      "Colorado": {
+        "8": "Republican",
+        "5": "Republican",
+        "4": "Republican",
+        "7": "Democratic",
+        "6": "Democratic",
+        "2": "Democratic",
+        "3": "Republican",
+        "1": "Democratic"
+      },
+      "Wisconsin": {
+        "8": "Republican",
+        "3": "Republican",
+        "5": "Republican",
+        "7": "Republican",
+        "1": "Republican",
+        "6": "Republican",
+        "2": "Democratic",
+        "4": "Democratic"
+      },
+      "Rhode Island": {
+        "1": "Democratic",
+        "2": "Democratic"
+      },
+      "Tennessee": {
+        "5": "Republican",
+        "1": "Republican",
+        "6": "Republican",
+        "2": "Republican",
+        "8": "Republican",
+        "4": "Republican",
+        "3": "Republican",
+        "9": "Democratic"
+      },
+      "Wyoming": {
+        "0": "Republican"
+      },
+      "Vermont": {
+        "0": "Democratic"
+      },
+      "New Mexico": {
+        "2": "Democratic",
+        "1": "Democratic",
+        "3": "Democratic"
+      },
+      "Hawaii": {
+        "2": "Democratic",
+        "1": "Democratic"
+      },
+      "Illinois": {
+        "17": "Democratic",
+        "3": "Democratic",
+        "1": "Democratic",
+        "13": "Democratic",
+        "16": "Republican",
+        "15": "Republican",
+        "4": "Democratic",
+        "14": "Democratic",
+        "6": "Democratic",
+        "8": "Democratic",
+        "10": "Democratic",
+        "12": "Republican",
+        "2": "Democratic",
+        "5": "Democratic",
+        "11": "Democratic",
+        "9": "Democratic",
+        "7": "Democratic"
+      },
+      "Iowa": {
+        "3": "Republican",
+        "1": "Republican",
+        "2": "Republican",
+        "4": "Republican"
+      },
+      "Kentucky": {
+        "3": "Democratic",
+        "1": "Republican",
+        "6": "Republican",
+        "4": "Republican",
+        "2": "Republican",
+        "5": "Republican"
+      },
+      "Mississippi": {
+        "4": "Republican",
+        "3": "Republican",
+        "1": "Republican",
+        "2": "Democratic"
+      },
+      "Oklahoma": {
+        "2": "Republican",
+        "5": "Republican",
+        "1": "Republican",
+        "3": "Republican",
+        "4": "Republican"
+      },
+      "Arizona": {
+        "2": "Republican",
+        "6": "Republican",
+        "4": "Democratic",
+        "1": "Republican",
+        "9": "Republican",
+        "5": "Republican",
+        "8": "Republican",
+        "3": "Democratic"
+      },
+      "Nebraska": {
+        "1": "Republican",
+        "2": "Republican",
+        "3": "Republican"
+      },
+      "Massachusetts": {
+        "4": "Democratic",
+        "7": "Democratic",
+        "3": "Democratic",
+        "6": "Democratic",
+        "5": "Democratic",
+        "9": "Democratic",
+        "2": "Democratic",
+        "1": "Democratic",
+        "8": "Democratic"
+      },
+      "Maine": {
+        "2": "Democratic",
+        "1": "Democratic"
+      },
+      "South Dakota": {
+        "0": "Republican"
+      },
+      "Nevada": {
+        "3": "Democratic",
+        "4": "Democratic",
+        "2": "Republican",
+        "1": "Democratic"
+      },
+      "Idaho": {
+        "1": "Republican",
+        "2": "Republican"
+      },
+      "Connecticut": {
+        "5": "Democratic",
+        "4": "Democratic",
+        "2": "Democratic",
+        "1": "Democratic",
+        "3": "Democratic"
+      },
+      "Arkansas": {
+        "4": "Republican",
+        "2": "Republican",
+        "3": "Republican",
+        "1": "Republican"
+      },
+      "Alaska": {
+        "0": "Republican"
+      }
     }
   },
-  "judicial": [],
-  "lastUpdated": "2025-11-07T02:02:22.657348+00:00"
+  "lastUpdated": "2025-11-07T18:47:16.483869+00:00"
 }

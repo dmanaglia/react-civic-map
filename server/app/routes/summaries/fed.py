@@ -2,6 +2,7 @@ from datetime import datetime, timezone
 from fastapi import APIRouter
 import httpx
 import os
+import json
 from app.utils.cache import read_cache, write_cache
 
 CONGRESS_API_KEY = os.getenv("GPO_CONGRESS_APIKEY")
@@ -75,7 +76,6 @@ async def summarize_congress_data():
             },
         },
         "judicial": [], #TODO
-        "lastUpdated": datetime.now(timezone.utc).isoformat()
     }
 
     # Count House
@@ -98,7 +98,32 @@ async def summarize_congress_data():
         elif "independent" in party:
             summary["legislative"]["senate"]["independents"] += 1
 
-    return summary
+    map = get_legislature_map(senate_members, house_members)
+    
+    data = {
+        "summary": summary,
+        "map": map,
+        "lastUpdated": datetime.now(timezone.utc).isoformat()
+    }
+
+    return data
+
+def get_legislature_map(senate_members: list, house_members: list):
+    houseMap = {}
+    for rep in house_members:
+        if(rep["state"] in houseMap):
+            houseMap[rep["state"]].update({rep["district"]: rep["partyName"]})
+        else:
+            houseMap.update({rep["state"]: {rep["district"]: rep["partyName"]}})
+
+    senateMap = {}
+    for rep in senate_members:
+        if(rep["state"] in senateMap):
+            senateMap[rep["state"]].update({"2": rep["partyName"]})
+        else:
+            senateMap.update({rep["state"]: {"1": rep["partyName"]}})
+
+    return {"senate": senateMap, "house": houseMap}
 
 
 router = APIRouter()
@@ -111,9 +136,9 @@ async def get_congress_summary():
 
     cached = read_cache()
     if cached:
-        return {"cached": True, "summary": cached}
+        return {"cached": True, "summary": cached["summary"]}
 
-    summary = await summarize_congress_data()
-    write_cache(summary)
+    data = await summarize_congress_data()
+    write_cache(data)
 
-    return {"cached": False, "summary": summary}
+    return {"cached": False, "summary": data["summary"]}

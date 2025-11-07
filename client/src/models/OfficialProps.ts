@@ -55,7 +55,6 @@ export interface GovSummaryProps {
         senate: ChamberProps
     },
     judicial: any[],
-    lastUpdated: Date
 }
 
 export interface ChamberProps {

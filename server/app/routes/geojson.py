@@ -2,8 +2,70 @@ from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
 import requests, zipfile, io, tempfile, os
 import geopandas as gpd
+import json
+from app.utils.cache import read_cache
 
 BASE_URL = "https://www2.census.gov/geo/tiger/GENZ2024/shp/"
+
+STATEFP_TO_NAME = {
+    "01": "Alabama",
+    "02": "Alaska",
+    "04": "Arizona",
+    "05": "Arkansas",
+    "06": "California",
+    "08": "Colorado",
+    "09": "Connecticut",
+    "10": "Delaware",
+    "11": "District of Columbia",
+    "12": "Florida",
+    "13": "Georgia",
+    "15": "Hawaii",
+    "16": "Idaho",
+    "17": "Illinois",
+    "18": "Indiana",
+    "19": "Iowa",
+    "20": "Kansas",
+    "21": "Kentucky",
+    "22": "Louisiana",
+    "23": "Maine",
+    "24": "Maryland",
+    "25": "Massachusetts",
+    "26": "Michigan",
+    "27": "Minnesota",
+    "28": "Mississippi",
+    "29": "Missouri",
+    "30": "Montana",
+    "31": "Nebraska",
+    "32": "Nevada",
+    "33": "New Hampshire",
+    "34": "New Jersey",
+    "35": "New Mexico",
+    "36": "New York",
+    "37": "North Carolina",
+    "38": "North Dakota",
+    "39": "Ohio",
+    "40": "Oklahoma",
+    "41": "Oregon",
+    "42": "Pennsylvania",
+    "44": "Rhode Island",
+    "45": "South Carolina",
+    "46": "South Dakota",
+    "47": "Tennessee",
+    "48": "Texas",
+    "49": "Utah",
+    "50": "Vermont",
+    "51": "Virginia",
+    "53": "Washington",
+    "54": "West Virginia",
+    "55": "Wisconsin",
+    "56": "Wyoming",
+    "60": "American Samoa",
+    "66": "Guam",
+    "69": "Northern Mariana Islands",
+    "72": "Puerto Rico",
+    "78": "U.S. Virgin Islands"
+}
+
 
 def fetch_and_filter_geojson(zip_url: str, state_filter: str | None = None) -> dict:
     r = requests.get(zip_url)
@@ -35,27 +97,62 @@ router = APIRouter()
 async def get_states():
     url = f"{BASE_URL}cb_2024_us_state_500k.zip"
     geojson = fetch_and_filter_geojson(url)
+    # TODO
+    # print("GEOJSON:")
+    # print(json.dumps(geojson, indent=4))
+    # for feature in geojson["features"]:
+    #     print(json.dumps(feature["properties"], indent=4))
     return JSONResponse(content=geojson)
 
 # State Senate (sldu)
 @router.get("/sldu/{state}")
-async def get_sldu(state: str):
+async def get_sldu(state: str, state_code: str = None):
     url = f"{BASE_URL}cb_2024_{state}_sldu_500k.zip"
     geojson = fetch_and_filter_geojson(url)
+    
+    cached = read_cache(state_code.upper())
+    ss_map = {}
+    if cached:
+        ss_map = cached["map"]["senate"]
+        for feature in geojson["features"]:
+            id = feature["properties"]["NAME"]
+            feature["properties"].update({"party": ss_map[id]})
+
     return JSONResponse(content=geojson)
 
 # State House (sldl)
 @router.get("/sldl/{state}")
-async def get_sldl(state: str):
+async def get_sldl(state: str, state_code: str = None):
     url = f"{BASE_URL}cb_2024_{state}_sldl_500k.zip"
     geojson = fetch_and_filter_geojson(url)
+
+    cached = read_cache(state_code.upper())
+    sh_map = {}
+    if cached:
+        sh_map = cached["map"]["house"]
+        for feature in geojson["features"]:
+            id = feature["properties"]["NAME"]
+            feature["properties"].update({"party": sh_map[id]})
+
     return JSONResponse(content=geojson)
 
 # Congressional Districts (cd)
 @router.get("/cd/{state}")
-async def get_cd(state: str):
+async def get_cd(state: str, state_code: str = None, state_name:str = None):
     url = f"{BASE_URL}cb_2024_us_cd119_500k.zip"  # Only national shapefile exists
     geojson = fetch_and_filter_geojson(url, state_filter=state)
+
+    cached = read_cache()
+    cd_map = {}
+    if cached:
+        cd_map = cached["map"]["house"][state_name]
+        print(cd_map)
+        for feature in geojson["features"]:
+            # print(feature)
+            id = feature["properties"]["CD119FP"]
+            print(id)
+            feature["properties"].update({"party": cd_map[f"{int(id)}"]})
+
     return JSONResponse(content=geojson)
 
 # Counties (county)

@@ -87,9 +87,26 @@ def summarize_state_legislators(senate_members, house_members, executive):
         elif "independent" in party:
             summary["legislative"]["senate"]["independents"] += 1
     
-    # print(json.dumps(summary, indent=4))
-    return summary
+    map = get_legislature_map(senate_members, house_members)
+    
+    data = {
+        "summary": summary,
+        "map": map,
+        "lastUpdated": datetime.now(timezone.utc).isoformat()
+    }
+    return data
 
+
+def get_legislature_map(senate_members: list, house_members: list):
+    houseMap = {}
+    for rep in house_members:
+        houseMap.update({rep["current_role"]["district"]: rep["party"]})
+
+    senateMap = {}
+    for rep in senate_members:
+        senateMap.update({rep["current_role"]["district"]: rep["party"]})
+
+    return {"senate": senateMap, "house": houseMap}
 
 router = APIRouter()
 
@@ -100,9 +117,9 @@ async def get_state_summary(state_abbr: str):
     state_abbr = state_abbr.upper()
     cached = read_cache(state_abbr)
     if cached:
-        return {"cached": True, "summary": cached}
+        return {"cached": True, "summary": cached["summary"]}
 
-    summary = await fetch_state_legislators(state_abbr)
-    write_cache(summary, state_abbr)
+    data = await fetch_state_legislators(state_abbr)
+    write_cache(data, state_abbr)
 
-    return {"cached": False, "summary": summary}
+    return {"cached": False, "summary": data["summary"]}
