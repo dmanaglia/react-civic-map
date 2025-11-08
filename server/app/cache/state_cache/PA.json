@@ -66,10 +66,62 @@
         "democrats": 23,
         "republicans": 27,
         "independents": 0
+      },
+      "fed_reps": {
+        "senate": [
+          {
+            "bioguideId": "M001243",
+            "depiction": {
+              "attribution": "Official U.S. Senate Photo",
+              "imageUrl": "https://www.congress.gov/img/member/677d85e0fdb6cf36bbb649aa_200.jpg"
+            },
+            "district": null,
+            "name": "McCormick, David",
+            "partyName": "Republican",
+            "state": "Pennsylvania",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "Senate",
+                  "startYear": 2025
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:22Z",
+            "url": "https://api.congress.gov/v3/member/M001243?format=json"
+          },
+          {
+            "bioguideId": "F000479",
+            "depiction": {
+              "attribution": "Official U.S. Senate Photo",
+              "imageUrl": "https://www.congress.gov/img/member/f000479_200.jpg"
+            },
+            "district": null,
+            "name": "Fetterman, John",
+            "partyName": "Democratic",
+            "state": "Pennsylvania",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "Senate",
+                  "startYear": 2023
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:17Z",
+            "url": "https://api.congress.gov/v3/member/F000479?format=json"
+          }
+        ],
+        "house": {
+          "seats": 17,
+          "democrats": 7,
+          "republicans": 10,
+          "independents": 0
+        }
       }
     },
     "judicial": [],
-    "lastUpdated": "2025-11-08T16:26:40.091276+00:00"
+    "lastUpdated": "2025-11-08T22:19:32.498004+00:00"
   },
   "map": {
     "senate": {
@@ -330,5 +382,5 @@
       "183": "Republican"
     }
   },
-  "lastUpdated": "2025-11-08T16:26:40.091406+00:00"
+  "lastUpdated": "2025-11-08T22:19:32.499082+00:00"
 }

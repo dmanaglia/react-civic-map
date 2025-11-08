@@ -9,14 +9,20 @@ CONGRESS_API_KEY = os.getenv("GPO_CONGRESS_APIKEY")
 CONGRESS_NUMBER = 119 # may want to generalize this at some point
 BASE_URL = f"https://api.congress.gov/v3/member/congress/{CONGRESS_NUMBER}"
 
-async def fetch_all_members():
+async def fetch_all_members(state_abbr: str=None):
     """Fetches all members of the given chamber (House or Senate) with pagination."""
     members = []
     async with httpx.AsyncClient() as client:
-        url = f"{BASE_URL}/?limit=250&api_key={CONGRESS_API_KEY}"
+        url = ""
+        if(state_abbr):
+            url = f"{BASE_URL}/{state_abbr}?limit=250&api_key={CONGRESS_API_KEY}"
+        else:
+            url = f"{BASE_URL}/?limit=250&api_key={CONGRESS_API_KEY}"
         while url:
             response = await client.get(url)
+            print("line 23", response)
             data = response.json()
+            print("line 25", json.dumps(data, indent=2))
             members.extend(data.get("members", []))
             url = data.get("pagination", {}).get("next")
             if url: url = f"{url}&api_key={CONGRESS_API_KEY}"
@@ -51,6 +57,8 @@ async def fetch_all_members():
                 house_members.append(m)
             elif "Senate" in chamber:
                 senate_members.append(m)
+
+        print("line 61", senate_members)
 
         return senate_members, house_members, non_voting_house_members
 

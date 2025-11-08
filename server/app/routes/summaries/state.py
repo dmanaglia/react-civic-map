@@ -5,6 +5,7 @@ import httpx
 import json
 import os
 from app.utils.cache import read_cache, write_cache
+from app.routes.summaries.fed import fetch_all_members
 
 OPENSTATES_API_KEY = os.getenv("OPEN_STATES_APIKEY")
 
@@ -36,18 +37,13 @@ async def fetch_state_legislators(state_abbr: str):
                 max_page = pagination.get("max_page", "")
                 members[i].extend(data.get("results", []))
                 await asyncio.sleep(1)
-
-    print(f"{state_abbr} Senate count:", len(members[0]))
-    print(f"{state_abbr} House count:", len(members[1]))
-    print(f"{state_abbr} Executive count:", len(members[2]))
-
-    for mem in members[2]:
-        print(json.dumps(mem, indent=4))
+        
+    fed_senate_reps, fed_house_reps, _ = await fetch_all_members(state_abbr=state_abbr)
     
-    return summarize_state_legislators(members[0], members[1], members[2])
+    return summarize_state_legislators(members[0], members[1], members[2], fed_house_reps, fed_senate_reps)
 
 
-def summarize_state_legislators(senate_members, house_members, executive):
+def summarize_state_legislators(senate_members, house_members, executive, fed_house_reps, fed_senate_reps):
     """Create a summarized overview of the state legislature."""
     summary = {
         "executive": executive,
@@ -62,6 +58,15 @@ def summarize_state_legislators(senate_members, house_members, executive):
                 "republicans": 0, 
                 "independents": 0
             },
+            "fed_reps": {
+            "senate": fed_senate_reps,
+            "house": {
+                "seats": len(fed_house_reps),
+                "democrats": 0, 
+                "republicans": 0, 
+                "independents": 0
+            }
+        },
         },
         "judicial": [], #TODO
         "lastUpdated": datetime.now(timezone.utc).isoformat()
@@ -86,6 +91,15 @@ def summarize_state_legislators(senate_members, house_members, executive):
             summary["legislative"]["senate"]["republicans"] += 1
         elif "independent" in party:
             summary["legislative"]["senate"]["independents"] += 1
+
+    for m in fed_house_reps:
+        party = m.get("partyName", "").lower()
+        if "democrat" in party:
+            summary["legislative"]["fed_reps"]["house"]["democrats"] += 1
+        elif "republican" in party:
+            summary["legislative"]["fed_reps"]["house"]["republicans"] += 1
+        elif "independent" in party:
+            summary["legislative"]["fed_reps"]["house"]["independents"] += 1
     
     map = get_legislature_map(senate_members, house_members)
     

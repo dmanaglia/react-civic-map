@@ -39,10 +39,72 @@
         "democrats": 40,
         "republicans": 19,
         "independents": 0
+      },
+      "fed_reps": {
+        "senate": [
+          {
+            "bioguideId": "D000622",
+            "depiction": {
+              "attribution": "Courtesy U.S. Senate Historical Office",
+              "imageUrl": "https://www.congress.gov/img/member/d000622_200.jpg"
+            },
+            "district": null,
+            "name": "Duckworth, Tammy",
+            "partyName": "Democratic",
+            "state": "Illinois",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 2017,
+                  "startYear": 2013
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 2017
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:17Z",
+            "url": "https://api.congress.gov/v3/member/D000622?format=json"
+          },
+          {
+            "bioguideId": "D000563",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/d000563_200.jpg"
+            },
+            "district": null,
+            "name": "Durbin, Richard J.",
+            "partyName": "Democratic",
+            "state": "Illinois",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 1997,
+                  "startYear": 1983
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 1997
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:17Z",
+            "url": "https://api.congress.gov/v3/member/D000563?format=json"
+          }
+        ],
+        "house": {
+          "seats": 17,
+          "democrats": 14,
+          "republicans": 3,
+          "independents": 0
+        }
       }
     },
     "judicial": [],
-    "lastUpdated": "2025-11-07T19:47:13.350387+00:00"
+    "lastUpdated": "2025-11-08T22:07:48.885701+00:00"
   },
   "map": {
     "senate": {
@@ -227,5 +289,5 @@
       "9": "Democratic"
     }
   },
-  "lastUpdated": "2025-11-07T19:47:13.350466+00:00"
+  "lastUpdated": "2025-11-08T22:07:48.885891+00:00"
 }

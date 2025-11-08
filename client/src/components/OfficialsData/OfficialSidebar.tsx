@@ -37,7 +37,7 @@ export default function OfficialSidebar({ loading, open, onToggle, onClose, stat
                     <div>
                         <h2>{state ? `${state.name} ` : "Federal"}</h2>
                         <h3>{feature ? feature.name : null}</h3>
-                        <small>{feature ? "Representative details" : "Government Details"}</small>
+                        <small>{feature ? "Representative details" : type === 'cd' ? "Federal Represenation" : "Government Details"}</small>
                     </div>
 
                     <div className="sidebar-actions">
@@ -47,7 +47,7 @@ export default function OfficialSidebar({ loading, open, onToggle, onClose, stat
                     </div>
                 </div>
                 {!feature ? 
-                    <GovSummary officialsData={officialsData} state={state?.name}/> 
+                    <GovSummary officialsData={officialsData} type={type} state={state?.name}/> 
                 : 
                     <>
                         {type === 'cd' && <CdOfficialData state={state} feature={feature} officialsData={officialsData}/>}

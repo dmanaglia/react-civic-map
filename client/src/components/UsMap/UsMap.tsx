@@ -78,8 +78,8 @@ export default function UsMap({
       .attr("d", path as any)
       .attr("fill", (d: any) => {
         const party = d.properties.party?.toLowerCase();
-        if (party === "democratic") return "#2b83ba"; // blue
-        if (party === "republican") return "#d7191c"; // red
+        if (party.includes("democratic")) return "#2b83ba"; // blue
+        if (party.includes("republican")) return "#d7191c"; // red
         return "#cccccc"; // gray fallback
       })
       .attr("class", (d: any) => {

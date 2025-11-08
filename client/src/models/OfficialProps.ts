@@ -52,7 +52,16 @@ export interface GovSummaryProps {
     executive: StateLegislatorsProps[],
     legislative: {
         house: ChamberProps,
-        senate: ChamberProps
+        senate: ChamberProps,
+        fed_reps?: {
+            senate: CdOfficialProps[],
+            house: {
+                seats: number,
+                democrats: number,
+                independents: number,
+                republicans: number,
+            }
+    }
     },
     judicial: any[],
 }

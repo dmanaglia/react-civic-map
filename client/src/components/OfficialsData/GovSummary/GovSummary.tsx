@@ -7,15 +7,17 @@ import "./GovSummary.css";
 
 interface GovSummaryDataProps {
     officialsData: GovSummaryProps | null;
+    type: string;
     state?: string;
 }
 
-export default function GovSummary({officialsData, state}: GovSummaryDataProps) {
-    const [activeBranch, setActiveBranch] = useState<"Legislative" | "Executive" | "Judicial">("Executive");
+export default function GovSummary({officialsData, type, state}: GovSummaryDataProps) {
+    const [activeBranch, setActiveBranch] = useState<"Legislative" | "Executive" | "Judicial">("Legislative");
 
     return (
         <div className="sidebar-body federal-summary">
-            <div className="branch-tabs" role="tablist" aria-label="Branches of Government">
+            
+            {!(type === 'cd' && state) && <div className="branch-tabs" role="tablist" aria-label="Branches of Government">
                 {(["Executive", "Legislative", "Judicial"] as const).map((b) => (
                 <button
                     key={b}
@@ -27,12 +29,12 @@ export default function GovSummary({officialsData, state}: GovSummaryDataProps) 
                     {b}
                 </button>
                 ))}
-            </div>
+            </div>}
 
             <div className="branch-content">
-                {activeBranch === "Legislative" && <Legislative officialsData={officialsData?.legislative} state={state}/>}
-                {activeBranch === "Executive" && <Executive officialsData={officialsData?.executive} state={state}/>}
-                {activeBranch === "Judicial" && <Judicial officialsData={officialsData?.judicial} state={state}/>}
+                {(type === 'cd' || activeBranch === "Legislative") && <Legislative type={type} officialsData={officialsData?.legislative} state={state}/>}
+                {(type !== 'cd' && activeBranch === "Executive") && <Executive officialsData={officialsData?.executive} state={state}/>}
+                {(type !== 'cd' && activeBranch === "Judicial") && <Judicial officialsData={officialsData?.judicial} state={state}/>}
             </div>
         </div>
     );

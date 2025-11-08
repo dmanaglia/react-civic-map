@@ -39,10 +39,72 @@
         "democrats": 10,
         "republicans": 40,
         "independents": 0
+      },
+      "fed_reps": {
+        "senate": [
+          {
+            "bioguideId": "Y000064",
+            "depiction": {
+              "attribution": "Image courtesy of the Member",
+              "imageUrl": "https://www.congress.gov/img/member/y000064_200.jpg"
+            },
+            "district": null,
+            "name": "Young, Todd",
+            "partyName": "Republican",
+            "state": "Indiana",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 2017,
+                  "startYear": 2011
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 2017
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:30Z",
+            "url": "https://api.congress.gov/v3/member/Y000064?format=json"
+          },
+          {
+            "bioguideId": "B001299",
+            "depiction": {
+              "attribution": "Official U.S. Senate Photo",
+              "imageUrl": "https://www.congress.gov/img/member/677d83cbfdb6cf36bbb64998_200.jpg"
+            },
+            "district": null,
+            "name": "Banks, Jim",
+            "partyName": "Republican",
+            "state": "Indiana",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 2025,
+                  "startYear": 2017
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 2025
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:14Z",
+            "url": "https://api.congress.gov/v3/member/B001299?format=json"
+          }
+        ],
+        "house": {
+          "seats": 9,
+          "democrats": 2,
+          "republicans": 7,
+          "independents": 0
+        }
       }
     },
     "judicial": [],
-    "lastUpdated": "2025-11-07T19:00:38.022539+00:00"
+    "lastUpdated": "2025-11-08T22:18:01.044416+00:00"
   },
   "map": {
     "senate": {
@@ -200,5 +262,5 @@
       "66": "Republican"
     }
   },
-  "lastUpdated": "2025-11-07T19:00:38.022604+00:00"
+  "lastUpdated": "2025-11-08T22:18:01.044508+00:00"
 }

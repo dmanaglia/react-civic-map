@@ -66,10 +66,62 @@
         "democrats": 9,
         "republicans": 24,
         "independents": 0
+      },
+      "fed_reps": {
+        "senate": [
+          {
+            "bioguideId": "M001242",
+            "depiction": {
+              "attribution": "Official U.S. Senate Photo",
+              "imageUrl": "https://www.congress.gov/img/member/67c8694e6159152e59828afb_200.jpg"
+            },
+            "district": null,
+            "name": "Moreno, Bernie",
+            "partyName": "Republican",
+            "state": "Ohio",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "Senate",
+                  "startYear": 2025
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:22Z",
+            "url": "https://api.congress.gov/v3/member/M001242?format=json"
+          },
+          {
+            "bioguideId": "H001104",
+            "depiction": {
+              "attribution": "Official U.S. Senate Photo",
+              "imageUrl": "https://www.congress.gov/img/member/67f0316b1b05a5a598f7fdf3_200.jpg"
+            },
+            "district": null,
+            "name": "Husted, Jon",
+            "partyName": "Republican",
+            "state": "Ohio",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "Senate",
+                  "startYear": 2025
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:19Z",
+            "url": "https://api.congress.gov/v3/member/H001104?format=json"
+          }
+        ],
+        "house": {
+          "seats": 15,
+          "democrats": 5,
+          "republicans": 10,
+          "independents": 0
+        }
       }
     },
     "judicial": [],
-    "lastUpdated": "2025-11-08T16:24:25.658775+00:00"
+    "lastUpdated": "2025-11-08T22:18:46.102974+00:00"
   },
   "map": {
     "senate": {
@@ -209,5 +261,5 @@
       "33": "Democratic"
     }
   },
-  "lastUpdated": "2025-11-08T16:24:25.658835+00:00"
+  "lastUpdated": "2025-11-08T22:18:46.103067+00:00"
 }
