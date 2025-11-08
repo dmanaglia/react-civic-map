@@ -7,8 +7,11 @@ interface LegislativeProps {
 
 export const Executive = ({officialsData, state}: LegislativeProps) => {
     return (
-        !officialsData ? 
-            <p>Work in progress...</p>
+        !officialsData || !officialsData.length ? 
+            <>
+                <h4>Executive Branch</h4>
+                <p className="muted">Work in progress...</p>
+            </>
         :
             <>
                 {officialsData.map((official) => 

@@ -33,3 +33,5 @@ Some notes on state legislative branches:
 - Virginia state house currently has 1 vacancy (though may have recently been filled on election day) (total should be 100, but it's at 99 from open states)
     -> state house district 33 listed as vacant, though may soon be filled.
 
+- NY State house district 131 missing?
+
