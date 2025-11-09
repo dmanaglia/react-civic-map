@@ -1,0 +1,244 @@
+{
+  "summary": {
+    "executive": [
+      {
+        "id": "ocd-person/c7dbc1b4-67fb-4bb2-b1c5-cc5ef9356a5a",
+        "name": "Andy Beshear",
+        "party": "Democratic",
+        "current_role": {
+          "title": "Governor",
+          "org_classification": "executive",
+          "district": "",
+          "division_id": ""
+        },
+        "jurisdiction": {
+          "id": "ocd-jurisdiction/country:us/state:ky/government",
+          "name": "Kentucky",
+          "classification": "state"
+        },
+        "given_name": "Andy",
+        "family_name": "Beshear",
+        "image": "https://governor.ky.gov/PublishingImages/Governor-Beshear_Official-Picture.jpg",
+        "email": "",
+        "gender": "",
+        "birth_date": "1977-11-29",
+        "death_date": "",
+        "extras": {},
+        "created_at": "2020-08-04T05:08:30.863605+00:00",
+        "updated_at": "2024-10-18T15:19:53.649681+00:00",
+        "openstates_url": "https://openstates.org/person/andy-beshear-657tvqE4jAZJDHnjYEwnne/"
+      }
+    ],
+    "legislative": {
+      "house": {
+        "democrats": 20,
+        "republicans": 80,
+        "independents": 0
+      },
+      "senate": {
+        "democrats": 6,
+        "republicans": 32,
+        "independents": 0
+      },
+      "fed_reps": {
+        "senate": [
+          {
+            "bioguideId": "P000603",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/p000603_200.jpg"
+            },
+            "district": null,
+            "name": "Paul, Rand",
+            "partyName": "Republican",
+            "state": "Kentucky",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "Senate",
+                  "startYear": 2011
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:24Z",
+            "url": "https://api.congress.gov/v3/member/P000603?format=json"
+          },
+          {
+            "bioguideId": "M000355",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/m000355_200.jpg"
+            },
+            "district": null,
+            "name": "McConnell, Mitch",
+            "partyName": "Republican",
+            "state": "Kentucky",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "Senate",
+                  "startYear": 1985
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:22Z",
+            "url": "https://api.congress.gov/v3/member/M000355?format=json"
+          }
+        ],
+        "house": {
+          "seats": 6,
+          "democrats": 1,
+          "republicans": 5,
+          "independents": 0
+        }
+      }
+    },
+    "judicial": [],
+    "lastUpdated": "2025-11-09T19:27:04.804119+00:00"
+  },
+  "map": {
+    "senate": {
+      "7": "Republican",
+      "12": "Republican",
+      "30": "Republican",
+      "21": "Republican",
+      "19": "Democratic",
+      "23": "Republican",
+      "3": "Republican",
+      "2": "Republican",
+      "9": "Republican",
+      "37": "Democratic",
+      "22": "Republican",
+      "8": "Republican",
+      "33": "Democratic",
+      "20": "Republican",
+      "28": "Republican",
+      "34": "Republican",
+      "1": "Republican",
+      "14": "Republican",
+      "36": "Republican",
+      "26": "Democratic",
+      "35": "Democratic",
+      "6": "Republican",
+      "10": "Republican",
+      "17": "Republican",
+      "16": "Republican",
+      "38": "Republican",
+      "32": "Republican",
+      "31": "Republican",
+      "13": "Democratic",
+      "15": "Republican",
+      "4": "Republican",
+      "25": "Republican",
+      "18": "Republican",
+      "29": "Republican",
+      "24": "Republican",
+      "5": "Republican",
+      "11": "Republican",
+      "27": "Republican"
+    },
+    "house": {
+      "98": "Republican",
+      "87": "Republican",
+      "45": "Democratic",
+      "93": "Democratic",
+      "46": "Democratic",
+      "21": "Republican",
+      "76": "Democratic",
+      "95": "Democratic",
+      "44": "Democratic",
+      "91": "Republican",
+      "97": "Republican",
+      "50": "Republican",
+      "79": "Democratic",
+      "6": "Republican",
+      "84": "Republican",
+      "29": "Republican",
+      "13": "Republican",
+      "56": "Republican",
+      "54": "Republican",
+      "30": "Democratic",
+      "74": "Republican",
+      "80": "Republican",
+      "59": "Republican",
+      "81": "Republican",
+      "90": "Republican",
+      "37": "Republican",
+      "57": "Democratic",
+      "47": "Republican",
+      "77": "Democratic",
+      "11": "Republican",
+      "53": "Republican",
+      "28": "Republican",
+      "33": "Republican",
+      "16": "Republican",
+      "58": "Republican",
+      "12": "Republican",
+      "92": "Republican",
+      "36": "Republican",
+      "83": "Republican",
+      "71": "Republican",
+      "10": "Republican",
+      "42": "Democratic",
+      "48": "Republican",
+      "52": "Republican",
+      "20": "Republican",
+      "63": "Republican",
+      "2": "Republican",
+      "55": "Republican",
+      "64": "Republican",
+      "75": "Democratic",
+      "35": "Democratic",
+      "60": "Republican",
+      "78": "Republican",
+      "5": "Republican",
+      "41": "Democratic",
+      "72": "Republican",
+      "67": "Democratic",
+      "39": "Republican",
+      "19": "Republican",
+      "68": "Republican",
+      "94": "Republican",
+      "9": "Republican",
+      "27": "Republican",
+      "82": "Republican",
+      "40": "Democratic",
+      "43": "Democratic",
+      "96": "Republican",
+      "26": "Republican",
+      "38": "Democratic",
+      "3": "Republican",
+      "15": "Republican",
+      "99": "Republican",
+      "17": "Republican",
+      "24": "Republican",
+      "73": "Republican",
+      "18": "Republican",
+      "34": "Democratic",
+      "51": "Republican",
+      "61": "Republican",
+      "14": "Republican",
+      "100": "Republican",
+      "85": "Republican",
+      "22": "Republican",
+      "65": "Republican",
+      "25": "Republican",
+      "23": "Republican",
+      "69": "Republican",
+      "1": "Republican",
+      "31": "Republican",
+      "7": "Republican",
+      "66": "Republican",
+      "49": "Republican",
+      "89": "Republican",
+      "32": "Democratic",
+      "86": "Republican",
+      "62": "Republican",
+      "88": "Republican",
+      "4": "Republican",
+      "8": "Republican",
+      "70": "Republican"
+    }
+  },
+  "lastUpdated": "2025-11-09T19:27:04.804711+00:00"
+}

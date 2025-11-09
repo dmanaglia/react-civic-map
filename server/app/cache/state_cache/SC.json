@@ -1,0 +1,313 @@
+{
+  "summary": {
+    "executive": [
+      {
+        "id": "ocd-person/333130a9-ecba-4992-b223-d2af0c9f2a06",
+        "name": "Henry McMaster",
+        "party": "Republican",
+        "current_role": {
+          "title": "Governor",
+          "org_classification": "executive",
+          "district": "",
+          "division_id": ""
+        },
+        "jurisdiction": {
+          "id": "ocd-jurisdiction/country:us/state:sc/government",
+          "name": "South Carolina",
+          "classification": "state"
+        },
+        "given_name": "Henry",
+        "family_name": "McMaster",
+        "image": "https://governor.sc.gov/sites/governor/files/Documents/Images/newsImage_0.jpg",
+        "email": "",
+        "gender": "",
+        "birth_date": "1947-05-27",
+        "death_date": "",
+        "extras": {},
+        "created_at": "2020-08-04T05:19:30.563361+00:00",
+        "updated_at": "2023-02-14T05:14:26.880796+00:00",
+        "openstates_url": "https://openstates.org/person/henry-mcmaster-1Yb5UccUJjWD8fSS9Gc9Xq/"
+      },
+      {
+        "id": "ocd-person/fd462977-6631-4203-820c-a91b0b4ebcd2",
+        "name": "Howard Knapp",
+        "party": "Independent",
+        "current_role": {
+          "title": "Chief Election Officer",
+          "org_classification": "executive",
+          "district": "",
+          "division_id": ""
+        },
+        "jurisdiction": {
+          "id": "ocd-jurisdiction/country:us/state:sc/government",
+          "name": "South Carolina",
+          "classification": "state"
+        },
+        "given_name": "Howard",
+        "family_name": "Knapp",
+        "image": "",
+        "email": "hknapp@elections.sc.gov",
+        "gender": "",
+        "birth_date": "",
+        "death_date": "",
+        "extras": {},
+        "created_at": "2023-08-29T15:18:20.060081+00:00",
+        "updated_at": "2023-08-29T15:18:20.184131+00:00",
+        "openstates_url": "https://openstates.org/person/howard-knapp-7hv7cCVdTR4tpsphwjfKvi/"
+      }
+    ],
+    "legislative": {
+      "house": {
+        "democrats": 36,
+        "republicans": 88,
+        "independents": 0
+      },
+      "senate": {
+        "democrats": 12,
+        "republicans": 34,
+        "independents": 0
+      },
+      "fed_reps": {
+        "senate": [
+          {
+            "bioguideId": "S001184",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/s001184_200.jpg"
+            },
+            "district": null,
+            "name": "Scott, Tim",
+            "partyName": "Republican",
+            "state": "South Carolina",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 2013,
+                  "startYear": 2011
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 2013
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:26Z",
+            "url": "https://api.congress.gov/v3/member/S001184?format=json"
+          },
+          {
+            "bioguideId": "G000359",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/g000359_200.jpg"
+            },
+            "district": null,
+            "name": "Graham, Lindsey",
+            "partyName": "Republican",
+            "state": "South Carolina",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 2003,
+                  "startYear": 1995
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 2003
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:18Z",
+            "url": "https://api.congress.gov/v3/member/G000359?format=json"
+          }
+        ],
+        "house": {
+          "seats": 7,
+          "democrats": 1,
+          "republicans": 6,
+          "independents": 0
+        }
+      }
+    },
+    "judicial": [],
+    "lastUpdated": "2025-11-09T19:34:55.841985+00:00"
+  },
+  "map": {
+    "senate": {
+      "27": "Republican",
+      "10": "Republican",
+      "40": "Democratic",
+      "44": "Republican",
+      "23": "Republican",
+      "43": "Republican",
+      "9": "Republican",
+      "21": "Democratic",
+      "42": "Democratic",
+      "20": "Democratic",
+      "17": "Republican",
+      "28": "Republican",
+      "14": "Republican",
+      "29": "Republican",
+      "6": "Republican",
+      "36": "Republican",
+      "35": "Democratic",
+      "11": "Republican",
+      "7": "Democratic",
+      "30": "Democratic",
+      "37": "Republican",
+      "33": "Republican",
+      "45": "Democratic",
+      "41": "Republican",
+      "16": "Republican",
+      "4": "Republican",
+      "31": "Republican",
+      "22": "Democratic",
+      "2": "Republican",
+      "3": "Republican",
+      "12": "Republican",
+      "18": "Republican",
+      "32": "Democratic",
+      "8": "Republican",
+      "26": "Democratic",
+      "38": "Republican",
+      "13": "Republican",
+      "25": "Republican",
+      "34": "Republican",
+      "19": "Democratic",
+      "1": "Republican",
+      "5": "Republican",
+      "46": "Republican",
+      "39": "Republican",
+      "24": "Republican",
+      "15": "Republican"
+    },
+    "house": {
+      "2": "Republican",
+      "18": "Republican",
+      "41": "Democratic",
+      "6": "Republican",
+      "78": "Democratic",
+      "35": "Republican",
+      "82": "Democratic",
+      "122": "Republican",
+      "118": "Republican",
+      "83": "Republican",
+      "86": "Republican",
+      "1": "Republican",
+      "9": "Republican",
+      "21": "Republican",
+      "92": "Republican",
+      "48": "Republican",
+      "45": "Republican",
+      "30": "Republican",
+      "24": "Republican",
+      "39": "Republican",
+      "103": "Democratic",
+      "61": "Republican",
+      "107": "Republican",
+      "23": "Democratic",
+      "81": "Republican",
+      "73": "Democratic",
+      "28": "Republican",
+      "98": "Republican",
+      "69": "Republican",
+      "65": "Republican",
+      "113": "Democratic",
+      "11": "Republican",
+      "12": "Republican",
+      "4": "Republican",
+      "26": "Republican",
+      "27": "Republican",
+      "51": "Democratic",
+      "29": "Republican",
+      "8": "Republican",
+      "42": "Republican",
+      "64": "Republican",
+      "114": "Republican",
+      "94": "Republican",
+      "95": "Democratic",
+      "79": "Democratic",
+      "102": "Republican",
+      "46": "Republican",
+      "75": "Democratic",
+      "68": "Republican",
+      "15": "Democratic",
+      "55": "Democratic",
+      "66": "Republican",
+      "116": "Republican",
+      "54": "Democratic",
+      "63": "Republican",
+      "85": "Republican",
+      "123": "Republican",
+      "58": "Republican",
+      "52": "Democratic",
+      "93": "Democratic",
+      "112": "Republican",
+      "40": "Republican",
+      "49": "Democratic",
+      "13": "Republican",
+      "117": "Republican",
+      "38": "Republican",
+      "90": "Democratic",
+      "77": "Democratic",
+      "80": "Republican",
+      "50": "Democratic",
+      "105": "Republican",
+      "7": "Republican",
+      "108": "Republican",
+      "76": "Democratic",
+      "119": "Democratic",
+      "91": "Democratic",
+      "57": "Democratic",
+      "14": "Republican",
+      "99": "Republican",
+      "16": "Republican",
+      "84": "Republican",
+      "89": "Republican",
+      "121": "Democratic",
+      "17": "Republican",
+      "44": "Republican",
+      "67": "Republican",
+      "71": "Republican",
+      "5": "Republican",
+      "19": "Republican",
+      "22": "Republican",
+      "87": "Republican",
+      "3": "Republican",
+      "60": "Republican",
+      "88": "Republican",
+      "43": "Republican",
+      "53": "Republican",
+      "36": "Republican",
+      "97": "Republican",
+      "70": "Democratic",
+      "62": "Democratic",
+      "101": "Democratic",
+      "31": "Democratic",
+      "96": "Republican",
+      "34": "Republican",
+      "32": "Republican",
+      "72": "Democratic",
+      "124": "Republican",
+      "115": "Democratic",
+      "20": "Republican",
+      "37": "Republican",
+      "100": "Republican",
+      "59": "Democratic",
+      "10": "Republican",
+      "109": "Democratic",
+      "56": "Republican",
+      "74": "Democratic",
+      "110": "Republican",
+      "47": "Republican",
+      "33": "Republican",
+      "106": "Republican",
+      "111": "Democratic",
+      "25": "Democratic",
+      "120": "Republican",
+      "104": "Republican"
+    }
+  },
+  "lastUpdated": "2025-11-09T19:34:55.842168+00:00"
+}

@@ -7,6 +7,13 @@ from app.utils.cache import read_cache
 
 BASE_URL = "https://www2.census.gov/geo/tiger/GENZ2024/shp/"
 
+def is_integer(s):
+    try:
+        int(s)
+        return True
+    except ValueError:
+        return False
+
 def fetch_and_filter_geojson(zip_url: str, state_filter: str | None = None) -> dict:
     r = requests.get(zip_url)
     if r.status_code != 200:
@@ -37,11 +44,6 @@ router = APIRouter()
 async def get_states():
     url = f"{BASE_URL}cb_2024_us_state_500k.zip"
     geojson = fetch_and_filter_geojson(url)
-    # TODO
-    # print("GEOJSON:")
-    # print(json.dumps(geojson, indent=4))
-    # for feature in geojson["features"]:
-    #     print(json.dumps(feature["properties"], indent=4))
     return JSONResponse(content=geojson)
 
 # State Senate (sldu)
@@ -56,7 +58,17 @@ async def get_sldu(state: str, state_code: str = None):
         ss_map = cached["map"]["senate"]
         for feature in geojson["features"]:
             id = feature["properties"]["NAME"]
-            feature["properties"].update({"party": ss_map[id]})
+            
+            # BIG ISSUE WITH MASSACHUSETS ID's ARE COMPLETELY DIFFERENT
+
+            if id == "Chittenden South East":
+                # handle unique case in Vermont where census map id does not match open states district id
+                id = "Chittenden Southeast"
+            if is_integer(id):
+                id = f"{int(id)}"
+            
+
+            feature["properties"].update({"party": ss_map.get(id, "")})
 
     return JSONResponse(content=geojson)
 
@@ -72,7 +84,9 @@ async def get_sldl(state: str, state_code: str = None):
         sh_map = cached["map"]["house"]
         for feature in geojson["features"]:
             id = feature["properties"]["NAME"]
-            feature["properties"].update({"party": sh_map[id]})
+            if is_integer(id):
+                id = f"{int(id)}" #remove 0 digit in 01, 02, etc.
+            feature["properties"].update({"party": sh_map.get(id, "")})
 
     return JSONResponse(content=geojson)
 
@@ -86,12 +100,10 @@ async def get_cd(state: str, state_code: str = None, state_name:str = None):
     cd_map = {}
     if cached:
         cd_map = cached["map"]["house"][state_name]
-        print(cd_map)
         for feature in geojson["features"]:
-            # print(feature)
             id = feature["properties"]["CD119FP"]
-            print(id)
-            feature["properties"].update({"party": cd_map[f"{int(id)}"]})
+            id = f"{int(id)}"
+            feature["properties"].update({"party": cd_map.get(id, "")})
 
     return JSONResponse(content=geojson)
 

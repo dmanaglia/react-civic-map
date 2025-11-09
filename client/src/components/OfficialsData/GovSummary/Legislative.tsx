@@ -15,8 +15,9 @@ export const Legislative = ({type, officialsData, state}: LegislativeProps) => {
         if (type === 'sldu'){
             setActiveChamber("Senate");
         } else if (type === 'sldl'){
-            setActiveChamber("House")
+            setActiveChamber("House");
         } else if (type === 'cd'){
+            setActiveChamber("House")
             return officialsData?.fed_reps
         }
         return undefined
@@ -45,7 +46,7 @@ export const Legislative = ({type, officialsData, state}: LegislativeProps) => {
                     onClick={() => setActiveChamber("Senate")}
                     aria-pressed={activeChamber === "Senate"}
                 >
-                    Senate
+                    {type === 'cd' ? "Senators" : "Senate"}
                 </button>
             </div>
 
@@ -58,7 +59,7 @@ export const Legislative = ({type, officialsData, state}: LegislativeProps) => {
                                 <h4>House of Representative</h4>
                                 <Dial dem={fed_reps.house.democrats} rep={fed_reps.house.republicans} ind={fed_reps.house.independents} vac={0}/>
                                 <div className="legend">
-                                    {data.democrats > data.republicans ? 
+                                    {fed_reps.house.democrats > fed_reps.house.republicans ? 
                                         <>
                                             <div className="legend-row">
                                                 <span className="legend-swatch dem" /> 
@@ -89,18 +90,6 @@ export const Legislative = ({type, officialsData, state}: LegislativeProps) => {
                                         <span className="legend-swatch ind" /> <span className="legend-label">Independents</span>
                                         <strong className="legend-value">{fed_reps.house.independents ?? 0}</strong>
                                     </div>
-                                    {/* {activeChamber === "House" && data?.vacancies && data?.non_voting && (
-                                        <>
-                                            <div className="legend-row">
-                                                <span className="legend-swatch vac" /> <span className="legend-label">Vacancies</span>
-                                                <strong className="legend-value">{data?.vacancies ?? 0}</strong>
-                                            </div>
-                                            <div className="legend-row">
-                                                <span className="legend-swatch nonv" /> <span className="legend-label">Non voting members</span>
-                                                <strong className="legend-value">{data?.non_voting?.length ?? 0}</strong>
-                                            </div>
-                                        </>
-                                    )} */}
                                 </div>
                             </div>
                         </div>
@@ -108,12 +97,11 @@ export const Legislative = ({type, officialsData, state}: LegislativeProps) => {
                         <>
                             <div className="leg-body">
                                 <div className="leg-left">
-                                    <h3>Senators</h3>
                                     {fed_reps.senate.map((official) => 
                                         <div className="branch-placeholder">
                                             <div className="sidebar-body">
                                                 <div className="official-header">
-                                                    <img src={official.depiction.imageUrl} alt={official.name}></img>
+                                                    {official?.depiction?.imageUrl && <img src={official.depiction.imageUrl} alt={official.name}></img>}
                                                     <h2>{official.name}</h2>
                                                 </div>
                                                 {official.partyName && <p>Party: {official.partyName}</p>}

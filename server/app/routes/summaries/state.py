@@ -4,6 +4,7 @@ from datetime import datetime, timezone
 import httpx
 import json
 import os
+import re
 from app.utils.cache import read_cache, write_cache
 from app.routes.summaries.fed import fetch_all_members
 
@@ -40,10 +41,10 @@ async def fetch_state_legislators(state_abbr: str):
         
     fed_senate_reps, fed_house_reps, _ = await fetch_all_members(state_abbr=state_abbr)
     
-    return summarize_state_legislators(members[0], members[1], members[2], fed_house_reps, fed_senate_reps)
+    return summarize_state_legislators(members[0], members[1], members[2], fed_house_reps, fed_senate_reps, state_abbr)
 
 
-def summarize_state_legislators(senate_members, house_members, executive, fed_house_reps, fed_senate_reps):
+def summarize_state_legislators(senate_members, house_members, executive, fed_house_reps, fed_senate_reps, state_abbr):
     """Create a summarized overview of the state legislature."""
     summary = {
         "executive": executive,
@@ -101,7 +102,7 @@ def summarize_state_legislators(senate_members, house_members, executive, fed_ho
         elif "independent" in party:
             summary["legislative"]["fed_reps"]["house"]["independents"] += 1
     
-    map = get_legislature_map(senate_members, house_members)
+    map = get_legislature_map(senate_members, house_members, state_abbr)
     
     data = {
         "summary": summary,
@@ -111,10 +112,23 @@ def summarize_state_legislators(senate_members, house_members, executive, fed_ho
     return data
 
 
-def get_legislature_map(senate_members: list, house_members: list):
+def format_string(s: str) -> str:
+    match = re.match(r"^(.*?)(?:\s+(\d+))?$", s.strip())
+    if not match:
+        return s
+    name, number = match.groups()
+    if number:
+        return f"{name} {int(number):02d}"
+    return name
+
+def get_legislature_map(senate_members: list, house_members: list, state_abbr: str):
     houseMap = {}
     for rep in house_members:
-        houseMap.update({rep["current_role"]["district"]: rep["party"]})
+        key = rep["current_role"]["district"]
+        if(state_abbr == "NH"):
+            # Handle unique case where census district names != open state district names
+            key = format_string(key)
+        houseMap.update({key: rep["party"]})
 
     senateMap = {}
     for rep in senate_members:

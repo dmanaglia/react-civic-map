@@ -1,0 +1,33 @@
+{
+  "summary": {
+    "executive": [],
+    "legislative": {
+      "house": {
+        "democrats": 0,
+        "republicans": 0,
+        "independents": 0
+      },
+      "senate": {
+        "democrats": 0,
+        "republicans": 0,
+        "independents": 0
+      },
+      "fed_reps": {
+        "senate": [],
+        "house": {
+          "seats": 0,
+          "democrats": 0,
+          "republicans": 0,
+          "independents": 0
+        }
+      }
+    },
+    "judicial": [],
+    "lastUpdated": "2025-11-09T19:01:08.302159+00:00"
+  },
+  "map": {
+    "senate": {},
+    "house": {}
+  },
+  "lastUpdated": "2025-11-09T19:01:08.302164+00:00"
+}

@@ -20,9 +20,7 @@ async def fetch_all_members(state_abbr: str=None):
             url = f"{BASE_URL}/?limit=250&api_key={CONGRESS_API_KEY}"
         while url:
             response = await client.get(url)
-            print("line 23", response)
             data = response.json()
-            print("line 25", json.dumps(data, indent=2))
             members.extend(data.get("members", []))
             url = data.get("pagination", {}).get("next")
             if url: url = f"{url}&api_key={CONGRESS_API_KEY}"
@@ -57,8 +55,6 @@ async def fetch_all_members(state_abbr: str=None):
                 house_members.append(m)
             elif "Senate" in chamber:
                 senate_members.append(m)
-
-        print("line 61", senate_members)
 
         return senate_members, house_members, non_voting_house_members
 

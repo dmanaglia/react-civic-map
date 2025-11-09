@@ -10,6 +10,7 @@ const computePercents = (dem: number, rep: number, ind: number, vac: number=0) =
     
 export const Dial = ({ dem, rep, ind, vac=0 }: { dem: number; rep: number; ind: number, vac: number }) => {
     const [dPerc, rPerc, iPerc, iVac] = computePercents(dem, rep, ind, vac);
+    console.log(dPerc, rPerc);
     // Convert percent-of-360 to stroke-dasharray values where circumference is 100
     // We'll draw arcs with strokeDasharray = "<portion> 100"
     // To stack arcs we use strokeDashoffset to shift start points.
@@ -33,7 +34,7 @@ export const Dial = ({ dem, rep, ind, vac=0 }: { dem: number; rep: number; ind: 
             strokeDashoffset={100 - offsetDem}
             transform="rotate(-90 18 18)"
         />
-        <circle
+        {rPerc && <circle
             className="dial-rep"
             cx="18"
             cy="18"
@@ -43,7 +44,7 @@ export const Dial = ({ dem, rep, ind, vac=0 }: { dem: number; rep: number; ind: 
             strokeDasharray={`${rPerc} ${100 - rPerc}`}
             strokeDashoffset={100 - offsetRep}
             transform="rotate(-90 18 18)"
-        />
+        />}
         {iPerc &&
             <circle
                 className="dial-ind"

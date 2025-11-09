@@ -1,0 +1,245 @@
+{
+  "summary": {
+    "executive": [
+      {
+        "id": "ocd-person/48697c02-7bed-4abf-a93d-39d3f2f32618",
+        "name": "Glenn Youngkin",
+        "party": "Republican",
+        "current_role": {
+          "title": "Governor",
+          "org_classification": "executive",
+          "district": "",
+          "division_id": ""
+        },
+        "jurisdiction": {
+          "id": "ocd-jurisdiction/country:us/state:va/government",
+          "name": "Virginia",
+          "classification": "state"
+        },
+        "given_name": "Glenn",
+        "family_name": "Youngkin",
+        "image": "https://www.governor.virginia.gov/media/governorvirginiagov/governor-of-virginia/images/youngkin_glenn_governor_portrait.jpg",
+        "email": "",
+        "gender": "",
+        "birth_date": "1966-12-09",
+        "death_date": "",
+        "extras": {},
+        "created_at": "2022-01-29T02:56:51.462207+00:00",
+        "updated_at": "2022-07-02T23:42:52.340424+00:00",
+        "openstates_url": "https://openstates.org/person/glenn-youngkin-2CdeYBUdZPUiKJen90NWkC/"
+      }
+    ],
+    "legislative": {
+      "house": {
+        "democrats": 51,
+        "republicans": 48,
+        "independents": 0
+      },
+      "senate": {
+        "democrats": 21,
+        "republicans": 19,
+        "independents": 0
+      },
+      "fed_reps": {
+        "senate": [
+          {
+            "bioguideId": "W000805",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/w000805_200.jpg"
+            },
+            "district": null,
+            "name": "Warner, Mark R.",
+            "partyName": "Democratic",
+            "state": "Virginia",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "Senate",
+                  "startYear": 2009
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:28Z",
+            "url": "https://api.congress.gov/v3/member/W000805?format=json"
+          },
+          {
+            "bioguideId": "K000384",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/k000384_200.jpg"
+            },
+            "district": null,
+            "name": "Kaine, Tim",
+            "partyName": "Democratic",
+            "state": "Virginia",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "Senate",
+                  "startYear": 2013
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:20Z",
+            "url": "https://api.congress.gov/v3/member/K000384?format=json"
+          }
+        ],
+        "house": {
+          "seats": 11,
+          "democrats": 6,
+          "republicans": 5,
+          "independents": 0
+        }
+      }
+    },
+    "judicial": [],
+    "lastUpdated": "2025-11-09T19:03:54.969421+00:00"
+  },
+  "map": {
+    "senate": {
+      "22": "Democratic",
+      "39": "Democratic",
+      "21": "Democratic",
+      "40": "Democratic",
+      "20": "Republican",
+      "7": "Republican",
+      "28": "Republican",
+      "3": "Republican",
+      "19": "Republican",
+      "11": "Democratic",
+      "30": "Democratic",
+      "24": "Republican",
+      "35": "Democratic",
+      "4": "Republican",
+      "17": "Republican",
+      "15": "Democratic",
+      "12": "Republican",
+      "38": "Democratic",
+      "33": "Democratic",
+      "29": "Democratic",
+      "32": "Democratic",
+      "14": "Democratic",
+      "13": "Democratic",
+      "18": "Democratic",
+      "10": "Republican",
+      "23": "Democratic",
+      "2": "Republican",
+      "8": "Republican",
+      "25": "Republican",
+      "31": "Democratic",
+      "26": "Republican",
+      "37": "Democratic",
+      "16": "Democratic",
+      "34": "Democratic",
+      "36": "Democratic",
+      "9": "Republican",
+      "27": "Republican",
+      "1": "Republican",
+      "6": "Republican",
+      "5": "Republican"
+    },
+    "house": {
+      "86": "Republican",
+      "2": "Democratic",
+      "95": "Democratic",
+      "3": "Democratic",
+      "71": "Republican",
+      "55": "Democratic",
+      "99": "Republican",
+      "27": "Democratic",
+      "98": "Republican",
+      "89": "Republican",
+      "78": "Democratic",
+      "32": "Republican",
+      "66": "Republican",
+      "92": "Democratic",
+      "25": "Democratic",
+      "59": "Republican",
+      "23": "Democratic",
+      "75": "Republican",
+      "69": "Republican",
+      "4": "Democratic",
+      "41": "Republican",
+      "35": "Republican",
+      "85": "Democratic",
+      "91": "Democratic",
+      "10": "Democratic",
+      "49": "Republican",
+      "11": "Democratic",
+      "57": "Republican",
+      "28": "Democratic",
+      "76": "Democratic",
+      "81": "Democratic",
+      "31": "Republican",
+      "80": "Democratic",
+      "88": "Democratic",
+      "5": "Democratic",
+      "36": "Republican",
+      "48": "Republican",
+      "51": "Republican",
+      "30": "Republican",
+      "67": "Republican",
+      "12": "Democratic",
+      "22": "Republican",
+      "8": "Democratic",
+      "44": "Republican",
+      "26": "Democratic",
+      "19": "Democratic",
+      "93": "Democratic",
+      "42": "Republican",
+      "90": "Republican",
+      "46": "Republican",
+      "87": "Democratic",
+      "40": "Republican",
+      "65": "Democratic",
+      "21": "Democratic",
+      "7": "Democratic",
+      "9": "Democratic",
+      "18": "Democratic",
+      "54": "Democratic",
+      "68": "Republican",
+      "96": "Democratic",
+      "82": "Republican",
+      "15": "Democratic",
+      "72": "Republican",
+      "24": "Democratic",
+      "13": "Democratic",
+      "73": "Republican",
+      "17": "Democratic",
+      "29": "Democratic",
+      "97": "Democratic",
+      "20": "Democratic",
+      "74": "Republican",
+      "77": "Democratic",
+      "61": "Republican",
+      "84": "Democratic",
+      "62": "Republican",
+      "83": "Republican",
+      "1": "Democratic",
+      "16": "Democratic",
+      "64": "Republican",
+      "94": "Democratic",
+      "63": "Republican",
+      "79": "Democratic",
+      "6": "Democratic",
+      "100": "Republican",
+      "58": "Democratic",
+      "38": "Democratic",
+      "60": "Republican",
+      "70": "Democratic",
+      "37": "Republican",
+      "45": "Republican",
+      "53": "Republican",
+      "56": "Republican",
+      "50": "Republican",
+      "34": "Republican",
+      "14": "Democratic",
+      "52": "Republican",
+      "39": "Republican",
+      "43": "Republican",
+      "47": "Republican"
+    }
+  },
+  "lastUpdated": "2025-11-09T19:03:54.970948+00:00"
+}
