@@ -1,22 +1,25 @@
-import os
-import time
-import requests
-from fastapi import APIRouter, HTTPException
 from dotenv import load_dotenv
+from fastapi import APIRouter, HTTPException
+import os
+import requests
+import json
 
 load_dotenv()
 
-GPO_CONGRESS_APIKEY = os.getenv("GPO_CONGRESS_APIKEY")
+CONGRESS_API_KEY = os.getenv("GPO_CONGRESS_APIKEY")
 OPENSTATES_API_KEY = os.getenv("OPEN_STATES_APIKEY")
+
+BASE_CONGRESS_URL = "https://api.congress.gov/v3"
+BASE_OPENSTATES_URL = "https://v3.openstates.org"
 
 
 router = APIRouter()
 
-# Congressional District Officials
+# Congressional District Official
 @router.get("/cd/{state}/{district}")
 async def get_congressional_official(state: str, district: str):
-    congress = 119
-    CD_OFFICIALS_URL = f"https://api.congress.gov/v3/member/congress/{congress}/{state}/{district}?api_key={GPO_CONGRESS_APIKEY}"
+    congress = 119 #current congress number (2024-present)
+    CD_OFFICIALS_URL = f"{BASE_CONGRESS_URL}/member/congress/{congress}/{state}/{district}?api_key={CONGRESS_API_KEY}"
 
     resp = requests.get(CD_OFFICIALS_URL)
     if resp.status_code == 404:
@@ -27,6 +30,7 @@ async def get_congressional_official(state: str, district: str):
     data = resp.json()
     members = [user for user in data['members'] if user['district'] == int(district)]
     return members
+
 
 def get_district_info(state: str, chamber: str, district_name: str):
     """
@@ -41,9 +45,9 @@ def get_district_info(state: str, chamber: str, district_name: str):
     district_name = district_name.strip()
 
     # Step 1: Find the district by name
-    search_url = "https://v3.openstates.org/people"
+    search_url = f"{BASE_OPENSTATES_URL}/people"
     params = {
-        "jurisdiction": "IL",
+        "jurisdiction": state,
         "org_classification": chamber,  # "upper" = senate, "lower" = house
         "district": district_name,
     }
@@ -54,22 +58,16 @@ def get_district_info(state: str, chamber: str, district_name: str):
     data = search_response.json()
     return data['results']
 
-# State Senate Officials
+
+# State Senate Official
 @router.get("/sldu/{state}/{district}")
 def get_state_senate(state: str, district: str):
-    """
-    Get Illinois (or other state) State Senate members
-    Example: /state_senate?state=illinois&district_name=25
-    """
     result = get_district_info(state, "upper", district)
     return result
 
-# State House Officials
+
+# State House Official
 @router.get("/sldl/{state}/{district}")
 def get_state_house(state: str, district):
-    """
-    Get Illinois (or other state) State House members
-    Example: /state_house?state=illinois&district_name=25
-    """
     result = get_district_info(state, "lower", district)
     return result

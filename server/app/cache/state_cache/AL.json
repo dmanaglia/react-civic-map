@@ -1,0 +1,268 @@
+{
+  "summary": {
+    "executive": [
+      {
+        "id": "ocd-person/1fcc4f8d-90c5-4e7c-aa4c-3b58a3a87ba5",
+        "name": "Kay Ivey",
+        "party": "Republican",
+        "current_role": {
+          "title": "Governor",
+          "org_classification": "executive",
+          "district": "",
+          "division_id": ""
+        },
+        "jurisdiction": {
+          "id": "ocd-jurisdiction/country:us/state:al/government",
+          "name": "Alabama",
+          "classification": "state"
+        },
+        "given_name": "Kay",
+        "family_name": "Ivey",
+        "image": "https://governor.alabama.gov/assets/2019/09/Governor-Ivey-2019-Headshot.jpg",
+        "email": "",
+        "gender": "",
+        "birth_date": "1944-10-15",
+        "death_date": "",
+        "extras": {},
+        "created_at": "2020-08-04T05:01:57.073493+00:00",
+        "updated_at": "2024-10-18T13:37:28.056132+00:00",
+        "openstates_url": "https://openstates.org/person/kay-ivey-y08CzVDlVT6PXVYwBAZzp/"
+      },
+      {
+        "id": "ocd-person/f8daba65-dcf6-43b4-8c38-8b02b5b59db7",
+        "name": "Wes Allen",
+        "party": "Republican",
+        "current_role": {
+          "title": "Secretary Of State",
+          "org_classification": "executive",
+          "district": "",
+          "division_id": ""
+        },
+        "jurisdiction": {
+          "id": "ocd-jurisdiction/country:us/state:al/government",
+          "name": "Alabama",
+          "classification": "state"
+        },
+        "given_name": "Wes",
+        "family_name": "Allen",
+        "image": "https://www.sos.alabama.gov/sites/default/files/inline-images/AllenBioHighRes.jpg?_ga=2.173722979.1183358616.1677197705-807791829.1677197705",
+        "email": "wes.allen@sos.alabama.gov",
+        "gender": "",
+        "birth_date": "",
+        "death_date": "",
+        "extras": {},
+        "created_at": "2019-01-02T10:09:10.338131+00:00",
+        "updated_at": "2023-08-29T14:49:27.222452+00:00",
+        "openstates_url": "https://openstates.org/person/wes-allen-7Za3TjJTbumNgsNm91VDKp/"
+      }
+    ],
+    "legislative": {
+      "house": {
+        "democrats": 29,
+        "republicans": 71,
+        "independents": 0
+      },
+      "senate": {
+        "democrats": 8,
+        "republicans": 27,
+        "independents": 0
+      },
+      "fed_reps": {
+        "senate": [
+          {
+            "bioguideId": "T000278",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/t000278_200.jpg"
+            },
+            "district": null,
+            "name": "Tuberville, Tommy",
+            "partyName": "Republican",
+            "state": "Alabama",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "Senate",
+                  "startYear": 2021
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:28Z",
+            "url": "https://api.congress.gov/v3/member/T000278?format=json"
+          },
+          {
+            "bioguideId": "B001319",
+            "depiction": {
+              "attribution": "<p>Official U.S. Senate Photo</p>",
+              "imageUrl": "https://www.congress.gov/img/member/b001319_200.jpg"
+            },
+            "district": null,
+            "name": "Britt, Katie Boyd",
+            "partyName": "Republican",
+            "state": "Alabama",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "Senate",
+                  "startYear": 2023
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:15Z",
+            "url": "https://api.congress.gov/v3/member/B001319?format=json"
+          }
+        ],
+        "house": {
+          "seats": 7,
+          "democrats": 2,
+          "republicans": 5,
+          "independents": 0
+        }
+      }
+    },
+    "judicial": [],
+    "lastUpdated": "2025-11-09T19:39:15.632826+00:00"
+  },
+  "map": {
+    "senate": {
+      "10": "Republican",
+      "14": "Republican",
+      "3": "Republican",
+      "28": "Democratic",
+      "24": "Democratic",
+      "32": "Republican",
+      "30": "Republican",
+      "15": "Republican",
+      "35": "Republican",
+      "29": "Republican",
+      "4": "Republican",
+      "21": "Republican",
+      "22": "Republican",
+      "16": "Republican",
+      "34": "Republican",
+      "27": "Republican",
+      "31": "Republican",
+      "12": "Republican",
+      "26": "Democratic",
+      "11": "Republican",
+      "6": "Republican",
+      "20": "Democratic",
+      "5": "Republican",
+      "19": "Democratic",
+      "13": "Republican",
+      "23": "Democratic",
+      "18": "Democratic",
+      "7": "Republican",
+      "17": "Republican",
+      "8": "Republican",
+      "1": "Republican",
+      "2": "Republican",
+      "33": "Democratic",
+      "9": "Republican",
+      "25": "Republican"
+    },
+    "house": {
+      "71": "Democratic",
+      "97": "Democratic",
+      "66": "Republican",
+      "51": "Republican",
+      "6": "Republican",
+      "53": "Democratic",
+      "43": "Republican",
+      "32": "Democratic",
+      "103": "Democratic",
+      "2": "Republican",
+      "33": "Republican",
+      "84": "Democratic",
+      "62": "Republican",
+      "37": "Republican",
+      "65": "Republican",
+      "26": "Republican",
+      "16": "Republican",
+      "3": "Republican",
+      "40": "Republican",
+      "105": "Republican",
+      "80": "Republican",
+      "70": "Democratic",
+      "101": "Republican",
+      "90": "Republican",
+      "41": "Republican",
+      "30": "Republican",
+      "72": "Democratic",
+      "5": "Republican",
+      "44": "Republican",
+      "46": "Republican",
+      "34": "Republican",
+      "64": "Republican",
+      "81": "Republican",
+      "7": "Republican",
+      "95": "Republican",
+      "39": "Republican",
+      "20": "Republican",
+      "18": "Republican",
+      "27": "Republican",
+      "87": "Republican",
+      "94": "Republican",
+      "83": "Democratic",
+      "88": "Republican",
+      "48": "Republican",
+      "50": "Republican",
+      "79": "Republican",
+      "60": "Democratic",
+      "52": "Democratic",
+      "69": "Democratic",
+      "73": "Republican",
+      "78": "Democratic",
+      "19": "Democratic",
+      "15": "Republican",
+      "28": "Republican",
+      "89": "Republican",
+      "104": "Republican",
+      "10": "Democratic",
+      "29": "Republican",
+      "100": "Republican",
+      "59": "Democratic",
+      "96": "Republican",
+      "92": "Republican",
+      "23": "Republican",
+      "47": "Republican",
+      "98": "Democratic",
+      "24": "Republican",
+      "54": "Democratic",
+      "56": "Democratic",
+      "4": "Republican",
+      "57": "Democratic",
+      "86": "Republican",
+      "82": "Democratic",
+      "76": "Democratic",
+      "74": "Democratic",
+      "1": "Republican",
+      "25": "Republican",
+      "67": "Democratic",
+      "36": "Republican",
+      "75": "Republican",
+      "21": "Republican",
+      "91": "Republican",
+      "85": "Republican",
+      "22": "Republican",
+      "58": "Democratic",
+      "61": "Republican",
+      "49": "Republican",
+      "99": "Democratic",
+      "9": "Republican",
+      "102": "Republican",
+      "93": "Republican",
+      "35": "Republican",
+      "45": "Republican",
+      "77": "Democratic",
+      "8": "Republican",
+      "68": "Democratic",
+      "14": "Republican",
+      "17": "Republican",
+      "55": "Democratic",
+      "31": "Republican",
+      "42": "Republican"
+    }
+  },
+  "lastUpdated": "2025-11-09T19:39:15.633404+00:00"
+}

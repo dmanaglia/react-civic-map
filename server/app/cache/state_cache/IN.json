@@ -1,0 +1,266 @@
+{
+  "summary": {
+    "executive": [
+      {
+        "id": "ocd-person/3ed7846b-4aaa-44fc-b502-a64d70bfd36f",
+        "name": "Diego Morales",
+        "party": "Republican",
+        "current_role": {
+          "title": "Secretary Of State",
+          "org_classification": "executive",
+          "district": "",
+          "division_id": ""
+        },
+        "jurisdiction": {
+          "id": "ocd-jurisdiction/country:us/state:in/government",
+          "name": "Indiana",
+          "classification": "state"
+        },
+        "given_name": "Diego",
+        "family_name": "Morales",
+        "image": "https://www.in.gov/sos/images/3033-Secretary-Morales-headshot-1-12-27-22.jpg",
+        "email": "constituentservices@sos.in.gov",
+        "gender": "",
+        "birth_date": "",
+        "death_date": "",
+        "extras": {},
+        "created_at": "2023-08-29T14:58:55.170074+00:00",
+        "updated_at": "2023-08-29T14:58:55.324015+00:00",
+        "openstates_url": "https://openstates.org/person/diego-morales-1ua0zGIAGaBHQ6xBlCdITv/"
+      }
+    ],
+    "legislative": {
+      "house": {
+        "democrats": 30,
+        "republicans": 70,
+        "independents": 0
+      },
+      "senate": {
+        "democrats": 10,
+        "republicans": 40,
+        "independents": 0
+      },
+      "fed_reps": {
+        "senate": [
+          {
+            "bioguideId": "Y000064",
+            "depiction": {
+              "attribution": "Image courtesy of the Member",
+              "imageUrl": "https://www.congress.gov/img/member/y000064_200.jpg"
+            },
+            "district": null,
+            "name": "Young, Todd",
+            "partyName": "Republican",
+            "state": "Indiana",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 2017,
+                  "startYear": 2011
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 2017
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:30Z",
+            "url": "https://api.congress.gov/v3/member/Y000064?format=json"
+          },
+          {
+            "bioguideId": "B001299",
+            "depiction": {
+              "attribution": "Official U.S. Senate Photo",
+              "imageUrl": "https://www.congress.gov/img/member/677d83cbfdb6cf36bbb64998_200.jpg"
+            },
+            "district": null,
+            "name": "Banks, Jim",
+            "partyName": "Republican",
+            "state": "Indiana",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 2025,
+                  "startYear": 2017
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 2025
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:14Z",
+            "url": "https://api.congress.gov/v3/member/B001299?format=json"
+          }
+        ],
+        "house": {
+          "seats": 9,
+          "democrats": 2,
+          "republicans": 7,
+          "independents": 0
+        }
+      }
+    },
+    "judicial": [],
+    "lastUpdated": "2025-11-08T22:18:01.044416+00:00"
+  },
+  "map": {
+    "senate": {
+      "32": "Republican",
+      "46": "Democratic",
+      "17": "Republican",
+      "12": "Republican",
+      "24": "Republican",
+      "7": "Republican",
+      "45": "Republican",
+      "36": "Republican",
+      "1": "Republican",
+      "48": "Republican",
+      "10": "Democratic",
+      "5": "Republican",
+      "39": "Republican",
+      "44": "Republican",
+      "30": "Democratic",
+      "47": "Republican",
+      "38": "Republican",
+      "33": "Democratic",
+      "41": "Republican",
+      "29": "Democratic",
+      "42": "Republican",
+      "27": "Republican",
+      "21": "Republican",
+      "49": "Republican",
+      "16": "Republican",
+      "31": "Republican",
+      "34": "Democratic",
+      "11": "Republican",
+      "15": "Republican",
+      "2": "Democratic",
+      "3": "Democratic",
+      "28": "Republican",
+      "8": "Republican",
+      "25": "Republican",
+      "35": "Republican",
+      "43": "Republican",
+      "6": "Republican",
+      "37": "Republican",
+      "4": "Democratic",
+      "22": "Republican",
+      "9": "Republican",
+      "26": "Republican",
+      "20": "Republican",
+      "40": "Democratic",
+      "23": "Republican",
+      "18": "Republican",
+      "13": "Republican",
+      "19": "Republican",
+      "14": "Republican",
+      "50": "Republican"
+    },
+    "house": {
+      "29": "Republican",
+      "77": "Democratic",
+      "67": "Republican",
+      "90": "Republican",
+      "44": "Republican",
+      "25": "Republican",
+      "52": "Republican",
+      "100": "Democratic",
+      "91": "Republican",
+      "46": "Republican",
+      "84": "Republican",
+      "56": "Republican",
+      "45": "Republican",
+      "87": "Democratic",
+      "1": "Democratic",
+      "94": "Democratic",
+      "26": "Democratic",
+      "88": "Republican",
+      "83": "Republican",
+      "65": "Republican",
+      "10": "Democratic",
+      "75": "Republican",
+      "54": "Republican",
+      "57": "Republican",
+      "22": "Republican",
+      "5": "Republican",
+      "39": "Republican",
+      "62": "Republican",
+      "85": "Republican",
+      "18": "Republican",
+      "48": "Republican",
+      "2": "Democratic",
+      "72": "Republican",
+      "86": "Democratic",
+      "4": "Republican",
+      "35": "Republican",
+      "53": "Republican",
+      "23": "Republican",
+      "68": "Republican",
+      "40": "Republican",
+      "96": "Democratic",
+      "15": "Republican",
+      "38": "Republican",
+      "24": "Republican",
+      "33": "Republican",
+      "17": "Republican",
+      "7": "Republican",
+      "28": "Republican",
+      "73": "Republican",
+      "69": "Republican",
+      "20": "Republican",
+      "49": "Republican",
+      "95": "Democratic",
+      "93": "Republican",
+      "19": "Republican",
+      "97": "Democratic",
+      "70": "Republican",
+      "16": "Republican",
+      "82": "Democratic",
+      "36": "Republican",
+      "55": "Republican",
+      "31": "Republican",
+      "50": "Republican",
+      "41": "Republican",
+      "81": "Republican",
+      "13": "Republican",
+      "64": "Republican",
+      "79": "Republican",
+      "61": "Democratic",
+      "6": "Democratic",
+      "58": "Republican",
+      "12": "Democratic",
+      "11": "Republican",
+      "30": "Republican",
+      "89": "Democratic",
+      "9": "Democratic",
+      "60": "Republican",
+      "80": "Democratic",
+      "3": "Democratic",
+      "92": "Democratic",
+      "47": "Republican",
+      "98": "Democratic",
+      "8": "Democratic",
+      "59": "Republican",
+      "63": "Republican",
+      "27": "Democratic",
+      "74": "Republican",
+      "34": "Democratic",
+      "78": "Republican",
+      "21": "Republican",
+      "42": "Republican",
+      "37": "Republican",
+      "51": "Republican",
+      "43": "Democratic",
+      "99": "Democratic",
+      "14": "Democratic",
+      "32": "Democratic",
+      "71": "Democratic",
+      "76": "Republican",
+      "66": "Republican"
+    }
+  },
+  "lastUpdated": "2025-11-08T22:18:01.044508+00:00"
+}

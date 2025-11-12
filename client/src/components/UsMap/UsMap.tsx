@@ -11,7 +11,6 @@ interface UsMapProps {
   statesGeoJson: any;
   featureGeoJson?: any;
   type: string;
-  shrink: boolean;
   setState: (stateId: StateProps | null) => void;
   setFeature: (feature: FeatureProps | null) => void;
 }
@@ -20,7 +19,6 @@ export default function UsMap({
   statesGeoJson,
   featureGeoJson,
   type,
-  shrink,
   setState,
   setFeature,
 }: UsMapProps) {
@@ -77,19 +75,32 @@ export default function UsMap({
       .selectAll<SVGPathElement, any>("path")
       .data(featureGeoJson.features)
       .join("path")
-      .attr("class", "feature")
       .attr("d", path as any)
+      .attr("fill", (d: any) => {
+        const party = d.properties.party?.toLowerCase();
+        console.log(party)
+        if (!party) return "#cf8c51ff"
+        if (party.includes("democratic")) return "#2b83ba"; // blue
+        if (party.includes("republican")) return "#d7191c"; // red
+        return "#cccccc"; // gray fallback
+      })
+      .attr("class", (d: any) => {
+        const party = d.properties.party?.toLowerCase();
+        if (!party) return "unknown"
+        if (party === "democratic") return "democrat"; // blue
+        if (party === "republican") return "republican"; // red
+        return "independent"; // gray fallback
+      })
       .on("click", (event, feature: any) => {
         event.stopPropagation();
-        console.log(feature);
         const bounds = path.bounds(feature);
         zoomToBounds(bounds, width, height);
         setFeature({
           type: type,
           name: feature.properties.NAMELSAD,
           id: type === 'cd'
-            ? feature.properties?.[`CD${feature.properties.CDSESSN}FP`]
-            : feature.properties.NAME,
+            ? feature.properties.CD119FP
+            : feature.properties.NAME
         });
       })
       .on("mouseover", (event, feature: any) =>

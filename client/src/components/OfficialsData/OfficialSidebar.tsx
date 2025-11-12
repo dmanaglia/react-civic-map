@@ -3,6 +3,7 @@ import StateProps from "../../models/StateProps";
 import FeatureProps from "../../models/FeatureProps";
 import CdOfficialData from "./CdOfficialData";
 import StateLegislatorsData from "./StateLegislatorsData";
+import GovSummary from "./GovSummary/GovSummary";
 
 interface OfficialSidebarProps {
     loading: boolean;
@@ -23,7 +24,7 @@ export default function OfficialSidebar({ loading, open, onToggle, onClose, stat
                 className={`sidebar-handle ${open ? "handle-hidden" : "handle-visible"}`}
                 onClick={onToggle}
                 aria-label={open ? "Close sidebar" : "Open sidebar"}
-                >
+            >
                 ≡
             </button>
             <aside className={`official-sidebar ${open ? "open" : "closed"}`} aria-hidden={!open}>
@@ -36,7 +37,7 @@ export default function OfficialSidebar({ loading, open, onToggle, onClose, stat
                     <div>
                         <h2>{state ? `${state.name} ` : "Federal"}</h2>
                         <h3>{feature ? feature.name : null}</h3>
-                        <small>{feature ? "Representative details" : "Government Details"}</small>
+                        <small>{feature ? "Representative details" : type === 'cd' ? "Federal Represenation" : "Government Details"}</small>
                     </div>
 
                     <div className="sidebar-actions">
@@ -45,8 +46,14 @@ export default function OfficialSidebar({ loading, open, onToggle, onClose, stat
                         </button>
                     </div>
                 </div>
-                {type === 'cd' && <CdOfficialData state={state} feature={feature} officialsData={officialsData} />}
-                {(type === 'sldl' || type === 'sldu') && <StateLegislatorsData state={state} feature={feature} officialsData={officialsData}/>}
+                {!feature ? 
+                    <GovSummary officialsData={officialsData} type={type} state={state?.name}/> 
+                : 
+                    <>
+                        {type === 'cd' && <CdOfficialData state={state} feature={feature} officialsData={officialsData}/>}
+                        {(type === 'sldl' || type === 'sldu') && <StateLegislatorsData state={state} feature={feature} officialsData={officialsData}/>}
+                    </>
+                }
             </aside>
         </div>
   );

@@ -1,0 +1,38 @@
+
+Some notes on state legislative branches:
+
+- Iowa's state senator for district 1 was recently elected, open states has not updated yet, so missing 1 senator in count (elected 2 months ago...)
+    -> IA missing 1 senator
+
+- Seems to be an "interim" senator for Michigan state senator district 35, not sure what that's about but open states does not have info so missing 1 from count
+    -> MI missing 1 senator
+
+- Minnesota district 34B state house rep recently won a special elction, and is not listed on open states, (about a month ago...)
+    -> MN missing 1 house rep
+    
+- Missouri House of representatives is missing some information
+    -> MO currently has (4) vacancies according to state website: districts 95, 114, 149, 160
+    -> Should have a total of 163 seats. Current count on open states is 161: missing district 95, 160
+    -> Not sure if districts 114, 149 have been filed or if open states is wrong about those elected officials
+
+- Rhose Island has a vacancy in current state senate (? according to wikipedia, but state website says all 38 are filled)
+    -> RI should have 38 senate seats, only seeing 37 on open states...
+
+- New Hampshire should have 400 state house reps, only seeing 398 with open states api
+    -> Not sure which districts
+
+- Maine has 151 seats in the house (74 Democrats, 73 Republicans, 1 Independent, 2 Unenrolled and currently 1 Vacancy) (Maine website)
+    -> Also consists of 3 seats for nonvoting members representing Native American Nations & Tribes:
+        - Penobscot Nation
+        - Passamaquoddy Tribe
+        - Houlton Band of Maliseet Indians
+
+- Delaware state house rep has 41 seats, open states currently only lists 40
+    -> State House District 20 had a special election in 2025 and has since been filled (about 3 months ago...)
+
+- Virginia state house currently has 1 vacancy (though may have recently been filled on election day) (total should be 100, but it's at 99 from open states)
+    -> state house district 33 listed as vacant, though may soon be filled.
+
+- NY State house district 131 missing?
+
+- Seems like West Virginia has 17 state senate districts, but each has 2 state senators for a total of 34. 2 are democrats, but all 17 districts have 1 or two republicans so the map is all red...

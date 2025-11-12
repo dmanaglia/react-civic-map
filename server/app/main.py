@@ -1,7 +1,9 @@
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from app.routes import geojson
-from app.routes import officials
+from app.routes import official
+from app.routes.summaries import fed
+from app.routes.summaries import state
 
 app = FastAPI(title="My FastAPI Backend")
 
@@ -15,7 +17,9 @@ app.add_middleware(
 )
 
 app.include_router(geojson.router, prefix="/geojson", tags=["geojson"])
-app.include_router(officials.router, prefix="/officials", tags=["officials"])
+app.include_router(official.router, prefix="/official", tags=["official"])
+app.include_router(fed.router, prefix="/summary", tags=["summary"])
+app.include_router(state.router, prefix="/summary", tags=["summary"])
 
 # Health
 @app.get("/api/health")

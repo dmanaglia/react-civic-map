@@ -9,6 +9,11 @@ interface OfficialDataProps {
 }
 
 export default function CdOfficialData({state, feature, officialsData}: OfficialDataProps) {
+    console.log(officialsData)
+    // TODO: fix state misalignent bug for cd official data
+    // @ts-ignore
+    if(officialsData?.legislative) return <></>
+    
     return (
         <div className="sidebar-body">
             {!officialsData && <p>Work in progress...</p>}

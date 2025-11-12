@@ -1,0 +1,250 @@
+{
+  "summary": {
+    "executive": [
+      {
+        "id": "ocd-person/7ca005d1-05b8-4ce2-80b4-04ff7acaa59e",
+        "name": "Dan McKee",
+        "party": "Democratic",
+        "current_role": {
+          "title": "Governor",
+          "org_classification": "executive",
+          "district": "",
+          "division_id": ""
+        },
+        "jurisdiction": {
+          "id": "ocd-jurisdiction/country:us/state:ri/government",
+          "name": "Rhode Island",
+          "classification": "state"
+        },
+        "given_name": "Dan",
+        "family_name": "McKee",
+        "image": "https://governor.ri.gov/sites/g/files/xkgbur236/files/styles/max_1300x1300/public/2021-08/Gov.%20Dan%20Mckee%20Headshot%20July%202021_1.jpg?itok=W6R-LV-G",
+        "email": "governor@governor.ri.gov",
+        "gender": "",
+        "birth_date": "1951-06-16",
+        "death_date": "",
+        "extras": {},
+        "created_at": "2022-07-02T22:54:02.369972+00:00",
+        "updated_at": "2023-01-11T22:44:15.104096+00:00",
+        "openstates_url": "https://openstates.org/person/dan-mckee-3nAB6afXXmOeMBQovKFfJu/"
+      },
+      {
+        "id": "ocd-person/18b9f6aa-ba50-4c0a-953c-fba2720ef2a6",
+        "name": "Gregg Amore",
+        "party": "Democratic",
+        "current_role": {
+          "title": "Secretary Of State",
+          "org_classification": "executive",
+          "district": "",
+          "division_id": ""
+        },
+        "jurisdiction": {
+          "id": "ocd-jurisdiction/country:us/state:ri/government",
+          "name": "Rhode Island",
+          "classification": "state"
+        },
+        "given_name": "Gregg",
+        "family_name": "Amore",
+        "image": "",
+        "email": "secretaryamore@sos.ri.gov",
+        "gender": "",
+        "birth_date": "",
+        "death_date": "",
+        "extras": {},
+        "created_at": "2023-08-29T15:17:48.290944+00:00",
+        "updated_at": "2023-08-29T15:17:48.470045+00:00",
+        "openstates_url": "https://openstates.org/person/gregg-amore-kengfovVOqhXtbSQrsBVO/"
+      }
+    ],
+    "legislative": {
+      "house": {
+        "democrats": 64,
+        "republicans": 10,
+        "independents": 1
+      },
+      "senate": {
+        "democrats": 33,
+        "republicans": 4,
+        "independents": 0
+      },
+      "fed_reps": {
+        "senate": [
+          {
+            "bioguideId": "W000802",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/w000802_200.jpg"
+            },
+            "district": null,
+            "name": "Whitehouse, Sheldon",
+            "partyName": "Democratic",
+            "state": "Rhode Island",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "Senate",
+                  "startYear": 2007
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:29Z",
+            "url": "https://api.congress.gov/v3/member/W000802?format=json"
+          },
+          {
+            "bioguideId": "R000122",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/r000122_200.jpg"
+            },
+            "district": null,
+            "name": "Reed, Jack",
+            "partyName": "Democratic",
+            "state": "Rhode Island",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 1997,
+                  "startYear": 1991
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 1997
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:24Z",
+            "url": "https://api.congress.gov/v3/member/R000122?format=json"
+          }
+        ],
+        "house": {
+          "seats": 2,
+          "democrats": 2,
+          "republicans": 0,
+          "independents": 0
+        }
+      }
+    },
+    "judicial": [],
+    "lastUpdated": "2025-11-09T18:54:45.456418+00:00"
+  },
+  "map": {
+    "senate": {
+      "36": "Democratic",
+      "2": "Democratic",
+      "25": "Democratic",
+      "18": "Democratic",
+      "20": "Democratic",
+      "35": "Democratic",
+      "22": "Democratic",
+      "13": "Democratic",
+      "34": "Republican",
+      "7": "Democratic",
+      "21": "Republican",
+      "27": "Democratic",
+      "1": "Democratic",
+      "23": "Republican",
+      "9": "Democratic",
+      "16": "Democratic",
+      "28": "Democratic",
+      "11": "Democratic",
+      "8": "Democratic",
+      "12": "Democratic",
+      "33": "Democratic",
+      "30": "Democratic",
+      "31": "Democratic",
+      "15": "Democratic",
+      "24": "Democratic",
+      "32": "Democratic",
+      "29": "Democratic",
+      "19": "Democratic",
+      "5": "Democratic",
+      "3": "Democratic",
+      "37": "Democratic",
+      "17": "Republican",
+      "6": "Democratic",
+      "26": "Democratic",
+      "14": "Democratic",
+      "38": "Democratic",
+      "10": "Democratic"
+    },
+    "house": {
+      "74": "Democratic",
+      "52": "Democratic",
+      "5": "Democratic",
+      "18": "Democratic",
+      "54": "Democratic",
+      "51": "Democratic",
+      "41": "Republican",
+      "16": "Democratic",
+      "57": "Democratic",
+      "38": "Democratic",
+      "48": "Republican",
+      "33": "Democratic",
+      "14": "Democratic",
+      "58": "Democratic",
+      "2": "Democratic",
+      "15": "Republican",
+      "20": "Democratic",
+      "7": "Democratic",
+      "47": "Republican",
+      "43": "Democratic",
+      "42": "Republican",
+      "55": "Democratic",
+      "26": "Democratic",
+      "1": "Democratic",
+      "9": "Democratic",
+      "24": "Democratic",
+      "28": "Republican",
+      "11": "Democratic",
+      "44": "Democratic",
+      "17": "Democratic",
+      "67": "Democratic",
+      "70": "Democratic",
+      "64": "Democratic",
+      "66": "Democratic",
+      "59": "Democratic",
+      "23": "Democratic",
+      "8": "Democratic",
+      "49": "Independent",
+      "12": "Democratic",
+      "19": "Democratic",
+      "22": "Democratic",
+      "56": "Democratic",
+      "31": "Democratic",
+      "68": "Democratic",
+      "30": "Democratic",
+      "60": "Democratic",
+      "35": "Democratic",
+      "63": "Democratic",
+      "75": "Democratic",
+      "61": "Democratic",
+      "21": "Republican",
+      "73": "Democratic",
+      "46": "Democratic",
+      "62": "Democratic",
+      "65": "Democratic",
+      "39": "Democratic",
+      "45": "Democratic",
+      "71": "Democratic",
+      "40": "Republican",
+      "3": "Democratic",
+      "27": "Democratic",
+      "53": "Republican",
+      "13": "Democratic",
+      "6": "Democratic",
+      "4": "Democratic",
+      "32": "Democratic",
+      "37": "Democratic",
+      "10": "Democratic",
+      "29": "Republican",
+      "50": "Democratic",
+      "69": "Democratic",
+      "34": "Democratic",
+      "72": "Democratic",
+      "36": "Democratic",
+      "25": "Democratic"
+    }
+  },
+  "lastUpdated": "2025-11-09T18:54:45.458254+00:00"
+}

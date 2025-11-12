@@ -1,0 +1,290 @@
+{
+  "summary": {
+    "executive": [
+      {
+        "id": "ocd-person/9b425a88-36ae-439c-b2f9-8da167b9ff27",
+        "name": "Gretchen Whitmer",
+        "party": "Democratic",
+        "current_role": {
+          "title": "Governor",
+          "org_classification": "executive",
+          "district": "",
+          "division_id": ""
+        },
+        "jurisdiction": {
+          "id": "ocd-jurisdiction/country:us/state:mi/government",
+          "name": "Michigan",
+          "classification": "state"
+        },
+        "given_name": "Gretchen",
+        "family_name": "Whitmer",
+        "image": "https://www.michigan.gov/whitmer/-/media/Project/Websites/Whitmer/Images/About/Governor-Bio/GovWhitmerPortMaster_8x10.jpg?rev=79becb7ee8ea4ac580070d2a6c255473",
+        "email": "",
+        "gender": "",
+        "birth_date": "1971-08-23",
+        "death_date": "",
+        "extras": {},
+        "created_at": "2020-08-04T05:11:08.590783+00:00",
+        "updated_at": "2023-02-13T19:40:29.564812+00:00",
+        "openstates_url": "https://openstates.org/person/gretchen-whitmer-4iy8KYtiacQjPrVI04Os3L/"
+      },
+      {
+        "id": "ocd-person/bcdc22e9-cca9-47d9-96a4-757fef25f866",
+        "name": "Jocelyn Benson",
+        "party": "Democratic",
+        "current_role": {
+          "title": "Secretary Of State",
+          "org_classification": "executive",
+          "district": "",
+          "division_id": ""
+        },
+        "jurisdiction": {
+          "id": "ocd-jurisdiction/country:us/state:mi/government",
+          "name": "Michigan",
+          "classification": "state"
+        },
+        "given_name": "Jocelyn",
+        "family_name": "Benson",
+        "image": "https://www.michigan.gov/sos/-/media/Project/Websites/sos/22lawensn/SOS_Jocelyn_Benson_web.jpg?rev=472f8685a68348eaadbb49b50169f20f&hash=066812B4000A0920442A62601E420910&w=+1400",
+        "email": "secretary@michigan.gov",
+        "gender": "",
+        "birth_date": "",
+        "death_date": "",
+        "extras": {},
+        "created_at": "2020-10-27T22:25:07.251886+00:00",
+        "updated_at": "2023-02-13T19:40:29.468214+00:00",
+        "openstates_url": "https://openstates.org/person/jocelyn-benson-5kN9vLckpf9y7Dpqoy6Q0k/"
+      }
+    ],
+    "legislative": {
+      "house": {
+        "democrats": 52,
+        "republicans": 58,
+        "independents": 0
+      },
+      "senate": {
+        "democrats": 19,
+        "republicans": 18,
+        "independents": 0
+      },
+      "fed_reps": {
+        "senate": [
+          {
+            "bioguideId": "S001208",
+            "depiction": {
+              "attribution": "Image courtesy of the Member",
+              "imageUrl": "https://www.congress.gov/img/member/s001208_200.jpg"
+            },
+            "district": null,
+            "name": "Slotkin, Elissa",
+            "partyName": "Democratic",
+            "state": "Michigan",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 2025,
+                  "startYear": 2019
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 2025
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:26Z",
+            "url": "https://api.congress.gov/v3/member/S001208?format=json"
+          },
+          {
+            "bioguideId": "P000595",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/p000595_200.jpg"
+            },
+            "district": null,
+            "name": "Peters, Gary C.",
+            "partyName": "Democratic",
+            "state": "Michigan",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 2015,
+                  "startYear": 2009
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 2015
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:24Z",
+            "url": "https://api.congress.gov/v3/member/P000595?format=json"
+          }
+        ],
+        "house": {
+          "seats": 13,
+          "democrats": 6,
+          "republicans": 7,
+          "independents": 0
+        }
+      }
+    },
+    "judicial": [],
+    "lastUpdated": "2025-11-09T19:14:20.754952+00:00"
+  },
+  "map": {
+    "senate": {
+      "20": "Republican",
+      "25": "Republican",
+      "4": "Democratic",
+      "5": "Democratic",
+      "38": "Republican",
+      "1": "Democratic",
+      "15": "Democratic",
+      "7": "Democratic",
+      "23": "Republican",
+      "16": "Republican",
+      "27": "Democratic",
+      "37": "Republican",
+      "32": "Republican",
+      "17": "Republican",
+      "26": "Republican",
+      "12": "Democratic",
+      "22": "Republican",
+      "8": "Democratic",
+      "30": "Republican",
+      "6": "Democratic",
+      "9": "Republican",
+      "36": "Republican",
+      "10": "Democratic",
+      "33": "Republican",
+      "34": "Republican",
+      "31": "Republican",
+      "13": "Democratic",
+      "24": "Republican",
+      "28": "Democratic",
+      "21": "Democratic",
+      "19": "Democratic",
+      "3": "Democratic",
+      "14": "Democratic",
+      "2": "Democratic",
+      "18": "Republican",
+      "11": "Democratic",
+      "29": "Democratic"
+    },
+    "house": {
+      "3": "Democratic",
+      "62": "Republican",
+      "94": "Democratic",
+      "79": "Republican",
+      "76": "Democratic",
+      "49": "Republican",
+      "103": "Democratic",
+      "95": "Republican",
+      "37": "Republican",
+      "85": "Republican",
+      "53": "Democratic",
+      "71": "Republican",
+      "90": "Republican",
+      "106": "Republican",
+      "84": "Democratic",
+      "47": "Democratic",
+      "102": "Republican",
+      "70": "Democratic",
+      "108": "Republican",
+      "68": "Republican",
+      "61": "Democratic",
+      "11": "Democratic",
+      "54": "Republican",
+      "59": "Republican",
+      "26": "Democratic",
+      "77": "Democratic",
+      "15": "Democratic",
+      "78": "Republican",
+      "98": "Republican",
+      "110": "Republican",
+      "88": "Republican",
+      "8": "Democratic",
+      "104": "Republican",
+      "65": "Republican",
+      "28": "Republican",
+      "18": "Democratic",
+      "23": "Democratic",
+      "50": "Republican",
+      "63": "Republican",
+      "69": "Democratic",
+      "48": "Democratic",
+      "35": "Republican",
+      "92": "Republican",
+      "29": "Republican",
+      "32": "Democratic",
+      "60": "Republican",
+      "64": "Republican",
+      "9": "Democratic",
+      "38": "Democratic",
+      "83": "Democratic",
+      "101": "Republican",
+      "66": "Republican",
+      "73": "Democratic",
+      "41": "Democratic",
+      "74": "Democratic",
+      "4": "Democratic",
+      "109": "Republican",
+      "46": "Republican",
+      "21": "Democratic",
+      "105": "Republican",
+      "12": "Democratic",
+      "82": "Democratic",
+      "17": "Democratic",
+      "89": "Republican",
+      "13": "Democratic",
+      "55": "Republican",
+      "97": "Republican",
+      "42": "Republican",
+      "22": "Democratic",
+      "40": "Democratic",
+      "51": "Republican",
+      "52": "Republican",
+      "99": "Republican",
+      "14": "Democratic",
+      "72": "Republican",
+      "33": "Democratic",
+      "86": "Republican",
+      "34": "Republican",
+      "6": "Democratic",
+      "20": "Democratic",
+      "107": "Republican",
+      "91": "Republican",
+      "39": "Republican",
+      "75": "Democratic",
+      "25": "Democratic",
+      "67": "Republican",
+      "80": "Democratic",
+      "43": "Republican",
+      "24": "Democratic",
+      "31": "Democratic",
+      "5": "Democratic",
+      "58": "Republican",
+      "27": "Republican",
+      "19": "Democratic",
+      "45": "Republican",
+      "56": "Democratic",
+      "16": "Democratic",
+      "81": "Democratic",
+      "36": "Republican",
+      "44": "Republican",
+      "93": "Republican",
+      "96": "Republican",
+      "57": "Republican",
+      "100": "Republican",
+      "7": "Democratic",
+      "2": "Democratic",
+      "1": "Democratic",
+      "10": "Democratic",
+      "30": "Republican",
+      "87": "Democratic"
+    }
+  },
+  "lastUpdated": "2025-11-09T19:14:20.756577+00:00"
+}

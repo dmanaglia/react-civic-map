@@ -1,0 +1,209 @@
+{
+  "summary": {
+    "executive": [
+      {
+        "id": "ocd-person/e76e3662-0567-4615-9142-655989f08ff4",
+        "name": "Kristi Noem",
+        "party": "Republican",
+        "current_role": {
+          "title": "Governor",
+          "org_classification": "executive",
+          "district": "",
+          "division_id": ""
+        },
+        "jurisdiction": {
+          "id": "ocd-jurisdiction/country:us/state:sd/government",
+          "name": "South Dakota",
+          "classification": "state"
+        },
+        "given_name": "Kristi",
+        "family_name": "Noem",
+        "image": "https://governor.sd.gov/img/gov-photo.jpg",
+        "email": "",
+        "gender": "",
+        "birth_date": "1971-11-30",
+        "death_date": "",
+        "extras": {},
+        "created_at": "2020-08-04T05:19:50.249500+00:00",
+        "updated_at": "2023-01-19T06:03:59.424920+00:00",
+        "openstates_url": "https://openstates.org/person/kristi-noem-72hasFAEQT5r1uW6rVUlgi/"
+      },
+      {
+        "id": "ocd-person/e4192363-de65-4632-8224-6d59098f1e61",
+        "name": "Monae Johnson",
+        "party": "Republican",
+        "current_role": {
+          "title": "Secretary Of State",
+          "org_classification": "executive",
+          "district": "",
+          "division_id": ""
+        },
+        "jurisdiction": {
+          "id": "ocd-jurisdiction/country:us/state:sd/government",
+          "name": "South Dakota",
+          "classification": "state"
+        },
+        "given_name": "Monae",
+        "family_name": "Johnson",
+        "image": "https://sdsos.gov/general-information/assets/Monae0008a.jpg",
+        "email": "sdsos@state.sd.us",
+        "gender": "",
+        "birth_date": "",
+        "death_date": "",
+        "extras": {},
+        "created_at": "2023-08-29T15:18:48.339279+00:00",
+        "updated_at": "2023-08-29T15:18:48.485353+00:00",
+        "openstates_url": "https://openstates.org/person/monae-johnson-6wPjnnenBsJrp36fHTkZov/"
+      }
+    ],
+    "legislative": {
+      "house": {
+        "democrats": 6,
+        "republicans": 63,
+        "independents": 0
+      },
+      "senate": {
+        "democrats": 3,
+        "republicans": 31,
+        "independents": 0
+      },
+      "fed_reps": {
+        "senate": [
+          {
+            "bioguideId": "T000250",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/t000250_200.jpg"
+            },
+            "district": null,
+            "name": "Thune, John",
+            "partyName": "Republican",
+            "state": "South Dakota",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 2003,
+                  "startYear": 1997
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 2005
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:27Z",
+            "url": "https://api.congress.gov/v3/member/T000250?format=json"
+          },
+          {
+            "bioguideId": "R000605",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/r000605_200.jpg"
+            },
+            "district": null,
+            "name": "Rounds, Mike",
+            "partyName": "Republican",
+            "state": "South Dakota",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "Senate",
+                  "startYear": 2015
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:25Z",
+            "url": "https://api.congress.gov/v3/member/R000605?format=json"
+          }
+        ],
+        "house": {
+          "seats": 1,
+          "democrats": 0,
+          "republicans": 1,
+          "independents": 0
+        }
+      }
+    },
+    "judicial": [],
+    "lastUpdated": "2025-11-11T01:04:17.369440+00:00"
+  },
+  "map": {
+    "senate": {
+      "30": "Republican",
+      "12": "Republican",
+      "3": "Republican",
+      "8": "Republican",
+      "11": "Republican",
+      "33": "Republican",
+      "6": "Republican",
+      "5": "Republican",
+      "35": "Republican",
+      "32": "Republican",
+      "15": "Democratic",
+      "24": "Republican",
+      "29": "Republican",
+      "9": "Republican",
+      "16": "Republican",
+      "19": "Republican",
+      "14": "Republican",
+      "18": "Republican",
+      "10": "Democratic",
+      "23": "Republican",
+      "1": "Republican",
+      "21": "Republican",
+      "20": "Republican",
+      "31": "Republican",
+      "27": "Democratic",
+      "28": "Republican",
+      "4": "Republican",
+      "2": "Republican",
+      "13": "Republican",
+      "17": "Republican",
+      "34": "Republican",
+      "26": "Republican",
+      "7": "Republican",
+      "25": "Republican"
+    },
+    "house": {
+      "6": "Republican",
+      "3": "Republican",
+      "12": "Republican",
+      "9": "Republican",
+      "10": "Democratic",
+      "11": "Republican",
+      "17": "Republican",
+      "33": "Republican",
+      "2": "Republican",
+      "19": "Republican",
+      "4": "Republican",
+      "26A": "Democratic",
+      "15": "Democratic",
+      "34": "Republican",
+      "13": "Republican",
+      "28A": "Republican",
+      "20": "Republican",
+      "21": "Republican",
+      "25": "Republican",
+      "5": "Republican",
+      "18": "Republican",
+      "16": "Republican",
+      "29": "Republican",
+      "22": "Republican",
+      "27": "Democratic",
+      "1": "Republican",
+      "31": "Republican",
+      "7": "Republican",
+      "24": "Republican",
+      "32": "Republican",
+      "26B": "Republican",
+      "23": "Republican",
+      "14": "Republican",
+      "30": "Republican",
+      "8": "Republican",
+      "35": "Republican",
+      "28B": "Republican"
+    }
+  },
+  "lastUpdated": "2025-11-11T01:04:17.369495+00:00"
+}

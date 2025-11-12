@@ -48,3 +48,28 @@ export interface StateLegislatorsProps {
     updated_at: string,
 }
 
+export interface GovSummaryProps {
+    executive: StateLegislatorsProps[],
+    legislative: {
+        house: ChamberProps,
+        senate: ChamberProps,
+        fed_reps?: {
+            senate: CdOfficialProps[],
+            house: {
+                seats: number,
+                democrats: number,
+                independents: number,
+                republicans: number,
+            }
+    }
+    },
+    judicial: any[],
+}
+
+export interface ChamberProps {
+    democrats: number,
+    independents: number,
+    republicans: number,
+    non_voting?: CdOfficialProps[],
+    vacancies?: number
+}

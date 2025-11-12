@@ -13,28 +13,24 @@ export default function MapContainer() {
   const [state, setState] = useState<StateProps | null>(null);
   const [feature, setFeature] = useState<FeatureProps | null>(null);
   const [type, setType] = useState<string>("cd");
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const { statesData, featureData, loadingMap } = useGeoData(type, state);
-  const {officialsData, setOfficialsData, loadingOfficial} = useOfficialsData(feature, state);
+  const {officialsData, loadingOfficial} = useOfficialsData(feature, state);
 
   const handleSetState = useCallback((s: any) => {
     setState(s);
     setSidebarOpen(true);
-    setOfficialsData(null);
-  }, [setOfficialsData]);
+  }, []);
 
   const handleSetFeature = useCallback((f: any) => {
     setFeature(f);
     setSidebarOpen(true);
-    // setOfficialsData(null);
   }, []);
 
   const handleSetType = useCallback((t: string) => {
-    setType(t);
-    setSidebarOpen(true);
     setFeature(null);
-    setOfficialsData(null);
-  }, [setOfficialsData]);
+    setType(t);
+  }, []);
 
   return (
     <div>
@@ -48,7 +44,6 @@ export default function MapContainer() {
             type={type}
             setState={handleSetState}
             setFeature={handleSetFeature}
-            shrink={sidebarOpen}
           />
           <OfficialSidebar
             loading={loadingOfficial}

@@ -1,0 +1,241 @@
+{
+  "summary": {
+    "executive": [
+      {
+        "id": "ocd-person/19d6cf01-f77c-4db7-8765-af838a00bc75",
+        "name": "Sarah L. Copeland Hanzas",
+        "party": "Democratic",
+        "current_role": {
+          "title": "Secretary Of State",
+          "org_classification": "executive",
+          "district": "",
+          "division_id": ""
+        },
+        "jurisdiction": {
+          "id": "ocd-jurisdiction/country:us/state:vt/government",
+          "name": "Vermont",
+          "classification": "state"
+        },
+        "given_name": "Sarah",
+        "family_name": "Copeland Hanzas",
+        "image": "https://sos.vermont.gov/media/isaloynw/sarah.jpg",
+        "email": "secretary@vermont.gov",
+        "gender": "",
+        "birth_date": "",
+        "death_date": "",
+        "extras": {},
+        "created_at": "2023-08-31T18:47:28.876936+00:00",
+        "updated_at": "2023-08-31T18:47:29.756194+00:00",
+        "openstates_url": "https://openstates.org/person/sarah-l-copeland-hanzas-mkyVhlcpgZmzO4pUkKZm9/"
+      }
+    ],
+    "legislative": {
+      "house": {
+        "democrats": 90,
+        "republicans": 57,
+        "independents": 3
+      },
+      "senate": {
+        "democrats": 17,
+        "republicans": 13,
+        "independents": 0
+      },
+      "fed_reps": {
+        "senate": [
+          {
+            "bioguideId": "W000800",
+            "depiction": {
+              "attribution": "Official U.S. Senate Photo",
+              "imageUrl": "https://www.congress.gov/img/member/fd3cb364b8bf93c25834cff750637802_200.jpg"
+            },
+            "district": null,
+            "name": "Welch, Peter",
+            "partyName": "Democratic",
+            "state": "Vermont",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 2023,
+                  "startYear": 2007
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 2023
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:29Z",
+            "url": "https://api.congress.gov/v3/member/W000800?format=json"
+          },
+          {
+            "bioguideId": "S000033",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/s000033_200.jpg"
+            },
+            "district": null,
+            "name": "Sanders, Bernard",
+            "partyName": "Independent",
+            "state": "Vermont",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 2007,
+                  "startYear": 1991
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 2007
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:25Z",
+            "url": "https://api.congress.gov/v3/member/S000033?format=json"
+          }
+        ],
+        "house": {
+          "seats": 1,
+          "democrats": 1,
+          "republicans": 0,
+          "independents": 0
+        }
+      }
+    },
+    "judicial": [],
+    "lastUpdated": "2025-11-09T17:27:12.797463+00:00"
+  },
+  "map": {
+    "senate": {
+      "Windsor": "Democratic",
+      "Washington": "Democratic",
+      "Franklin": "Republican",
+      "Rutland": "Republican",
+      "Chittenden North": "Republican",
+      "Chittenden Southeast": "Democratic",
+      "Orange": "Republican",
+      "Chittenden Central": "Democratic/Progressive",
+      "Windham": "Democratic",
+      "Grand Isle": "Republican",
+      "Lamoille": "Republican",
+      "Bennington": "Democratic",
+      "Essex": "Republican",
+      "Addison": "Republican",
+      "Orleans": "Republican",
+      "Caledonia": "Republican"
+    },
+    "house": {
+      "Chittenden-17": "Democratic",
+      "Windsor-3": "Democratic",
+      "Rutland-8": "Republican",
+      "Chittenden-24": "Democratic",
+      "Addison-1": "Democratic",
+      "Chittenden-2": "Democratic",
+      "Washington-1": "Republican",
+      "Franklin-1": "Republican",
+      "Chittenden-14": "Democratic",
+      "Caledonia-3": "Republican",
+      "Rutland-10": "Republican",
+      "Chittenden-18": "Democratic",
+      "Chittenden-13": "Democratic",
+      "Chittenden-25": "Republican",
+      "Chittenden-15": "Independent",
+      "Chittenden-11": "Democratic",
+      "Chittenden-8": "Democratic",
+      "Washington-2": "Democratic",
+      "Franklin-8": "Republican",
+      "Windsor-5": "Democratic",
+      "Chittenden-5": "Democratic",
+      "Chittenden-21": "Democratic",
+      "Rutland-7": "Republican",
+      "Windham-Windsor-Bennington": "Democratic",
+      "Rutland-Bennington": "Republican",
+      "Chittenden-Franklin": "Republican",
+      "Rutland-4": "Republican",
+      "Washington-4": "Democratic",
+      "Lamoille-2": "Republican",
+      "Rutland-2": "Republican",
+      "Lamoille-Washington": "Democratic",
+      "Bennington-3": "Democratic",
+      "Caledonia-Essex": "Democratic",
+      "Caledonia-1": "Republican",
+      "Chittenden-20": "Democratic",
+      "Chittenden-3": "Democratic",
+      "Washington-5": "Democratic",
+      "Windsor-1": "Democratic",
+      "Windham-7": "Democratic",
+      "Chittenden-9": "Democratic",
+      "Windham-6": "Democratic",
+      "Windham-5": "Democratic",
+      "Rutland-5": "Republican",
+      "Windsor-6": "Democratic",
+      "Washington-Orange": "Republican",
+      "Caledonia-Washington": "Republican",
+      "Windsor-4": "Democratic",
+      "Addison-4": "Democratic/Progressive",
+      "Windham-9": "Democratic",
+      "Franklin-6": "Republican",
+      "Chittenden-1": "Democratic",
+      "Orange-Washington-Addison": "Democratic",
+      "Lamoille-1": "Independent",
+      "Chittenden-16": "Democratic",
+      "Addison-Rutland": "Republican",
+      "Rutland-11": "Republican",
+      "Windsor-Orange-2": "Democratic",
+      "Franklin-3": "Republican",
+      "Essex-Caledonia": "Republican",
+      "Windsor-Orange-1": "Democratic",
+      "Bennington-1": "Democratic",
+      "Orange-Caledonia": "Republican",
+      "Orange-3": "Republican",
+      "Addison-5": "Democratic",
+      "Chittenden-22": "Democratic",
+      "Chittenden-6": "Democratic",
+      "Chittenden-10": "Democratic",
+      "Bennington-4": "Democratic",
+      "Orleans-3": "Republican",
+      "Rutland-Windsor": "Republican",
+      "Windsor-Addison": "Democratic",
+      "Essex-Orleans": "Republican",
+      "Windham-2": "Independent",
+      "Orleans-4": "Democratic",
+      "Grand Isle-Chittenden": "Republican",
+      "Chittenden-23": "Democratic",
+      "Windham-3": "Democratic",
+      "Franklin-5": "Republican",
+      "Lamoille-3": "Democratic",
+      "Franklin-2": "Republican",
+      "Washington-6": "Democratic",
+      "Orleans-Lamoille": "Republican",
+      "Chittenden-12": "Democratic",
+      "Rutland-6": "Democratic",
+      "Bennington-5": "Democratic",
+      "Addison-3": "Republican",
+      "Franklin-4": "Republican",
+      "Washington-3": "Democratic",
+      "Windham-4": "Democratic",
+      "Caledonia-2": "Republican",
+      "Orange-1": "Republican",
+      "Windham-8": "Democratic",
+      "Orange-2": "Democratic",
+      "Rutland-1": "Republican",
+      "Franklin-7": "Republican",
+      "Addison-2": "Democratic",
+      "Chittenden-4": "Democratic",
+      "Orleans-1": "Republican",
+      "Bennington-Rutland": "Republican",
+      "Chittenden-19": "Democratic",
+      "Chittenden-7": "Democratic",
+      "Washington-Chittenden": "Democratic",
+      "Bennington-2": "Democratic",
+      "Rutland-9": "Republican",
+      "Windsor-Windham": "Republican",
+      "Windsor-2": "Republican",
+      "Orleans-2": "Republican",
+      "Rutland-3": "Republican",
+      "Windham-1": "Democratic"
+    }
+  },
+  "lastUpdated": "2025-11-09T17:27:12.798531+00:00"
+}

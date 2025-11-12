@@ -1,0 +1,278 @@
+{
+  "summary": {
+    "executive": [
+      {
+        "id": "ocd-person/20b42b64-6dd3-4b52-97f2-def9b8207a7d",
+        "name": "John Thurston",
+        "party": "Republican",
+        "current_role": {
+          "title": "Secretary Of State",
+          "org_classification": "executive",
+          "district": "",
+          "division_id": ""
+        },
+        "jurisdiction": {
+          "id": "ocd-jurisdiction/country:us/state:ar/government",
+          "name": "Arkansas",
+          "classification": "state"
+        },
+        "given_name": "John",
+        "family_name": "Thurston",
+        "image": "https://www.sos.arkansas.gov/uploads/Thurston_head_shot.jpg",
+        "email": "electionsemail@sos.arkansas.gov",
+        "gender": "",
+        "birth_date": "",
+        "death_date": "",
+        "extras": {},
+        "created_at": "2020-10-27T22:11:04.827958+00:00",
+        "updated_at": "2023-08-29T14:50:05.429405+00:00",
+        "openstates_url": "https://openstates.org/person/john-thurston-zi5iFIAYCxwEWGD4xWpDR/"
+      },
+      {
+        "id": "ocd-person/1c9262ce-53a4-4d0c-ab9e-45edb5377fa0",
+        "name": "Sarah Huckabee Sanders",
+        "party": "Republican",
+        "current_role": {
+          "title": "Governor",
+          "org_classification": "executive",
+          "district": "",
+          "division_id": ""
+        },
+        "jurisdiction": {
+          "id": "ocd-jurisdiction/country:us/state:ar/government",
+          "name": "Arkansas",
+          "classification": "state"
+        },
+        "given_name": "Sarah",
+        "family_name": "Sanders",
+        "image": "https://governor.arkansas.gov/wp-content/uploads/GovSHSOfficialHeadshot-2-683x1024.jpg",
+        "email": "",
+        "gender": "",
+        "birth_date": "1982-08-13",
+        "death_date": "",
+        "extras": {},
+        "created_at": "2024-10-18T13:43:39.451803+00:00",
+        "updated_at": "2024-10-18T13:43:40.967504+00:00",
+        "openstates_url": "https://openstates.org/person/sarah-huckabee-sanders-rugOFDH5MkJWHlvlmw6pU/"
+      }
+    ],
+    "legislative": {
+      "house": {
+        "democrats": 19,
+        "republicans": 81,
+        "independents": 0
+      },
+      "senate": {
+        "democrats": 6,
+        "republicans": 29,
+        "independents": 0
+      },
+      "fed_reps": {
+        "senate": [
+          {
+            "bioguideId": "C001095",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/c001095_200.jpg"
+            },
+            "district": null,
+            "name": "Cotton, Tom",
+            "partyName": "Republican",
+            "state": "Arkansas",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 2015,
+                  "startYear": 2013
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 2015
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:16Z",
+            "url": "https://api.congress.gov/v3/member/C001095?format=json"
+          },
+          {
+            "bioguideId": "B001236",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/b001236_200.jpg"
+            },
+            "district": null,
+            "name": "Boozman, John",
+            "partyName": "Republican",
+            "state": "Arkansas",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 2011,
+                  "startYear": 2001
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 2011
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:15Z",
+            "url": "https://api.congress.gov/v3/member/B001236?format=json"
+          }
+        ],
+        "house": {
+          "seats": 4,
+          "democrats": 0,
+          "republicans": 4,
+          "independents": 0
+        }
+      }
+    },
+    "judicial": [],
+    "lastUpdated": "2025-11-09T19:42:08.074237+00:00"
+  },
+  "map": {
+    "senate": {
+      "7": "Republican",
+      "33": "Republican",
+      "1": "Republican",
+      "21": "Republican",
+      "25": "Republican",
+      "28": "Republican",
+      "14": "Democratic",
+      "31": "Republican",
+      "20": "Republican",
+      "19": "Republican",
+      "15": "Democratic",
+      "26": "Republican",
+      "30": "Democratic",
+      "12": "Democratic",
+      "13": "Republican",
+      "34": "Republican",
+      "29": "Republican",
+      "4": "Republican",
+      "22": "Republican",
+      "18": "Republican",
+      "32": "Republican",
+      "27": "Republican",
+      "16": "Republican",
+      "17": "Republican",
+      "6": "Republican",
+      "2": "Republican",
+      "24": "Republican",
+      "9": "Democratic",
+      "11": "Republican",
+      "10": "Republican",
+      "23": "Republican",
+      "8": "Democratic",
+      "3": "Republican",
+      "5": "Republican",
+      "35": "Republican"
+    },
+    "house": {
+      "45": "Republican",
+      "41": "Republican",
+      "73": "Democratic",
+      "75": "Democratic",
+      "8": "Republican",
+      "28": "Republican",
+      "24": "Republican",
+      "71": "Republican",
+      "68": "Republican",
+      "7": "Republican",
+      "91": "Republican",
+      "57": "Republican",
+      "70": "Republican",
+      "100": "Republican",
+      "25": "Republican",
+      "51": "Republican",
+      "69": "Republican",
+      "22": "Democratic",
+      "87": "Republican",
+      "80": "Democratic",
+      "20": "Democratic",
+      "9": "Democratic",
+      "88": "Republican",
+      "38": "Republican",
+      "30": "Republican",
+      "77": "Democratic",
+      "65": "Democratic",
+      "6": "Republican",
+      "12": "Republican",
+      "95": "Republican",
+      "32": "Republican",
+      "26": "Republican",
+      "4": "Republican",
+      "49": "Democratic",
+      "94": "Republican",
+      "61": "Republican",
+      "1": "Republican",
+      "35": "Democratic",
+      "59": "Republican",
+      "31": "Republican",
+      "34": "Republican",
+      "15": "Republican",
+      "86": "Republican",
+      "36": "Republican",
+      "46": "Republican",
+      "33": "Republican",
+      "76": "Democratic",
+      "92": "Republican",
+      "89": "Republican",
+      "67": "Republican",
+      "78": "Republican",
+      "64": "Democratic",
+      "16": "Republican",
+      "23": "Republican",
+      "99": "Republican",
+      "47": "Republican",
+      "58": "Republican",
+      "84": "Republican",
+      "63": "Democratic",
+      "52": "Republican",
+      "62": "Republican",
+      "66": "Democratic",
+      "54": "Republican",
+      "55": "Republican",
+      "53": "Republican",
+      "97": "Republican",
+      "93": "Republican",
+      "10": "Republican",
+      "14": "Republican",
+      "21": "Democratic",
+      "83": "Republican",
+      "81": "Republican",
+      "17": "Republican",
+      "11": "Republican",
+      "85": "Republican",
+      "90": "Republican",
+      "43": "Republican",
+      "29": "Republican",
+      "18": "Republican",
+      "60": "Republican",
+      "5": "Republican",
+      "48": "Republican",
+      "13": "Republican",
+      "40": "Republican",
+      "96": "Republican",
+      "44": "Republican",
+      "42": "Republican",
+      "3": "Republican",
+      "37": "Republican",
+      "56": "Democratic",
+      "19": "Republican",
+      "27": "Republican",
+      "79": "Democratic",
+      "74": "Democratic",
+      "82": "Republican",
+      "72": "Democratic",
+      "2": "Republican",
+      "98": "Republican",
+      "39": "Republican",
+      "50": "Republican"
+    }
+  },
+  "lastUpdated": "2025-11-09T19:42:08.074563+00:00"
+}
