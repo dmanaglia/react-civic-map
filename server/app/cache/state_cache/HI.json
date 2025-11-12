@@ -1,0 +1,187 @@
+{
+  "summary": {
+    "executive": [
+      {
+        "id": "ocd-person/c7e5e0d4-7a5d-42dc-a3cc-d7b54b1dc51b",
+        "name": "Josh Green",
+        "party": "Democratic",
+        "current_role": {
+          "title": "Governor",
+          "org_classification": "executive",
+          "district": "",
+          "division_id": ""
+        },
+        "jurisdiction": {
+          "id": "ocd-jurisdiction/country:us/state:hi/government",
+          "name": "Hawaii",
+          "classification": "state"
+        },
+        "given_name": "Josh",
+        "family_name": "Green",
+        "image": "https://governor.hawaii.gov/wp-content/uploads/2023/02/governor_green_-046-scaled.jpg",
+        "email": "",
+        "gender": "",
+        "birth_date": "1970-02-11",
+        "death_date": "",
+        "extras": {},
+        "created_at": "2024-10-18T14:41:23.490374+00:00",
+        "updated_at": "2024-10-18T14:41:24.953686+00:00",
+        "openstates_url": "https://openstates.org/person/josh-green-65CWiYbPTRxYRzKHoFC6lH/"
+      }
+    ],
+    "legislative": {
+      "house": {
+        "democrats": 42,
+        "republicans": 9,
+        "independents": 0
+      },
+      "senate": {
+        "democrats": 22,
+        "republicans": 3,
+        "independents": 0
+      },
+      "fed_reps": {
+        "senate": [
+          {
+            "bioguideId": "S001194",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/s001194_200.jpg"
+            },
+            "district": null,
+            "name": "Schatz, Brian",
+            "partyName": "Democratic",
+            "state": "Hawaii",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "Senate",
+                  "startYear": 2012
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:25Z",
+            "url": "https://api.congress.gov/v3/member/S001194?format=json"
+          },
+          {
+            "bioguideId": "H001042",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/h001042_200.jpg"
+            },
+            "district": null,
+            "name": "Hirono, Mazie K.",
+            "partyName": "Democratic",
+            "state": "Hawaii",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 2013,
+                  "startYear": 2007
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 2013
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:19Z",
+            "url": "https://api.congress.gov/v3/member/H001042?format=json"
+          }
+        ],
+        "house": {
+          "seats": 2,
+          "democrats": 2,
+          "republicans": 0,
+          "independents": 0
+        }
+      }
+    },
+    "judicial": [],
+    "lastUpdated": "2025-11-11T00:55:40.327683+00:00"
+  },
+  "map": {
+    "senate": {
+      "6": "Democratic",
+      "16": "Democratic",
+      "23": "Republican",
+      "11": "Democratic",
+      "25": "Democratic",
+      "14": "Democratic",
+      "17": "Democratic",
+      "3": "Democratic",
+      "15": "Democratic",
+      "19": "Democratic",
+      "24": "Democratic",
+      "2": "Democratic",
+      "13": "Democratic",
+      "20": "Republican",
+      "10": "Democratic",
+      "1": "Democratic",
+      "7": "Democratic",
+      "18": "Democratic",
+      "21": "Democratic",
+      "8": "Democratic",
+      "22": "Republican",
+      "12": "Democratic",
+      "9": "Democratic",
+      "4": "Democratic",
+      "5": "Democratic"
+    },
+    "house": {
+      "24": "Democratic",
+      "46": "Democratic",
+      "22": "Democratic",
+      "45": "Republican",
+      "3": "Democratic",
+      "35": "Democratic",
+      "28": "Democratic",
+      "44": "Democratic",
+      "41": "Republican",
+      "8": "Democratic",
+      "17": "Democratic",
+      "26": "Democratic",
+      "42": "Republican",
+      "39": "Republican",
+      "14": "Democratic",
+      "32": "Republican",
+      "34": "Democratic",
+      "4": "Democratic",
+      "29": "Democratic",
+      "23": "Democratic",
+      "21": "Democratic",
+      "5": "Democratic",
+      "27": "Democratic",
+      "18": "Republican",
+      "40": "Republican",
+      "9": "Democratic",
+      "43": "Republican",
+      "25": "Democratic",
+      "6": "Democratic",
+      "12": "Democratic",
+      "38": "Republican",
+      "31": "Democratic",
+      "48": "Democratic",
+      "51": "Democratic",
+      "16": "Democratic",
+      "13": "Democratic",
+      "19": "Democratic",
+      "1": "Democratic",
+      "50": "Democratic",
+      "15": "Democratic",
+      "7": "Democratic",
+      "36": "Democratic",
+      "33": "Democratic",
+      "49": "Democratic",
+      "47": "Democratic",
+      "30": "Democratic",
+      "2": "Democratic",
+      "11": "Democratic",
+      "20": "Democratic",
+      "37": "Democratic",
+      "10": "Democratic"
+    }
+  },
+  "lastUpdated": "2025-11-11T00:55:40.327729+00:00"
+}

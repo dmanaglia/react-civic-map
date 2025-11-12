@@ -46,7 +46,7 @@ export const Legislative = ({type, officialsData, state}: LegislativeProps) => {
                     onClick={() => setActiveChamber("Senate")}
                     aria-pressed={activeChamber === "Senate"}
                 >
-                    {type === 'cd' ? "Senators" : "Senate"}
+                    {(type === 'cd' && state) ? "Senators" : "Senate"}
                 </button>
             </div>
 

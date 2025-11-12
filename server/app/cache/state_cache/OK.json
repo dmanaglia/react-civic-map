@@ -1,0 +1,265 @@
+{
+  "summary": {
+    "executive": [
+      {
+        "id": "ocd-person/b4b14ac3-5ee6-4404-a4fc-ec6ea805ac90",
+        "name": "Kevin Stitt",
+        "party": "Republican",
+        "current_role": {
+          "title": "Governor",
+          "org_classification": "executive",
+          "district": "",
+          "division_id": ""
+        },
+        "jurisdiction": {
+          "id": "ocd-jurisdiction/country:us/state:ok/government",
+          "name": "Oklahoma",
+          "classification": "state"
+        },
+        "given_name": "Kevin",
+        "family_name": "Stitt",
+        "image": "https://oklahoma.gov/content/dam/ok/en/governor/images/gov-stitt-official-photo.jpg",
+        "email": "",
+        "gender": "",
+        "birth_date": "1972-12-28",
+        "death_date": "",
+        "extras": {},
+        "created_at": "2020-08-04T05:17:47.659031+00:00",
+        "updated_at": "2024-10-18T17:43:06.930114+00:00",
+        "openstates_url": "https://openstates.org/person/kevin-stitt-5Uxdm6qdpdcqiTebzQXHCi/"
+      }
+    ],
+    "legislative": {
+      "house": {
+        "democrats": 20,
+        "republicans": 81,
+        "independents": 0
+      },
+      "senate": {
+        "democrats": 8,
+        "republicans": 40,
+        "independents": 0
+      },
+      "fed_reps": {
+        "senate": [
+          {
+            "bioguideId": "M001190",
+            "depiction": {
+              "attribution": "<p>Official U.S. Senate Photo</p>",
+              "imageUrl": "https://www.congress.gov/img/member/m001190_200.jpg"
+            },
+            "district": null,
+            "name": "Mullin, Markwayne",
+            "partyName": "Republican",
+            "state": "Oklahoma",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 2023,
+                  "startYear": 2013
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 2023
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:23Z",
+            "url": "https://api.congress.gov/v3/member/M001190?format=json"
+          },
+          {
+            "bioguideId": "L000575",
+            "depiction": {
+              "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+              "imageUrl": "https://www.congress.gov/img/member/l000575_200.jpg"
+            },
+            "district": null,
+            "name": "Lankford, James",
+            "partyName": "Republican",
+            "state": "Oklahoma",
+            "terms": {
+              "item": [
+                {
+                  "chamber": "House of Representatives",
+                  "endYear": 2015,
+                  "startYear": 2011
+                },
+                {
+                  "chamber": "Senate",
+                  "startYear": 2015
+                }
+              ]
+            },
+            "updateDate": "2025-11-02T11:30:21Z",
+            "url": "https://api.congress.gov/v3/member/L000575?format=json"
+          }
+        ],
+        "house": {
+          "seats": 5,
+          "democrats": 0,
+          "republicans": 5,
+          "independents": 0
+        }
+      }
+    },
+    "judicial": [],
+    "lastUpdated": "2025-11-11T00:57:43.915743+00:00"
+  },
+  "map": {
+    "senate": {
+      "37": "Republican",
+      "41": "Republican",
+      "2": "Republican",
+      "9": "Republican",
+      "10": "Republican",
+      "42": "Republican",
+      "38": "Republican",
+      "25": "Republican",
+      "8": "Republican",
+      "40": "Democratic",
+      "27": "Republican",
+      "33": "Republican",
+      "20": "Republican",
+      "34": "Republican",
+      "26": "Republican",
+      "24": "Republican",
+      "39": "Republican",
+      "6": "Republican",
+      "32": "Republican",
+      "5": "Republican",
+      "28": "Republican",
+      "18": "Republican",
+      "14": "Republican",
+      "35": "Democratic",
+      "36": "Republican",
+      "13": "Republican",
+      "30": "Democratic",
+      "29": "Republican",
+      "3": "Republican",
+      "47": "Republican",
+      "43": "Republican",
+      "22": "Republican",
+      "15": "Republican",
+      "23": "Republican",
+      "46": "Democratic",
+      "16": "Democratic",
+      "44": "Democratic",
+      "1": "Republican",
+      "48": "Democratic",
+      "45": "Republican",
+      "21": "Republican",
+      "11": "Democratic",
+      "19": "Republican",
+      "17": "Republican",
+      "31": "Republican",
+      "12": "Republican",
+      "4": "Republican",
+      "7": "Republican"
+    },
+    "house": {
+      "99": "Democratic",
+      "97": "Democratic",
+      "71": "Democratic",
+      "94": "Democratic",
+      "45": "Democratic",
+      "57": "Republican",
+      "89": "Democratic",
+      "4": "Republican",
+      "51": "Republican",
+      "47": "Republican",
+      "58": "Republican",
+      "40": "Republican",
+      "24": "Republican",
+      "91": "Republican",
+      "14": "Republican",
+      "42": "Republican",
+      "66": "Republican",
+      "21": "Republican",
+      "31": "Republican",
+      "85": "Democratic",
+      "62": "Republican",
+      "27": "Republican",
+      "28": "Republican",
+      "86": "Republican",
+      "18": "Republican",
+      "26": "Republican",
+      "41": "Republican",
+      "23": "Republican",
+      "56": "Republican",
+      "1": "Republican",
+      "88": "Democratic",
+      "87": "Democratic",
+      "90": "Republican",
+      "83": "Republican",
+      "39": "Republican",
+      "92": "Democratic",
+      "98": "Republican",
+      "52": "Republican",
+      "46": "Democratic",
+      "44": "Democratic",
+      "53": "Republican",
+      "43": "Republican",
+      "17": "Republican",
+      "2": "Republican",
+      "32": "Republican",
+      "36": "Republican",
+      "11": "Republican",
+      "38": "Republican",
+      "77": "Democratic",
+      "20": "Republican",
+      "49": "Republican",
+      "5": "Republican",
+      "10": "Republican",
+      "19": "Republican",
+      "37": "Republican",
+      "61": "Republican",
+      "74": "Republican",
+      "54": "Republican",
+      "29": "Republican",
+      "100": "Republican",
+      "12": "Republican",
+      "30": "Republican",
+      "9": "Republican",
+      "69": "Republican",
+      "95": "Republican",
+      "79": "Democratic",
+      "78": "Democratic",
+      "72": "Democratic",
+      "93": "Democratic",
+      "59": "Republican",
+      "60": "Republican",
+      "68": "Republican",
+      "81": "Republican",
+      "33": "Republican",
+      "13": "Republican",
+      "55": "Republican",
+      "82": "Republican",
+      "96": "Republican",
+      "64": "Republican",
+      "3": "Republican",
+      "67": "Republican",
+      "101": "Republican",
+      "73": "Democratic",
+      "25": "Republican",
+      "76": "Republican",
+      "6": "Republican",
+      "22": "Republican",
+      "16": "Republican",
+      "50": "Republican",
+      "80": "Republican",
+      "7": "Republican",
+      "70": "Democratic",
+      "75": "Republican",
+      "48": "Republican",
+      "84": "Republican",
+      "15": "Republican",
+      "8": "Republican",
+      "65": "Republican",
+      "63": "Republican",
+      "34": "Democratic",
+      "35": "Republican"
+    }
+  },
+  "lastUpdated": "2025-11-11T00:57:43.916413+00:00"
+}
