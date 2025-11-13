@@ -32,17 +32,17 @@ async def get_cd(stateFP: str, stateUSPS: str = Query(..., description="Two-lett
 # Counties (county)
 @router.get("/county/{stateFP}")
 async def get_county(stateFP: str, stateUSPS: str = Query(..., description="Two-letter USPS state code")):
-    response = await get_county_service(stateFP)
+    response = await get_county_service(stateFP, stateUSPS)
     return JSONResponse(content=response.model_dump())
 
 # City Boundaries (place)
 @router.get("/place/{stateFP}")
 async def get_place(stateFP: str, stateUSPS: str = Query(..., description="Two-letter USPS state code")):
-    response = await get_place_service(stateFP)
+    response = await get_place_service(stateFP, stateUSPS)
     return JSONResponse(content=response.model_dump())
 
 # County Subdivisions (cousub)
 @router.get("/cousub/{stateFP}")
 async def get_cousub(stateFP: str, stateUSPS: str = Query(..., description="Two-letter USPS state code")):
-    response = await get_cousub_service(stateFP)
+    response = await get_cousub_service(stateFP, stateUSPS)
     return JSONResponse(content=response.model_dump())
