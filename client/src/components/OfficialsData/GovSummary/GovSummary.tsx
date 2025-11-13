@@ -2,39 +2,40 @@ import { useState } from "react";
 import { Executive } from "./Executive";
 import { Judicial } from "./Judicial";
 import { Legislative } from "./Legislative";
-import { GovSummaryProps } from "../../../models/OfficialProps";
+import { District, FederalSummary, MapType, StateSummary, State } from "../../../models/MapProps";
 import "./GovSummary.css";
 
 interface GovSummaryDataProps {
-    officialsData: GovSummaryProps | null;
-    type: string;
-    state?: string;
+    summary: FederalSummary | StateSummary,
+    type: MapType,
+    state: State | null,
+    district: District | null
 }
 
-export default function GovSummary({officialsData, type, state}: GovSummaryDataProps) {
+export default function GovSummary({summary, type, state, district}: GovSummaryDataProps) {
     const [activeBranch, setActiveBranch] = useState<"Legislative" | "Executive" | "Judicial">("Legislative");
 
     return (
         <div className="sidebar-body federal-summary">
             
             {!(type === 'cd' && state) && <div className="branch-tabs" role="tablist" aria-label="Branches of Government">
-                {(["Executive", "Legislative", "Judicial"] as const).map((b) => (
+                {(["Executive", "Legislative", "Judicial"] as const).map((branch) => (
                 <button
-                    key={b}
-                    className={`branch-tab ${activeBranch === b ? "active" : ""}`}
-                    onClick={() => setActiveBranch(b)}
+                    key={branch}
+                    className={`branch-tab ${activeBranch === branch ? "active" : ""}`}
+                    onClick={() => setActiveBranch(branch)}
                     role="tab"
-                    aria-selected={activeBranch === b}
+                    aria-selected={activeBranch === branch}
                 >
-                    {b}
+                    {branch}
                 </button>
                 ))}
             </div>}
 
             <div className="branch-content">
-                {(type === 'cd' || activeBranch === "Legislative") && <Legislative type={type} officialsData={officialsData?.legislative} state={state}/>}
-                {(type !== 'cd' && activeBranch === "Executive") && <Executive officialsData={officialsData?.executive} state={state}/>}
-                {(type !== 'cd' && activeBranch === "Judicial") && <Judicial officialsData={officialsData?.judicial} state={state}/>}
+                {activeBranch === "Legislative" && <Legislative type={type} summary={summary} state={state} district={district}/>}
+                {activeBranch === "Executive" && <Executive officials={summary.executive} type={type} state={state} district={district}/>}
+                {activeBranch === "Judicial" && <Judicial officials={summary.executive} type={type} state={state} district={district}/>}
             </div>
         </div>
     );

@@ -143,6 +143,48 @@ img {
   animation: sidebar-spin 1s linear infinite;
 }
 
+/* Representative Styles */
+
+/* Container row */
+.official-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e2e2e2; /* remove if unwanted */
+}
+
+/* Photo */
+.official-photo {
+  width: 128px;
+  height: 144px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Text column */
+.official-info {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Name */
+.official-name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.2;
+}
+
+/* Party label */
+.official-party {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+
 @keyframes sidebar-spin {
   to {
     transform: rotate(360deg);

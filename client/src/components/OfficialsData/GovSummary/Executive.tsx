@@ -1,36 +1,30 @@
-import { StateLegislatorsProps } from "../../../models/OfficialProps";
+import { District, MapType, State } from "../../../models/MapProps";
+import { Official } from "../../../models/OfficialProps";
+import { Representative } from "../Representative";
 
-interface LegislativeProps {
-    officialsData?: StateLegislatorsProps[],
-    state?: string
+interface ExecutiveProps {
+    officials: Official[],
+    type: MapType,
+    state: State | null
+    district: District | null
 }
 
-export const Executive = ({officialsData, state}: LegislativeProps) => {
+export const Executive = ({officials, type, state, district}: ExecutiveProps) => {
     return (
-        !officialsData || !officialsData.length ? 
+        !officials.length ? 
             <>
                 <h4>Executive Branch</h4>
                 <p className="muted">Work in progress...</p>
             </>
         :
             <>
-                {officialsData.map((official) => 
-                    <div className="branch-placeholder">
-                        {state ? <h4>{official.current_role.title}</h4> : <h4>Executive Branch</h4>}
-                        <div className="sidebar-body">
-                            {!official ? <p>Work in progress...</p>
-                            :
-                                <>
-                                    <div className="official-header">
-                                        <img src={official.image} alt={official.name}></img>
-                                        <h2>{official.name}</h2>
-                                    </div>
-                                    {official.party && <p>Party: {official.party}</p>}
-                                </>
-                            }
-                        </div>
-                    </div>
-                )}
+                {officials.map((official, index) => (
+                    <Representative 
+                        key={index} 
+                        official={official} 
+                        state={state} 
+                        district={district} />
+                ))}
             </>
     );
 };

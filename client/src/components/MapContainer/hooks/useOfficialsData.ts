@@ -1,48 +1,28 @@
 import { useEffect, useState } from "react";
-import FeatureProps from "../../../models/FeatureProps";
-import StateProps from "../../../models/StateProps";
+import { District, State } from "../../../models/MapProps";
+import { Official } from "../../../models/OfficialProps";
 
 export function useOfficialsData(
-  feature: FeatureProps | null,
-  state: StateProps | null
+  district: District | null,
+  state: State | null
 ) {
-  const [officialsData, setOfficialsData] = useState<any | null>(null);
+  const [official, setOfficial] = useState<Official | null>(null);
   const [loadingOfficial, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    //only congression district route is currently working...
-    if (!feature && !state) {
+    // Only used to get a single Official from a given district
+    if (district && state){
       setLoading(true)
       fetch(
-          `http://localhost:8000/summary`
+          `http://localhost:8000/official/${district.TYPE}/${state.USPS}/${district.ID}`
         )
         .then(res => res.json())
         .then((data) => {
-          setOfficialsData(data.summary);
-          setLoading(false);
-        });
-    } else if (!feature){
-      setLoading(true)
-      fetch(
-          `http://localhost:8000/summary/${state?.code}`
-        )
-        .then(res => res.json())
-        .then((data) => {
-          setOfficialsData(data.summary);
-          setLoading(false);
-        });
-    } else if (feature && state){
-      setLoading(true)
-      fetch(
-          `http://localhost:8000/official/${feature.type}/${state.code}/${feature.id}`
-        )
-        .then(res => res.json())
-        .then((data) => {
-          setOfficialsData(data[0]);
+          setOfficial(data);
           setLoading(false);
         });
     }
-  }, [feature, state]);
+  }, [district, state]);
 
-  return {officialsData, loadingOfficial};
+  return {official, loadingOfficial, setOfficial};
 }

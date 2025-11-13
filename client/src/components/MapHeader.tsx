@@ -1,6 +1,7 @@
+import { MapType } from "../models/MapProps";
 import "./MapHeader.css";
 
-const FEATURE_TYPES = [
+const FEATURE_TYPES: {id: MapType, label: string}[] = [
     { id: "county", label: "Counties" },
     { id: "sldl", label: "State House" },
     { id: "sldu", label: "State Senate" },
@@ -10,8 +11,8 @@ const FEATURE_TYPES = [
 ];
 
 interface MapHeaderProps {
-    type: string;
-    setType: (types: string) => void;
+    type: MapType;
+    setType: (types: MapType) => void;
 }
 
 export default function MapHeader({ type, setType }: MapHeaderProps) {

@@ -91,3 +91,11 @@ class FederalData(BaseModel):
 class FederalCache(FederalData):
     lastUpdated: str
 
+# ---------- Response Classes ----------
+class FederalResponse(BaseModel):
+    summary: FederalSummary
+    map: FeatureCollection
+
+class StateResponse(BaseModel):
+    summary: StateSummary
+    map: FeatureCollection

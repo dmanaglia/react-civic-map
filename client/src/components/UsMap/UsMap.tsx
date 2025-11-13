@@ -1,26 +1,25 @@
 // src/components/UsMap/UsMap.tsx
 import * as d3 from "d3";
 import { useEffect, useRef } from "react";
-import StateProps from "../../models/StateProps";
-import FeatureProps from "../../models/FeatureProps";
+import { District, State } from "../../models/MapProps";
 import { useTooltip } from "./useTooltip";
 import { useMapZoom } from "./useMapZoom";
 import "./UsMap.css";
 
 interface UsMapProps {
-  statesGeoJson: any;
-  featureGeoJson?: any;
+  districtMap?: any;
+  nationalMap: any;
   type: string;
-  setState: (stateId: StateProps | null) => void;
-  setFeature: (feature: FeatureProps | null) => void;
+  setState: (stateId: State | null) => void;
+  setDistrcit: (feature: District | null) => void;
 }
 
 export default function UsMap({
-  statesGeoJson,
-  featureGeoJson,
+  nationalMap,
+  districtMap,
   type,
   setState,
-  setFeature,
+  setDistrcit,
 }: UsMapProps) {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const gStatesRef = useRef<SVGGElement | null>(null);
@@ -30,7 +29,7 @@ export default function UsMap({
   const { zoomToBounds, applyCurrentTransform } = useMapZoom(svgRef, gStatesRef, gFeatureRef);
 
   useEffect(() => {
-    if (!statesGeoJson) return;
+    if (!nationalMap) return;
     const svg = d3.select(svgRef.current);
     const gStates = gStatesRef.current ? d3.select(gStatesRef.current) : svg.append("g");
     const width = 960;
@@ -40,7 +39,7 @@ export default function UsMap({
 
     gStates
       .selectAll<SVGPathElement, any>("path")
-      .data(statesGeoJson.features)
+      .data(nationalMap.features)
       .join("path")
       .attr("class", "state")
       .attr("d", path as any)
@@ -49,21 +48,21 @@ export default function UsMap({
         const bounds = path.bounds(feature);
         zoomToBounds(bounds, width, height);
         setState({
-          name: feature.properties.NAME,
-          id: feature.properties.STATEFP,
-          code: feature.properties.STUSPS,
+          NAME: feature.properties.NAME,
+          STATEFP: feature.properties.STATEFP,
+          USPS: feature.properties.STUSPS,
         });
-        setFeature(null);
+        setDistrcit(null);
       })
       .on("mouseover", (event, feature: any) => showTooltip(feature.properties.NAME, event.pageX, event.pageY))
       .on("mousemove", (event, feature: any) => showTooltip(feature.properties.NAME, event.pageX, event.pageY))
       .on("mouseout", hideTooltip);
 
     applyCurrentTransform();
-  }, [statesGeoJson, applyCurrentTransform, hideTooltip, setState, showTooltip, zoomToBounds, setFeature]);
+  }, [nationalMap, applyCurrentTransform, hideTooltip, setDistrcit, setState, showTooltip, zoomToBounds]);
 
   useEffect(() => {
-    if (!featureGeoJson) return;
+    if (!districtMap) return;
     const svg = d3.select(svgRef.current);
     const gFeature = gFeatureRef.current ? d3.select(gFeatureRef.current) : svg.append("g");
     const width = 960;
@@ -73,7 +72,7 @@ export default function UsMap({
 
     gFeature
       .selectAll<SVGPathElement, any>("path")
-      .data(featureGeoJson.features)
+      .data(districtMap.features)
       .join("path")
       .attr("d", path as any)
       .attr("fill", (d: any) => {
@@ -95,10 +94,10 @@ export default function UsMap({
         event.stopPropagation();
         const bounds = path.bounds(feature);
         zoomToBounds(bounds, width, height);
-        setFeature({
-          type: type,
-          name: feature.properties.NAMELSAD,
-          id: type === 'cd'
+        setDistrcit({
+          TYPE: type,
+          NAME: feature.properties.NAMELSAD,
+          ID: type === 'cd'
             ? feature.properties.CD119FP
             : feature.properties.NAME
         });
@@ -112,7 +111,7 @@ export default function UsMap({
       .on("mouseout", hideTooltip);
 
     applyCurrentTransform();
-  }, [applyCurrentTransform, featureGeoJson, hideTooltip, type, setFeature, showTooltip, zoomToBounds]);
+  }, [districtMap, type, applyCurrentTransform, hideTooltip, setDistrcit, showTooltip, zoomToBounds]);
 
   return (
     <div className="usmap-container">
