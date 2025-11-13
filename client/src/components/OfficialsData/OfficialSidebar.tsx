@@ -1,22 +1,22 @@
 import "./OfficialSidebar.css";
-import StateProps from "../../models/StateProps";
-import FeatureProps from "../../models/FeatureProps";
-import CdOfficialData from "./CdOfficialData";
-import StateLegislatorsData from "./StateLegislatorsData";
+import { District, FederalSummary, MapType, StateSummary, State } from "../../models/MapProps";
 import GovSummary from "./GovSummary/GovSummary";
+import { Representative } from "./Representative";
+import { Official } from "../../models/OfficialProps";
 
 interface OfficialSidebarProps {
+    district: District | null;
     loading: boolean;
-    open: boolean;
+    official: Official | null;
     onToggle: () => void;
     onClose: () => void;
-    state: StateProps | null;
-    type: string;
-    feature: FeatureProps | null;
-    officialsData: any;
+    open: boolean;
+    state: State | null;
+    summary: FederalSummary | StateSummary | null,
+    type: MapType;
 }
 
-export default function OfficialSidebar({ loading, open, onToggle, onClose, state, type, feature, officialsData }: OfficialSidebarProps) {
+export default function OfficialSidebar({ loading, open, onToggle, onClose, state, type, district, official, summary }: OfficialSidebarProps) {
   
     return (
         <div>
@@ -35,9 +35,9 @@ export default function OfficialSidebar({ loading, open, onToggle, onClose, stat
                 )}
                 <div className="sidebar-header">
                     <div>
-                        <h2>{state ? `${state.name} ` : "Federal"}</h2>
-                        <h3>{feature ? feature.name : null}</h3>
-                        <small>{feature ? "Representative details" : type === 'cd' ? "Federal Represenation" : "Government Details"}</small>
+                        <h2>{state ? `${state.NAME} ` : "Federal"}</h2>
+                        <h3>{district ? district.NAME : null}</h3>
+                        <small>{district ? "Representative details" : type === 'cd' ? "Federal Represenation" : "Government Details"}</small>
                     </div>
 
                     <div className="sidebar-actions">
@@ -46,13 +46,10 @@ export default function OfficialSidebar({ loading, open, onToggle, onClose, stat
                         </button>
                     </div>
                 </div>
-                {!feature ? 
-                    <GovSummary officialsData={officialsData} type={type} state={state?.name}/> 
+                {official ? 
+                    <Representative state={state} district={district} official={official}/>
                 : 
-                    <>
-                        {type === 'cd' && <CdOfficialData state={state} feature={feature} officialsData={officialsData}/>}
-                        {(type === 'sldl' || type === 'sldu') && <StateLegislatorsData state={state} feature={feature} officialsData={officialsData}/>}
-                    </>
+                    summary && <GovSummary summary={summary} type={type} state={state} district={district}/>
                 }
             </aside>
         </div>

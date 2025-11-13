@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
-import StateProps from "../../../models/StateProps";
+import { FederalSummary, StateSummary, State } from "../../../models/MapProps";
 
 export function useGeoData(
   type: string,
-  state: StateProps | null
+  state: State | null
 ) {
-  const [statesData, setStatesData] = useState<any>(null);
-  const [featureData, setFeatureData] = useState<any>(null);
+  const [nationalMap, setNationalMap] = useState<any>(null);
+  const [districtMap, setDistrictMap] = useState<any>(null);
   const [loadingMap, setLoading] = useState(false);
+  const [summary, setSummary] = useState<FederalSummary | StateSummary | null>(null);
 
   useEffect(() => {
     setLoading(true);
     fetch("http://localhost:8000/geojson/states")
       .then(res => res.json())
       .then(data => {
-        setStatesData(data);
+        setSummary(data.summary)
+        setNationalMap(data.map);
         setLoading(false);
       });
   }, []);
@@ -22,13 +24,14 @@ export function useGeoData(
   useEffect(() => {
     if (!state || !type) return;
     setLoading(true);
-    fetch(`http://localhost:8000/geojson/${type}/${state.id}?state_code=${state.code}&state_name=${state.name}`)
+    fetch(`http://localhost:8000/geojson/${type}/${state.STATEFP}?stateUSPS=${state.USPS}`)
       .then(res => res.json())
       .then(data => {
-        setFeatureData(data);
+        setSummary(data.summary)
+        setDistrictMap(data.map);
         setLoading(false);
       });
   }, [state, type]);
 
-  return { statesData, featureData, loadingMap };
+  return { nationalMap, districtMap, summary, loadingMap };
 }

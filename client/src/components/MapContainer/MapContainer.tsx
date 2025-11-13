@@ -5,55 +5,56 @@ import Spinner from "../Spinner";
 import OfficialSidebar from "../OfficialsData/OfficialSidebar";
 import { useGeoData } from "./hooks/useGeoData";
 import { useOfficialsData } from "./hooks/useOfficialsData";
-import FeatureProps from "../../models/FeatureProps";
-import StateProps from "../../models/StateProps";
+import { District, MapType, State } from "../../models/MapProps";
 import './MapContainer.css';
 
 export default function MapContainer() {
-  const [state, setState] = useState<StateProps | null>(null);
-  const [feature, setFeature] = useState<FeatureProps | null>(null);
-  const [type, setType] = useState<string>("cd");
+  const [state, setState] = useState<State | null>(null);
+  const [district, setDistrict] = useState<District | null>(null);
+  const [type, setType] = useState<MapType>("cd");
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const { statesData, featureData, loadingMap } = useGeoData(type, state);
-  const {officialsData, loadingOfficial} = useOfficialsData(feature, state);
+  const { nationalMap, districtMap, summary, loadingMap } = useGeoData(type, state);
+  const {official, setOfficial, loadingOfficial} = useOfficialsData(district, state);
 
-  const handleSetState = useCallback((s: any) => {
-    setState(s);
+  const handleSetState = useCallback((state: State | null) => {
+    setState(state);
     setSidebarOpen(true);
   }, []);
 
-  const handleSetFeature = useCallback((f: any) => {
-    setFeature(f);
+  const handleSetDistrict = useCallback((district: District | null) => {
+    setDistrict(district);
     setSidebarOpen(true);
   }, []);
 
-  const handleSetType = useCallback((t: string) => {
-    setFeature(null);
-    setType(t);
-  }, []);
+  const handleSetType = useCallback((type: MapType) => {
+    setDistrict(null);
+    setOfficial(null);
+    setType(type);
+  }, [setOfficial]);
 
   return (
     <div>
       <MapHeader type={type} setType={handleSetType} />
 
-      {statesData && (
+      {nationalMap && (
         <main className={`main-content ${sidebarOpen ? "sidebar-open" : "sidebar-closed"}`}>
           <UsMap
-            statesGeoJson={statesData}
-            featureGeoJson={featureData}
+            districtMap={districtMap}
+            nationalMap={nationalMap}
             type={type}
             setState={handleSetState}
-            setFeature={handleSetFeature}
+            setDistrcit={handleSetDistrict}
           />
           <OfficialSidebar
+            district={district}
             loading={loadingOfficial}
-            open={sidebarOpen}
+            official={official}
             onToggle={() => setSidebarOpen(open => !open)}
             onClose={() => setSidebarOpen(false)}
+            open={sidebarOpen}
             state={state}
+            summary={summary}
             type={type}
-            feature={feature}
-            officialsData={officialsData}
           />
         </main>
       )}
