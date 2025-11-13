@@ -1,40 +1,96 @@
-from datetime import datetime, timezone
-import json
-import os
+from datetime import datetime, timezone, timedelta
+import orjson
+from pathlib import Path
+import gzip
+from typing import Optional, Type, TypeVar
+from app.schemas.models import FederalCache, FederalData, StateCache, StateData
 
-CACHE_DIR = "app/cache/"
+# ---------- CONFIG ----------
+CACHE_DIR = Path("app/cache")
+STATE_CACHE_DIR = CACHE_DIR / "state_cache"
 CACHE_EXPIRATION_DAYS = 30
+STATE_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+T = TypeVar("T", FederalCache, StateCache)
 
-# ensure cache directory exists
-os.makedirs(CACHE_DIR, exist_ok=True)
 
-def read_cache(state_abbr: str = None):
-    """Return cached data if available and valid."""
-    file_path = ""
-    if(state_abbr):
-        file_path = os.path.join(f"{CACHE_DIR}/state_cache/", f"{state_abbr.upper()}.json")
+def read_cache(model: Type[T], state_abbr: Optional[str] = None) -> Optional[T]:
+    """
+    Reads and validates cached data.
+    Returns a parsed Pydantic model instance if valid and fresh.
+    """
+    if state_abbr:
+        file_path = STATE_CACHE_DIR / f"{state_abbr.upper()}.json.gz"
     else:
-        file_path = os.path.join(CACHE_DIR, "FED.json")
-    
-    if not os.path.exists(file_path):
+        file_path = CACHE_DIR / "FED.json.gz"
+
+    if not file_path.exists():
         return None
 
-    with open(file_path, "r") as f:
-        data = json.load(f)
+    try:
+        with gzip.open(file_path, "rb") as f:
+            data = orjson.loads(f.read())
+    except (orjson.JSONDecodeError, OSError):
+        return None
 
-    last_updated = datetime.fromisoformat(data["lastUpdated"])
-    if (datetime.now(timezone.utc) - last_updated).days < CACHE_EXPIRATION_DAYS:
-        return data
-    return None
+    # ensure required metadata
+    last_updated_str = data.get("lastUpdated")
+    if not last_updated_str:
+        return None
 
+    try:
+        last_updated = datetime.fromisoformat(last_updated_str)
+    except ValueError:
+        return None
 
-def write_cache(data, state_abbr: str = None):
-    """Write new data to cache."""
-    file_path = ""
-    if(state_abbr):
-        file_path = os.path.join(f"{CACHE_DIR}/state_cache/", f"{state_abbr.upper()}.json")
-    else:
-        file_path = os.path.join(CACHE_DIR, "FED.json")
+    # check expiration
+    if datetime.now(timezone.utc) - last_updated > timedelta(days=CACHE_EXPIRATION_DAYS):
+        return None
 
-    with open(file_path, "w") as f:
-        json.dump(data, f, indent=2)
+    try:
+        return model(**data)
+    except Exception as e:
+        print(f"Cache validation failed: {e}")
+        return None
+
+# TODO can probably merge these two functions back into one but this is okay for now
+def write_federal_cache(data: FederalData) -> FederalCache:
+    """
+    Serializes FederalData instance and writes to cache.
+    Automatically adds 'lastUpdated' metadata.
+    Returns cached payload.
+    """
+
+    federalCache = FederalCache(
+        summary = data.summary,
+        map = data.map,
+        lastUpdated = datetime.now(timezone.utc).isoformat(),
+    )
+
+    file_path = CACHE_DIR / "FED.json.gz"
+    file_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with gzip.open(file_path, "wb") as f:
+        f.write(orjson.dumps(federalCache.model_dump()))
+
+    return federalCache
+
+# TODO can probably merge these two functions back into one but this is okay for now
+def write_state_cache(data: StateData, state_abbr: str) -> StateCache:
+    """
+    Serializes StateData instance and writes to cache.
+    Automatically adds 'lastUpdated' metadata.
+    Returns cached payload.
+    """
+    stateCache = StateCache(
+        summary = data.summary,
+        map = data.map,
+        lastUpdated = datetime.now(timezone.utc).isoformat(),
+    )
+
+    file_path = STATE_CACHE_DIR / f"{state_abbr.upper()}.json.gz"
+    file_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with gzip.open(file_path, "wb") as f:
+        f.write(orjson.dumps(stateCache.model_dump()))
+
+    return stateCache

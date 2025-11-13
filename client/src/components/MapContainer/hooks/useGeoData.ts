@@ -22,7 +22,7 @@ export function useGeoData(
   useEffect(() => {
     if (!state || !type) return;
     setLoading(true);
-    fetch(`http://localhost:8000/geojson/${type}/${state.id}?state_code=${state.code}&state_name=${state.name}`)
+    fetch(`http://localhost:8000/geojson/${type}/${state.id}?stateUSPS=${state.code}`)
       .then(res => res.json())
       .then(data => {
         setFeatureData(data);

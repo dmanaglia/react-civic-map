@@ -14,7 +14,6 @@ interface MapHeaderProps {
     setType: (types: string) => void;
 }
 
-
 export default function MapHeader({ type, setType }: MapHeaderProps) {
     return (
         <div className="map-header">
