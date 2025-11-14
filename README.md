@@ -1,4 +1,5 @@
 # Civic Mapper
+[![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC%20BY--NC--ND%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
 ## Description
 
@@ -15,6 +16,7 @@ This app is not to be viewed as a source of truth, but a broad overview of the c
 - [Usage](#usage)
 - [Credits](#credits)
 - [Future-Development](#future-development)
+- [License](#license)
 
 ## Requirements
 
@@ -110,3 +112,20 @@ This app is still in early development so there is much to be done:
 - Implement unit testing across the app. Currently the app has no tests and that should really be addressed as the logic expands.
 
 - Deploy the app through AWS or Azure.
+
+## License
+
+This project is licensed under the **Creative Commons Attribution–NonCommercial–NoDerivatives 4.0 International (CC BY-NC-ND 4.0)** license.
+
+This means you are free to:
+
+- **Share** — copy and redistribute the material in any medium or format
+
+Under the following terms:
+
+- **Attribution** — You must give appropriate credit.  
+- **NonCommercial** — You may not use the material for commercial purposes.  
+- **NoDerivatives** — You may not modify or build upon the material.  
+
+For full license details, see the official legal code:  
+https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode
