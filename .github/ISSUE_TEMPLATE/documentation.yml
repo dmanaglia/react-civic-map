@@ -1,0 +1,48 @@
+name: Documentation Issue
+description: Report missing, incorrect, or unclear documentation.
+title: "[DOCS]: "
+labels: ["documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the documentation! Please provide details below.
+  - type: dropdown
+    id: docs_type
+    attributes:
+      label: Type of Documentation Issue
+      options:
+        - Missing documentation
+        - Incorrect documentation
+        - Outdated information
+        - Unclear / needs clarification
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Affected File/Section
+      description: Where in the project does this documentation issue occur?
+      placeholder: "e.g., README.md → Getting Started"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description of the Issue
+      description: Describe what is missing, wrong, or unclear.
+      placeholder: "The setup instructions no longer match the current project structure..."
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested Improvements
+      description: Optional ideas for improving the docs.
+      placeholder: "We should update the screenshot and clarify the install steps..."
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Notes
+      placeholder: "Any extra info, screenshots, or context"

@@ -1,0 +1,50 @@
+name: Bug report
+description: Report a reproducible issue or unexpected behavior.
+title: "[BUG]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the details below.
+  - type: input
+    id: summary
+    attributes:
+      label: Summary
+      description: A short description of the issue.
+      placeholder: "e.g. Crash when clicking 'Submit'"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Walk us through exactly how to reproduce the issue.
+      placeholder: |
+        1. Go to...
+        2. Click...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      placeholder: "What should have happened?"
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      placeholder: "What actually happened?"
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: |
+        OS:
+        Browser:
+        Version:
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Logs / Screenshots
+      placeholder: "Paste any logs or screenshots here"

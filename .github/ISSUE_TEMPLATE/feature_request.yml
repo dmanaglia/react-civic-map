@@ -1,0 +1,31 @@
+name: Feature request
+description: Suggest a new feature or enhancement.
+title: "[FEATURE]: "
+labels: ["feature"]
+body:
+  - type: markdown
+    attributes:
+      value: "Thanks for suggesting a feature!"
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this solve?
+      placeholder: "It would be helpful if..."
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed Solution
+      placeholder: "I think the feature should..."
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      placeholder: "Other ways you could solve this"
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional Notes
+      placeholder: "Anything else to add?"

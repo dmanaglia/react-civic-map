@@ -1,0 +1,17 @@
+name: Enhancement
+description: Small improvements, cleanup, or refinements.
+title: "[ENHANCEMENT]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      placeholder: "What could be improved and why?"
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested Change
+      placeholder: "How should this improvement work?"
