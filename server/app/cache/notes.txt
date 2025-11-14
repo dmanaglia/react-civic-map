@@ -36,3 +36,12 @@ Some notes on state legislative branches:
 - NY State house district 131 missing?
 
 - Seems like West Virginia has 17 state senate districts, but each has 2 state senators for a total of 34. 2 are democrats, but all 17 districts have 1 or two republicans so the map is all red...
+
+
+******* Biggest Issues ********
+
+- Nebraska state senate overview is all missing
+
+- Nebraska state house route is not even loading
+
+- Idaho state house overview is also all missing

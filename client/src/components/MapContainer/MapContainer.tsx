@@ -18,8 +18,9 @@ export default function MapContainer() {
 
   const handleSetState = useCallback((state: State | null) => {
     setState(state);
+    setOfficial(null);
     setSidebarOpen(true);
-  }, []);
+  }, [setOfficial]);
 
   const handleSetDistrict = useCallback((district: District | null) => {
     setDistrict(district);
