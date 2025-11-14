@@ -1,4 +1,4 @@
-import { MapType } from "../models/MapProps";
+import type { MapType } from "../models/MapProps";
 import "./MapHeader.css";
 
 const FEATURE_TYPES: {id: MapType, label: string}[] = [

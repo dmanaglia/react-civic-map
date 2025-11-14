@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { District, FederalSummary, MapType, State, StateSummary, Chamber } from "../../../models/MapProps";
+import type { District, FederalSummary, MapType, State, StateSummary, Chamber } from "../../../models/MapProps";
 import { Representative } from "../Representative";
 import { ChamberSummary } from "./ChamberSummary";
 

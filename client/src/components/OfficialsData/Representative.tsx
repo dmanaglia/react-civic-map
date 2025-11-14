@@ -1,5 +1,5 @@
-import { District, State } from "../../models/MapProps";
-import { Official } from "../../models/OfficialProps";
+import type { District, State } from "../../models/MapProps";
+import type { Official } from "../../models/OfficialProps";
 
 interface RepresentativeProps {
     official: Official,

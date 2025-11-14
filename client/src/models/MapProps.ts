@@ -1,4 +1,4 @@
-import { Official } from "./OfficialProps"
+import type { Official } from "./OfficialProps"
 
 export type MapType = "county" | "sldl" | "sldu" | "cd" | "place" | "cousub"
 

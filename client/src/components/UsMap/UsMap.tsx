@@ -1,17 +1,17 @@
 // src/components/UsMap/UsMap.tsx
 import * as d3 from "d3";
 import { useEffect, useRef } from "react";
-import { District, State } from "../../models/MapProps";
+import type { District, State } from "../../models/MapProps";
 import { useTooltip } from "./useTooltip";
 import { useMapZoom } from "./useMapZoom";
 import "./UsMap.css";
 
 interface UsMapProps {
-  districtMap?: any;
-  nationalMap: any;
+  districtMap?: unknown;
+  nationalMap: unknown;
   type: string;
   setState: (stateId: State | null) => void;
-  setDistrcit: (feature: District | null) => void;
+  setDistrict: (feature: District | null) => void;
 }
 
 export default function UsMap({
@@ -19,7 +19,7 @@ export default function UsMap({
   districtMap,
   type,
   setState,
-  setDistrcit,
+  setDistrict,
 }: UsMapProps) {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const gStatesRef = useRef<SVGGElement | null>(null);
@@ -38,12 +38,12 @@ export default function UsMap({
     const path = d3.geoPath().projection(projection);
 
     gStates
-      .selectAll<SVGPathElement, any>("path")
+      .selectAll<SVGPathElement, unknown>("path")
       .data(nationalMap.features)
       .join("path")
       .attr("class", "state")
-      .attr("d", path as any)
-      .on("click", (event, feature: any) => {
+      .attr("d", path)
+      .on("click", (event, feature: unknown) => {
         event.stopPropagation();
         const bounds = path.bounds(feature);
         zoomToBounds(bounds, width, height);
@@ -52,14 +52,14 @@ export default function UsMap({
           STATEFP: feature.properties.STATEFP,
           USPS: feature.properties.STUSPS,
         });
-        setDistrcit(null);
+        setDistrict(null);
       })
-      .on("mouseover", (event, feature: any) => showTooltip(feature.properties.NAME, event.pageX, event.pageY))
-      .on("mousemove", (event, feature: any) => showTooltip(feature.properties.NAME, event.pageX, event.pageY))
+      .on("mouseover", (event, feature) => showTooltip(feature.properties.NAME, event.pageX, event.pageY))
+      .on("mousemove", (event, feature) => showTooltip(feature.properties.NAME, event.pageX, event.pageY))
       .on("mouseout", hideTooltip);
 
     applyCurrentTransform();
-  }, [nationalMap, applyCurrentTransform, hideTooltip, setDistrcit, setState, showTooltip, zoomToBounds]);
+  }, [nationalMap, applyCurrentTransform, hideTooltip, setDistrict, setState, showTooltip, zoomToBounds]);
 
   useEffect(() => {
     if (!districtMap) return;
@@ -94,7 +94,7 @@ export default function UsMap({
         event.stopPropagation();
         const bounds = path.bounds(feature);
         zoomToBounds(bounds, width, height);
-        setDistrcit({
+        setDistrict({
           TYPE: type,
           NAME: feature.properties.NAMELSAD,
           ID: type === 'cd'
@@ -111,7 +111,7 @@ export default function UsMap({
       .on("mouseout", hideTooltip);
 
     applyCurrentTransform();
-  }, [districtMap, type, applyCurrentTransform, hideTooltip, setDistrcit, showTooltip, zoomToBounds]);
+  }, [districtMap, type, applyCurrentTransform, hideTooltip, setDistrict, showTooltip, zoomToBounds]);
 
   return (
     <div className="usmap-container">

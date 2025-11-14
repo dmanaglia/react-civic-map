@@ -5,7 +5,7 @@ import Spinner from "../Spinner";
 import OfficialSidebar from "../OfficialsData/OfficialSidebar";
 import { useGeoData } from "./hooks/useGeoData";
 import { useOfficialsData } from "./hooks/useOfficialsData";
-import { District, MapType, State } from "../../models/MapProps";
+import type { District, MapType, State } from "../../models/MapProps";
 import './MapContainer.css';
 
 export default function MapContainer() {
@@ -44,7 +44,7 @@ export default function MapContainer() {
             nationalMap={nationalMap}
             type={type}
             setState={handleSetState}
-            setDistrcit={handleSetDistrict}
+            setDistrict={handleSetDistrict}
           />
           <OfficialSidebar
             district={district}

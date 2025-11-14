@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import { RefObject, useCallback, useEffect, useRef } from "react";
+import { type RefObject, useCallback, useEffect, useRef } from "react";
 
 export function useMapZoom(
   svgRef: RefObject<SVGSVGElement | null>,
@@ -7,7 +7,7 @@ export function useMapZoom(
   gFeatureRef: RefObject<SVGGElement | null>,
 ) {
   const zoomTransformRef = useRef<d3.ZoomTransform | null>(null);
-  const zoomBehaviorRef = useRef<any>(null); // store the zoom behavior instance
+  const zoomBehaviorRef = useRef<unknown>(null); // store the zoom behavior instance
 
   useEffect(() => {
     if (!svgRef.current || !gStatesRef.current || !gFeatureRef.current) return;
@@ -30,7 +30,7 @@ export function useMapZoom(
     // store the same zoom instance so we can reuse its .transform later
     zoomBehaviorRef.current = zoom;
 
-    svg.call(zoom as any);
+    svg.call(zoom);
 
     return () => {
       // cleanup: remove zoom listeners and unset stored behavior

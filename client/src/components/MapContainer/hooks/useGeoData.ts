@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { FederalSummary, StateSummary, State } from "../../../models/MapProps";
+import { useMemo, useState } from "react";
+import type { FederalSummary, StateSummary, State } from "../../../models/MapProps";
 
 export function useGeoData(
   type: string,
@@ -7,10 +7,10 @@ export function useGeoData(
 ) {
   const [nationalMap, setNationalMap] = useState<any>(null);
   const [districtMap, setDistrictMap] = useState<any>(null);
-  const [loadingMap, setLoading] = useState(false);
+  const [loadingMap, setLoading] = useState<boolean>(false);
   const [summary, setSummary] = useState<FederalSummary | StateSummary | null>(null);
 
-  useEffect(() => {
+  useMemo(() => {
     setLoading(true);
     fetch("http://localhost:8000/geojson/states")
       .then(res => res.json())
@@ -21,7 +21,7 @@ export function useGeoData(
       });
   }, []);
 
-  useEffect(() => {
+  useMemo(() => {
     if (!state || !type) return;
     setLoading(true);
     fetch(`http://localhost:8000/geojson/${type}/${state.STATEFP}?stateUSPS=${state.USPS}`)

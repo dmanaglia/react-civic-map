@@ -1,8 +1,8 @@
 import "./OfficialSidebar.css";
-import { District, FederalSummary, MapType, StateSummary, State } from "../../models/MapProps";
+import type { District, FederalSummary, MapType, StateSummary, State } from "../../models/MapProps";
 import GovSummary from "./GovSummary/GovSummary";
 import { Representative } from "./Representative";
-import { Official } from "../../models/OfficialProps";
+import type { Official } from "../../models/OfficialProps";
 
 interface OfficialSidebarProps {
     district: District | null;

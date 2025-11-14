@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Executive } from "./Executive";
 import { Judicial } from "./Judicial";
 import { Legislative } from "./Legislative";
-import { District, FederalSummary, MapType, StateSummary, State } from "../../../models/MapProps";
+import type { District, FederalSummary, MapType, StateSummary, State } from "../../../models/MapProps";
 import "./GovSummary.css";
 
 interface GovSummaryDataProps {
