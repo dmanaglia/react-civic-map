@@ -1,37 +1,60 @@
-import { useEffect, useState } from "react";
-import { FederalSummary, StateSummary, State } from "../../../models/MapProps";
+import type { FeatureCollection } from 'geojson';
+import { useEffect, useState } from 'react';
+import type {
+	FederalSummary,
+	StateSummary,
+	State,
+	FederalResponse,
+	StateResponse,
+} from '../../../models/MapProps';
 
-export function useGeoData(
-  type: string,
-  state: State | null
-) {
-  const [nationalMap, setNationalMap] = useState<any>(null);
-  const [districtMap, setDistrictMap] = useState<any>(null);
-  const [loadingMap, setLoading] = useState(false);
-  const [summary, setSummary] = useState<FederalSummary | StateSummary | null>(null);
+export const useGeoData = (type: string, state: State | null) => {
+	const [nationalMap, setNationalMap] = useState<FeatureCollection | null>(null);
+	const [districtMap, setDistrictMap] = useState<FeatureCollection | null>(null);
+	const [loadingMap, setLoading] = useState<boolean>(false);
+	const [summary, setSummary] = useState<FederalSummary | StateSummary | null>(null);
 
-  useEffect(() => {
-    setLoading(true);
-    fetch("http://localhost:8000/geojson/states")
-      .then(res => res.json())
-      .then(data => {
-        setSummary(data.summary)
-        setNationalMap(data.map);
-        setLoading(false);
-      });
-  }, []);
+	useEffect(() => {
+		const fetchStateMap = async () => {
+			// Only used to get a single Official from a given district
+			setLoading(true); // now inside async function
+			try {
+				const res = await fetch(
+					`http://localhost:8000/geojson/${type}/${state?.STATEFP}?stateUSPS=${state?.USPS}`,
+				);
+				const data: StateResponse = await res.json();
+				setSummary(data.summary);
+				setDistrictMap(data.map);
+				setLoading(false);
+			} catch (err) {
+				setSummary(null);
+				setDistrictMap(null);
+				console.error(err);
+			} finally {
+				setLoading(false);
+			}
+		};
 
-  useEffect(() => {
-    if (!state || !type) return;
-    setLoading(true);
-    fetch(`http://localhost:8000/geojson/${type}/${state.STATEFP}?stateUSPS=${state.USPS}`)
-      .then(res => res.json())
-      .then(data => {
-        setSummary(data.summary)
-        setDistrictMap(data.map);
-        setLoading(false);
-      });
-  }, [state, type]);
+		const fetchFederalMap = async () => {
+			setLoading(true);
+			try {
+				const res = await fetch('http://localhost:8000/geojson/states');
+				const data: FederalResponse = await res.json();
+				setSummary(data.summary);
+				setNationalMap(data.map);
+				setLoading(false);
+			} catch (err) {
+				setSummary(null);
+				setNationalMap(null);
+				console.error(err);
+			} finally {
+				setLoading(false);
+			}
+		};
 
-  return { nationalMap, districtMap, summary, loadingMap };
-}
+		if (state) fetchStateMap();
+		else fetchFederalMap();
+	}, [state, type]);
+
+	return { nationalMap, districtMap, summary, loadingMap };
+};
