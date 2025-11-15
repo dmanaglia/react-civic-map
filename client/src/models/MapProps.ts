@@ -47,6 +47,6 @@ export interface FederalResponse {
 }
 
 export interface StateResponse {
-	summary: FederalSummary;
+	summary: StateSummary;
 	map: FeatureCollection;
 }

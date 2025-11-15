@@ -1,5 +1,5 @@
 import type { FeatureCollection } from 'geojson';
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type {
 	FederalSummary,
 	StateSummary,
@@ -14,27 +14,46 @@ export const useGeoData = (type: string, state: State | null) => {
 	const [loadingMap, setLoading] = useState<boolean>(false);
 	const [summary, setSummary] = useState<FederalSummary | StateSummary | null>(null);
 
-	useMemo(() => {
-		setLoading(true);
-		fetch('http://localhost:8000/geojson/states')
-			.then((res) => res.json())
-			.then((data: FederalResponse) => {
-				setSummary(data.summary);
-				setNationalMap(data.map);
-				setLoading(false);
-			});
-	}, []);
-
-	useMemo(() => {
-		if (!state || !type) return;
-		setLoading(true);
-		fetch(`http://localhost:8000/geojson/${type}/${state.STATEFP}?stateUSPS=${state.USPS}`)
-			.then((res) => res.json())
-			.then((data: StateResponse) => {
+	useEffect(() => {
+		const fetchStateMap = async () => {
+			// Only used to get a single Official from a given district
+			setLoading(true); // now inside async function
+			try {
+				const res = await fetch(
+					`http://localhost:8000/geojson/${type}/${state?.STATEFP}?stateUSPS=${state?.USPS}`,
+				);
+				const data: StateResponse = await res.json();
 				setSummary(data.summary);
 				setDistrictMap(data.map);
 				setLoading(false);
-			});
+			} catch (err) {
+				setSummary(null);
+				setDistrictMap(null);
+				console.error(err);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		const fetchFederalMap = async () => {
+			setLoading(true);
+			try {
+				const res = await fetch('http://localhost:8000/geojson/states');
+				const data: FederalResponse = await res.json();
+				setSummary(data.summary);
+				setNationalMap(data.map);
+				setLoading(false);
+			} catch (err) {
+				setSummary(null);
+				setNationalMap(null);
+				console.error(err);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		if (state) fetchStateMap();
+		else fetchFederalMap();
 	}, [state, type]);
 
 	return { nationalMap, districtMap, summary, loadingMap };

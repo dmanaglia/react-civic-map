@@ -19,7 +19,7 @@ export default defineConfig([
 			reactHooks.configs.flat.recommended,
 			reactRefresh.configs.vite,
 
-			// ⭐ Prettier LAST — disables conflicting ESLint style rules
+			// Prettier LAST — disables conflicting ESLint style rules
 			prettierConfig,
 		],
 
@@ -54,15 +54,18 @@ export default defineConfig([
 				{
 					selector: 'variable',
 					types: ['function'],
-					format: ['PascalCase'], // Allows React component functions
+					format: ['PascalCase', 'camelCase'], // Allows React component functions to be capital, hooks to be camel
 					modifiers: ['exported'], // optional, only applies to exported components
 				},
 			],
 		},
 
 		languageOptions: {
-			ecmaVersion: 2020,
 			globals: globals.browser,
+			parserOptions: {
+				// Tell ESLint where your TS project is
+				project: 'tsconfig.app.json',
+			},
 		},
 	},
 ]);
