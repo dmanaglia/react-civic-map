@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import type {
 	District,
 	FederalSummary,
@@ -20,9 +20,7 @@ interface LegislativeProps {
 export const Legislative = ({ summary, type, state, district }: LegislativeProps) => {
 	const [activeChamber, setActiveChamber] = useState<'House' | 'Senate'>('House');
 
-	const fedReps = useMemo(() => {
-		if (!state) return undefined;
-
+	useEffect(() => {
 		// updates chamber when state map type changes
 		const updateChamber = () => {
 			if (type === 'sldu') {
@@ -34,9 +32,13 @@ export const Legislative = ({ summary, type, state, district }: LegislativeProps
 			}
 		};
 		updateChamber();
+	}, [state, type]);
+
+	const fedReps = useMemo(() => {
+		if (!state) return undefined;
 		const stateSummary = summary as StateSummary;
 		return stateSummary.federal;
-	}, [type, state, summary]);
+	}, [state, summary]);
 
 	const data = useMemo(() => {
 		if (!summary) return null;
