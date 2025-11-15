@@ -1,21 +1,31 @@
+import type { FeatureCollection } from "geojson";
 import { useMemo, useState } from "react";
-import type { FederalSummary, StateSummary, State } from "../../../models/MapProps";
+import type {
+  FederalSummary,
+  StateSummary,
+  State,
+  FederalResponse,
+  StateResponse,
+} from "../../../models/MapProps";
 
-export function useGeoData(
-  type: string,
-  state: State | null
-) {
-  const [nationalMap, setNationalMap] = useState<any>(null);
-  const [districtMap, setDistrictMap] = useState<any>(null);
+export function useGeoData(type: string, state: State | null) {
+  const [nationalMap, setNationalMap] = useState<FeatureCollection | null>(
+    null,
+  );
+  const [districtMap, setDistrictMap] = useState<FeatureCollection | null>(
+    null,
+  );
   const [loadingMap, setLoading] = useState<boolean>(false);
-  const [summary, setSummary] = useState<FederalSummary | StateSummary | null>(null);
+  const [summary, setSummary] = useState<FederalSummary | StateSummary | null>(
+    null,
+  );
 
   useMemo(() => {
     setLoading(true);
     fetch("http://localhost:8000/geojson/states")
-      .then(res => res.json())
-      .then(data => {
-        setSummary(data.summary)
+      .then((res) => res.json())
+      .then((data: FederalResponse) => {
+        setSummary(data.summary);
         setNationalMap(data.map);
         setLoading(false);
       });
@@ -24,10 +34,12 @@ export function useGeoData(
   useMemo(() => {
     if (!state || !type) return;
     setLoading(true);
-    fetch(`http://localhost:8000/geojson/${type}/${state.STATEFP}?stateUSPS=${state.USPS}`)
-      .then(res => res.json())
-      .then(data => {
-        setSummary(data.summary)
+    fetch(
+      `http://localhost:8000/geojson/${type}/${state.STATEFP}?stateUSPS=${state.USPS}`,
+    )
+      .then((res) => res.json())
+      .then((data: StateResponse) => {
+        setSummary(data.summary);
         setDistrictMap(data.map);
         setLoading(false);
       });

@@ -6,7 +6,7 @@
   padding: 6px 12px;
   border-radius: 6px;
   font-size: 13px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 500;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
@@ -48,7 +48,10 @@
   fill: #cfd8e9;
   stroke: #4a5568;
   cursor: pointer;
-  transition: fill 0.3s ease, filter 0.2s ease, stroke-width 0.2s ease;
+  transition:
+    fill 0.3s ease,
+    filter 0.2s ease,
+    stroke-width 0.2s ease;
   stroke-linejoin: round;
 }
 
@@ -57,12 +60,17 @@
   filter: drop-shadow(0 0 8px rgba(97, 118, 202, 0.5));
 }
 
-
-.republican, .democrat, .independent, .unknown {
+.republican,
+.democrat,
+.independent,
+.unknown {
   /* fill: rgba(255, 165, 0, 0.25); */
   stroke: #000000;
   cursor: pointer;
-  transition: fill 0.3s ease, filter 0.2s ease, stroke-width 0.2s ease;
+  transition:
+    fill 0.3s ease,
+    filter 0.2s ease,
+    stroke-width 0.2s ease;
   stroke-linejoin: round;
 }
 
@@ -72,16 +80,16 @@
 }
 
 .democrat:hover {
-  fill: #0a5f95; 
+  fill: #0a5f95;
   filter: drop-shadow(0 0 5px rgba(11, 16, 56, 0.5));
 }
 
 .independent:hover {
-  fill: #989797; 
+  fill: #989797;
   filter: drop-shadow(0 0 5px rgba(37, 37, 37, 0.5));
 }
 
 .unknown:hover {
-  fill: #e26c28; 
+  fill: #e26c28;
   filter: drop-shadow(0 0 5px rgba(37, 37, 37, 0.5));
 }

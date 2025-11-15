@@ -1,6 +1,6 @@
 .official-header {
-    display: 'flex';
-    justify-content: space-between;
+  display: "flex";
+  justify-content: space-between;
 }
 
 img {
@@ -19,7 +19,9 @@ img {
   display: flex;
   flex-direction: column;
   overflow: auto;
-  transition: transform 0.28s ease, opacity 0.28s ease;
+  transition:
+    transform 0.28s ease,
+    opacity 0.28s ease;
 }
 
 /* When grid column is 0, we still want to hide content for a11y */
@@ -74,7 +76,7 @@ img {
 
 .collapse-btn:hover,
 .close-btn:hover {
-  background: rgba(0,0,0,0.04);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 /* Body content */
@@ -116,7 +118,9 @@ img {
   opacity: 0;
   pointer-events: none;
   transform: translateY(-50%) translateX(12px);
-  transition: opacity 0.18s ease, transform 0.18s ease;
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
 }
 
 .sidebar-handle.handle-visible {
@@ -183,7 +187,6 @@ img {
   font-size: 0.85rem;
   color: #555;
 }
-
 
 @keyframes sidebar-spin {
   to {

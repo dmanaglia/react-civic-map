@@ -7,7 +7,10 @@ export function useMapZoom(
   gFeatureRef: RefObject<SVGGElement | null>,
 ) {
   const zoomTransformRef = useRef<d3.ZoomTransform | null>(null);
-  const zoomBehaviorRef = useRef<unknown>(null); // store the zoom behavior instance
+  const zoomBehaviorRef = useRef<d3.ZoomBehavior<
+    SVGSVGElement,
+    unknown
+  > | null>(null);
 
   useEffect(() => {
     if (!svgRef.current || !gStatesRef.current || !gFeatureRef.current) return;
@@ -24,7 +27,9 @@ export function useMapZoom(
         gStates.attr("transform", event.transform.toString());
         gDistricts.attr("transform", event.transform.toString());
         gStates.selectAll("path").attr("stroke-width", 0.5 / event.transform.k);
-        gDistricts.selectAll("path").attr("stroke-width", 0.5 / event.transform.k);
+        gDistricts
+          .selectAll("path")
+          .attr("stroke-width", 0.5 / event.transform.k);
       });
 
     // store the same zoom instance so we can reuse its .transform later
@@ -43,29 +48,32 @@ export function useMapZoom(
     if (!svgRef.current || !zoomBehaviorRef.current) return;
     const svg = d3.select(svgRef.current);
     // use the same zoom behavior's transform
-    svg.transition().duration(750).call(
-      zoomBehaviorRef.current.transform,
-      d3.zoomIdentity
-    );
+    svg
+      .transition()
+      .duration(750)
+      .call(zoomBehaviorRef.current.transform, d3.zoomIdentity);
   };
 
-  const zoomToBounds = useCallback((
-    bounds: [[number, number], [number, number]],
-    width: number,
-    height: number
-  ) => {
-    if (!svgRef.current || !zoomBehaviorRef.current) return;
-    const svg = d3.select(svgRef.current);
-    const [[x0, y0], [x1, y1]] = bounds;
-    const t = d3
-      .zoomIdentity
-      .translate(width / 2, height / 2)
-      .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
-      .translate(-(x0 + x1) / 2, -(y0 + y1) / 2);
+  const zoomToBounds = useCallback(
+    (
+      bounds: [[number, number], [number, number]],
+      width: number,
+      height: number,
+    ) => {
+      if (!svgRef.current || !zoomBehaviorRef.current) return;
+      const svg = d3.select(svgRef.current);
+      const [[x0, y0], [x1, y1]] = bounds;
+      const t = d3.zoomIdentity
+        .translate(width / 2, height / 2)
+        .scale(
+          Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)),
+        )
+        .translate(-(x0 + x1) / 2, -(y0 + y1) / 2);
 
-    svg.transition().duration(750).call(zoomBehaviorRef.current.transform, t);
-  }, [svgRef]);
-
+      svg.transition().duration(750).call(zoomBehaviorRef.current.transform, t);
+    },
+    [svgRef],
+  );
 
   const applyCurrentTransform = useCallback(() => {
     if (!zoomTransformRef.current) return;

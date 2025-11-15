@@ -3,7 +3,14 @@
 /* Container */
 .sidebar-body.federal-summary {
   padding: 12px;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial;
   color: #1f2937;
 }
 
@@ -24,9 +31,13 @@
   color: #6b7280;
   cursor: pointer;
   border-bottom: 3px solid transparent;
-  transition: color .15s ease, border-color .15s ease;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease;
 }
-.branch-tab:hover { color: #374151; }
+.branch-tab:hover {
+  color: #374151;
+}
 .branch-tab.active {
   color: #0f172a;
   border-bottom-color: #2563eb;
@@ -41,28 +52,28 @@
 }
 
 .subtab {
-    background: #f0f0f0;
-    border: none;
-    padding: 8px;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: #333;
-    flex: 1; /* allow pills to grow equally */
-    margin: 0 12px; /* spacing between pills */
-    text-align: center;
+  background: #f0f0f0;
+  border: none;
+  padding: 8px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #333;
+  flex: 1; /* allow pills to grow equally */
+  margin: 0 12px; /* spacing between pills */
+  text-align: center;
 }
 
 .subtab:hover {
-    background: rgba(97, 118, 202, 0.1);
+  background: rgba(97, 118, 202, 0.1);
 }
 
 .subtab.active {
-  background: #6176CA;
-    color: #fff;
-    box-shadow: 0 2px 6px rgba(97, 118, 202, 0.4);
+  background: #6176ca;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(97, 118, 202, 0.4);
 }
 
 /* Legislative main layout */
@@ -109,23 +120,31 @@
 }
 .dial-dem {
   stroke: #2563eb; /* blue */
-  transition: stroke-dasharray .6s ease, stroke-dashoffset .6s ease;
+  transition:
+    stroke-dasharray 0.6s ease,
+    stroke-dashoffset 0.6s ease;
   stroke-linecap: round;
 }
 .dial-rep {
   stroke: #ef4444; /* red */
-  transition: stroke-dasharray .6s ease, stroke-dashoffset .6s ease;
+  transition:
+    stroke-dasharray 0.6s ease,
+    stroke-dashoffset 0.6s ease;
   stroke-linecap: round;
 }
 .dial-ind {
   stroke: #6b7280; /* gray */
-  transition: stroke-dasharray .6s ease, stroke-dashoffset .6s ease;
+  transition:
+    stroke-dasharray 0.6s ease,
+    stroke-dashoffset 0.6s ease;
   stroke-linecap: round;
 }
 
 .dial-vac {
   stroke: #f59e0b; /* gray */
-  transition: stroke-dasharray .6s ease, stroke-dashoffset .6s ease;
+  transition:
+    stroke-dasharray 0.6s ease,
+    stroke-dashoffset 0.6s ease;
   stroke-linecap: round;
 }
 
@@ -172,14 +191,31 @@
   margin-right: 8px;
   vertical-align: middle;
 }
-.legend-swatch.democrat { background: #2563eb; }
-.legend-swatch.republican { background: #ef4444; }
-.legend-swatch.independent { background: #6b7280; }
-.legend-swatch.non_voting { background: #9ca3af; }
-.legend-swatch.vacant { background: #f59e0b; }
+.legend-swatch.democrat {
+  background: #2563eb;
+}
+.legend-swatch.republican {
+  background: #ef4444;
+}
+.legend-swatch.independent {
+  background: #6b7280;
+}
+.legend-swatch.non_voting {
+  background: #9ca3af;
+}
+.legend-swatch.vacant {
+  background: #f59e0b;
+}
 
-.legend-label { color: #374151; font-size: 13px; margin-left: 6px; }
-.legend-value { font-weight: 700; color: #0f172a; }
+.legend-label {
+  color: #374151;
+  font-size: 13px;
+  margin-left: 6px;
+}
+.legend-value {
+  font-weight: 700;
+  color: #0f172a;
+}
 
 /* Panels on the right */
 .panel {
@@ -205,9 +241,15 @@
   border-bottom: 1px dashed #f1f5f9;
   font-size: 13px;
 }
-.facts-list li:last-child { border-bottom: none; }
-.fact-label { color: #6b7280; }
-.fact-value { font-weight: 700; }
+.facts-list li:last-child {
+  border-bottom: none;
+}
+.fact-label {
+  color: #6b7280;
+}
+.fact-value {
+  font-weight: 700;
+}
 
 /* Muted text */
 .muted {
@@ -222,7 +264,9 @@
 }
 
 /* Small spacing util */
-.mt { margin-top: 8px; }
+.mt {
+  margin-top: 8px;
+}
 
 /* Responsive */
 @media (max-width: 720px) {
@@ -230,6 +274,12 @@
     flex-direction: column;
     align-items: stretch;
   }
-  .leg-left { width: 100%; display:flex; justify-content:center; }
-  .leg-right { width: 100%; }
+  .leg-left {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .leg-right {
+    width: 100%;
+  }
 }
