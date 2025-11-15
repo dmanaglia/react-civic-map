@@ -64,14 +64,7 @@ export const OfficialSidebar = ({
 				{official ? (
 					<Representative state={state} district={district} official={official} />
 				) : (
-					summary && (
-						<GovSummary
-							summary={summary}
-							type={type}
-							state={state}
-							district={district}
-						/>
-					)
+					summary && <GovSummary summary={summary} type={type} state={state} district={district} />
 				)}
 			</aside>
 		</div>

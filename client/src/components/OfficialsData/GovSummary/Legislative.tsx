@@ -20,9 +20,11 @@ interface LegislativeProps {
 export const Legislative = ({ summary, type, state, district }: LegislativeProps) => {
 	const [activeChamber, setActiveChamber] = useState<'House' | 'Senate'>('House');
 
-	const fed_reps = useMemo(() => {
-		if (state) {
-			const stateSummary = summary as StateSummary;
+	const fedReps = useMemo(() => {
+		if (!state) return undefined;
+
+		// updates chamber when state map type changes
+		const updateChamber = () => {
 			if (type === 'sldu') {
 				setActiveChamber('Senate');
 			} else if (type === 'sldl') {
@@ -30,9 +32,10 @@ export const Legislative = ({ summary, type, state, district }: LegislativeProps
 			} else if (type === 'cd') {
 				setActiveChamber('House');
 			}
-			return stateSummary.federal;
-		}
-		return undefined;
+		};
+		updateChamber();
+		const stateSummary = summary as StateSummary;
+		return stateSummary.federal;
 	}, [type, state, summary]);
 
 	const data = useMemo(() => {
@@ -64,22 +67,18 @@ export const Legislative = ({ summary, type, state, district }: LegislativeProps
 				</button>
 			</div>
 
-			{type === 'cd' && fed_reps ? (
+			{type === 'cd' && fedReps ? (
 				<>
 					{activeChamber === 'House' ? (
 						<div className="leg-body">
 							<div className="leg-left">
-								<ChamberSummary chamber={fed_reps.house} />
+								<ChamberSummary chamber={fedReps.house} />
 							</div>
 						</div>
 					) : (
 						<>
-							{fed_reps.senators.map((official) => (
-								<Representative
-									official={official}
-									state={state}
-									district={district}
-								/>
+							{fedReps.senators.map((official) => (
+								<Representative official={official} state={state} district={district} />
 							))}
 						</>
 					)}

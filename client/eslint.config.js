@@ -63,8 +63,10 @@ export default defineConfig([
 		languageOptions: {
 			globals: globals.browser,
 			parserOptions: {
-				// Tell ESLint where your TS project is
-				project: 'tsconfig.app.json',
+				project: [
+					'tsconfig.app.json', // your main app config
+					'tsconfig.node.json', // your Vite/Vitest config
+				],
 			},
 		},
 	},
