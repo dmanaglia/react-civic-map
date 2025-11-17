@@ -25,7 +25,7 @@ export const GovSummary = ({ summary, type, state, district }: GovSummaryDataPro
 
 	return (
 		<div className="sidebar-body federal-summary">
-			{!(type === 'cd' && state) && (
+			{((state && type !== 'cd') || !state) && (
 				<div className="branch-tabs" role="tablist" aria-label="Branches of Government">
 					{(['Executive', 'Legislative', 'Judicial'] as const).map((branch) => (
 						<button
@@ -46,20 +46,10 @@ export const GovSummary = ({ summary, type, state, district }: GovSummaryDataPro
 					<Legislative type={type} summary={summary} state={state} district={district} />
 				)}
 				{activeBranch === 'Executive' && (
-					<Executive
-						officials={summary.executive}
-						type={type}
-						state={state}
-						district={district}
-					/>
+					<Executive officials={summary.executive} type={type} state={state} district={district} />
 				)}
 				{activeBranch === 'Judicial' && (
-					<Judicial
-						officials={summary.executive}
-						type={type}
-						state={state}
-						district={district}
-					/>
+					<Judicial officials={summary.judicial} type={type} state={state} district={district} />
 				)}
 			</div>
 		</div>

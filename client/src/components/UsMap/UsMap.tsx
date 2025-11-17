@@ -5,7 +5,6 @@ import { useEffect, useRef } from 'react';
 import type { District, State } from '../../models/MapProps';
 import { useMapZoom } from './useMapZoom';
 import { useTooltip } from './useTooltip';
-import './UsMap.css';
 
 interface UsMapProps {
 	districtMap: FeatureCollection | null;
@@ -36,7 +35,10 @@ export const UsMap = ({ nationalMap, districtMap, type, setState, setDistrict }:
 			.selectAll<SVGPathElement, unknown>('path')
 			.data(nationalMap.features)
 			.join('path')
-			.attr('class', 'state')
+			.attr(
+				'class',
+				'cursor-pointer fill-light-blue stroke-gray-700 hover:fill-dark-blue hover:drop-shadow transition-all transition-stroke',
+			)
 			.attr('d', path)
 			.on('click', (event, feature) => {
 				event.stopPropagation();
@@ -82,19 +84,24 @@ export const UsMap = ({ nationalMap, districtMap, type, setState, setDistrict }:
 			.data(districtMap.features)
 			.join('path')
 			.attr('d', path)
-			.attr('fill', (d) => {
-				const party = d.properties?.party.toLowerCase();
-				if (!party) return '#cf8c51ff';
-				if (party.includes('democratic')) return '#2b83ba'; // blue
-				if (party.includes('republican')) return '#d7191c'; // red
-				return '#cccccc'; // gray fallback
-			})
 			.attr('class', (d) => {
-				const party = d.properties?.party.toLowerCase();
-				if (!party) return 'unknown';
-				if (party === 'democratic') return 'democrat'; // blue
-				if (party === 'republican') return 'republican'; // red
-				return 'independent'; // gray fallback
+				const party = d.properties?.party?.toLowerCase();
+				const baseStyle =
+					'cursor-pointer stroke-black hover:drop-shadow transition-all transition-stroke ';
+
+				if (party?.includes('democratic')) {
+					return baseStyle.concat('fill-democrat hover:fill-blue-600');
+				}
+
+				if (party?.includes('republican')) {
+					return baseStyle.concat('fill-republican hover:fill-red-700');
+				}
+
+				if (party?.includes('independent')) {
+					return baseStyle.concat('fill-independent hover:fill-gray-600');
+				}
+
+				return baseStyle.concat('fill-unknown hover:fill-orange-600');
 			})
 			.on('click', (event, feature) => {
 				event.stopPropagation();
@@ -134,11 +141,11 @@ export const UsMap = ({ nationalMap, districtMap, type, setState, setDistrict }:
 	]);
 
 	return (
-		<div className="usmap-container">
-			<div className="usmap-svg-wrapper">
+		<div className="relative w-full h-full border-4 border-double border-blue-800 bg-red-50">
+			<div className="w-full h-full">
 				<svg
 					ref={svgRef}
-					className="usmap-svg"
+					className="w-full h-full"
 					viewBox="0 0 960 600"
 					preserveAspectRatio="xMidYMid meet"
 				>

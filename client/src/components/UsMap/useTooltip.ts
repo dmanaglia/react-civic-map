@@ -6,7 +6,8 @@ export function useTooltip() {
 	useEffect(() => {
 		// Create tooltip once on mount
 		const tooltip = document.createElement('div');
-		tooltip.className = 'usmap-tooltip'; // CSS class handles styles
+		tooltip.className =
+			'absolute pointer-events-none bg-black/80 text-white px-3 py-1.5 rounded-md text-xs font-medium shadow-md';
 		tooltip.style.visibility = 'hidden'; // keep visibility inline
 		document.body.appendChild(tooltip);
 
