@@ -71,15 +71,14 @@ export const OfficialSidebar = ({
 						flexDirection: 'column',
 						borderRadius: '16px 0 0 16px',
 						transition: 'width 0.3s ease',
-						padding: open ? 3 : 0,
 						marginLeft: open ? 2 : 0,
 					},
 				}}
 			>
 				{/* Header */}
-				<div className="flex items-center justify-between mb-4 gap-3">
+				<div className="flex items-center justify-between gap-3 p-6 pb-0">
 					<div>
-						<h2 className="text-lg font-semibold">{state ? state.NAME : 'Federal'}</h2>
+						<h1 className="text-3xl font-semibold">{state ? state.NAME : 'Federal'}</h1>
 						{district && (
 							<h3 className="text-base font-semibold text-gray-800 m-0">{district.NAME}</h3>
 						)}

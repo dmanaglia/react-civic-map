@@ -42,7 +42,12 @@ export const MapContainer = () => {
 		<div>
 			<MapHeader type={type} setType={handleSetType} />
 			{nationalMap && (
-				<main className={`flex w-full h-full relative`}>
+				<main
+					className={`flex relative`}
+					style={{
+						maxHeight: '80vh',
+					}}
+				>
 					<UsMap
 						districtMap={districtMap}
 						nationalMap={nationalMap}

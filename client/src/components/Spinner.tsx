@@ -9,7 +9,7 @@ export const Spinner = ({ fullscreen = false }: SpinnerProps) => {
 		<div
 			className={
 				fullscreen
-					? 'fixed inset-0 bg-indigo-500/30 flex items-center justify-center z-[9999]'
+					? 'fixed inset-0 bg-indigo-500/30 flex items-center justify-center z-9999'
 					: 'absolute inset-0 bg-white/60 flex items-center justify-center z-50'
 			}
 		>

@@ -141,7 +141,7 @@ export const UsMap = ({ nationalMap, districtMap, type, setState, setDistrict }:
 	]);
 
 	return (
-		<div className="relative w-full h-full border-4 border-double border-blue-800 bg-red-50">
+		<div className="relative w-full max-h-11/12 border-4 border-double border-blue-800 bg-red-50">
 			<div className="w-full h-full">
 				<svg
 					ref={svgRef}

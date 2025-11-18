@@ -1,3 +1,4 @@
+import { Tab, Tabs } from '@mui/material';
 import { useState } from 'react';
 import type {
 	District,
@@ -23,22 +24,28 @@ export const GovSummary = ({ summary, type, state, district }: GovSummaryDataPro
 		'Legislative',
 	);
 
+	const showBranches = (state && type !== 'cd') || !state;
+
+	const handleChange = (_: React.SyntheticEvent, value: typeof activeBranch) => {
+		setActiveBranch(value);
+	};
+
 	return (
-		<div className="sidebar-body federal-summary">
-			{((state && type !== 'cd') || !state) && (
-				<div className="branch-tabs" role="tablist" aria-label="Branches of Government">
-					{(['Executive', 'Legislative', 'Judicial'] as const).map((branch) => (
-						<button
-							key={branch}
-							className={`branch-tab ${activeBranch === branch ? 'active' : ''}`}
-							onClick={() => setActiveBranch(branch)}
-							role="tab"
-							aria-selected={activeBranch === branch}
-						>
-							{branch}
-						</button>
-					))}
-				</div>
+		<div className="p-3 text-gray-800 font-sans">
+			{showBranches && (
+				<Tabs
+					value={activeBranch}
+					onChange={handleChange}
+					aria-label="Branches of Government"
+					variant="fullWidth"
+					textColor="primary"
+					indicatorColor="primary"
+					className="border-b border-gray-200 mb-3"
+				>
+					<Tab label="Executive" value="Executive" className="font-semibold normal-case" />
+					<Tab label="Legislative" value="Legislative" className="font-semibold normal-case" />
+					<Tab label="Judicial" value="Judicial" className="font-semibold normal-case" />
+				</Tabs>
 			)}
 
 			<div className="branch-content">
