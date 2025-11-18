@@ -1,8 +1,14 @@
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
-from app.services.official_service import get_cd_official_service, get_sldl_official_service, get_sldu_official_service
+
+from app.services.official_service import (
+    get_cd_official_service,
+    get_sldl_official_service,
+    get_sldu_official_service,
+)
 
 router = APIRouter()
+
 
 # Congressional District Official
 @router.get("/cd/{stateUSPS}/{districtID}")

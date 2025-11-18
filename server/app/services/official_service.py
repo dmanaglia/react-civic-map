@@ -1,16 +1,17 @@
-
-from app.schemas.models import Official
 from app.fetch.congress import Fetch_Congress_District_Official
 from app.fetch.openStates import Fetch_State_District_Official
+from app.schemas.models import Official
 
 
 async def get_cd_official_service(stateUSPS: str, districtID: str) -> Official:
     official = await Fetch_Congress_District_Official(stateUSPS, districtID)
     return official
 
+
 async def get_sldu_official_service(stateUSPS: str, districtID: str) -> Official:
     official = await Fetch_State_District_Official(stateUSPS, "upper", districtID)
     return official
+
 
 async def get_sldl_official_service(stateUSPS: str, districtID: str) -> Official:
     official = await Fetch_State_District_Official(stateUSPS, "lower", districtID)

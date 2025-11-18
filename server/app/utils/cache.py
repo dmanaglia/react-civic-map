@@ -1,8 +1,10 @@
-from datetime import datetime, timezone, timedelta
-import orjson
-from pathlib import Path
 import gzip
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
 from typing import Optional, Type, TypeVar
+
+import orjson
+
 from app.schemas.models import FederalCache, FederalData, StateCache, StateData
 
 # ---------- CONFIG ----------
@@ -52,6 +54,7 @@ def read_cache(model: Type[T], state_abbr: Optional[str] = None) -> Optional[T]:
         print(f"Cache validation failed: {e}")
         return None
 
+
 # TODO can probably merge these two functions back into one but this is okay for now
 def write_federal_cache(data: FederalData) -> FederalCache:
     """
@@ -61,9 +64,9 @@ def write_federal_cache(data: FederalData) -> FederalCache:
     """
 
     federalCache = FederalCache(
-        summary = data.summary,
-        map = data.map,
-        lastUpdated = datetime.now(timezone.utc).isoformat(),
+        summary=data.summary,
+        map=data.map,
+        lastUpdated=datetime.now(timezone.utc).isoformat(),
     )
 
     file_path = CACHE_DIR / "FED.json.gz"
@@ -74,6 +77,7 @@ def write_federal_cache(data: FederalData) -> FederalCache:
 
     return federalCache
 
+
 # TODO can probably merge these two functions back into one but this is okay for now
 def write_state_cache(data: StateData, state_abbr: str) -> StateCache:
     """
@@ -82,9 +86,9 @@ def write_state_cache(data: StateData, state_abbr: str) -> StateCache:
     Returns cached payload.
     """
     stateCache = StateCache(
-        summary = data.summary,
-        map = data.map,
-        lastUpdated = datetime.now(timezone.utc).isoformat(),
+        summary=data.summary,
+        map=data.map,
+        lastUpdated=datetime.now(timezone.utc).isoformat(),
     )
 
     file_path = STATE_CACHE_DIR / f"{state_abbr.upper()}.json.gz"

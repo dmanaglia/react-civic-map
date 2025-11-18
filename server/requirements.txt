@@ -6,3 +6,6 @@ shapely==2.1.2
 geopandas==1.1.1
 httpx==0.28.1
 orjson==3.11.4
+pre_commit==4.4.0
+black==25.11.0
+ruff==0.14.5
