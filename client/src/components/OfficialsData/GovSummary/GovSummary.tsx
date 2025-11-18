@@ -10,7 +10,6 @@ import type {
 import { Executive } from './Executive';
 import { Judicial } from './Judicial';
 import { Legislative } from './Legislative';
-import './GovSummary.css';
 
 interface GovSummaryDataProps {
 	summary: FederalSummary | StateSummary;
