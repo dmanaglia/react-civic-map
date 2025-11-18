@@ -11,8 +11,6 @@ def is_integer(s):
 
 def format_string(s: str) -> str:
     match = re.match(r"^(.*?)(?:\s+(\d+))?$", s.strip())
-    if not match:
-        return s
     name, number = match.groups()
     if number:
         return f"{name} {int(number):02d}"
