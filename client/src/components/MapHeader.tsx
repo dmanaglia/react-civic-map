@@ -1,5 +1,5 @@
+import Chip from '@mui/material/Chip';
 import type { MapType } from '../models/MapProps';
-import './MapHeader.css';
 
 const featureTypes: { id: MapType; label: string }[] = [
 	{ id: 'county', label: 'Counties' },
@@ -17,15 +17,17 @@ interface MapHeaderProps {
 
 export const MapHeader = ({ type, setType }: MapHeaderProps) => {
 	return (
-		<div className="map-header">
+		<div className="bg-white/95 m-4 px-4 py-3 rounded-xl flex justify-between flex-wrap">
 			{featureTypes.map((feature) => (
-				<button
+				<Chip
 					key={feature.id}
-					className={`map-header-pill ${type === feature.id ? 'active' : ''}`}
+					label={feature.label}
+					component="button"
+					clickable
 					onClick={() => setType(feature.id)}
-				>
-					{feature.label}
-				</button>
+					variant={type === feature.id ? 'filled' : 'outlined'}
+					color="primary"
+				/>
 			))}
 		</div>
 	);

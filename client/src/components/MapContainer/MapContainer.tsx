@@ -6,7 +6,6 @@ import { Spinner } from '../Spinner';
 import { UsMap } from '../UsMap/UsMap';
 import { useGeoData } from './hooks/useGeoData';
 import { useOfficialsData } from './hooks/useOfficialsData';
-import './MapContainer.css';
 
 export const MapContainer = () => {
 	const [state, setState] = useState<State | null>(null);
@@ -42,9 +41,13 @@ export const MapContainer = () => {
 	return (
 		<div>
 			<MapHeader type={type} setType={handleSetType} />
-
 			{nationalMap && (
-				<main className={`main-content ${sidebarOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
+				<main
+					className={`flex relative`}
+					style={{
+						maxHeight: '80vh',
+					}}
+				>
 					<UsMap
 						districtMap={districtMap}
 						nationalMap={nationalMap}
@@ -66,7 +69,7 @@ export const MapContainer = () => {
 				</main>
 			)}
 
-			{loadingMap && <Spinner />}
+			{loadingMap && <Spinner fullscreen />}
 		</div>
 	);
 };

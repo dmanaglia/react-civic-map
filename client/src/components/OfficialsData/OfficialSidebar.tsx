@@ -1,6 +1,9 @@
-import './OfficialSidebar.css';
+import { Close, Menu } from '@mui/icons-material';
+import { Drawer } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
 import type { District, FederalSummary, MapType, StateSummary, State } from '../../models/MapProps';
 import type { Official } from '../../models/OfficialProps';
+import { Spinner } from '../Spinner';
 import { GovSummary } from './GovSummary/GovSummary';
 import { Representative } from './Representative';
 
@@ -28,45 +31,86 @@ export const OfficialSidebar = ({
 	summary,
 }: OfficialSidebarProps) => {
 	return (
-		<div>
-			<button
-				className={`sidebar-handle ${open ? 'handle-hidden' : 'handle-visible'}`}
-				onClick={onToggle}
-				aria-label={open ? 'Close sidebar' : 'Open sidebar'}
+		<>
+			{/* Toggle handle when closed */}
+			{!open && (
+				<IconButton
+					onClick={onToggle}
+					aria-label="Open sidebar"
+					size="small"
+					//top-80 needs to be adjusted...
+					className="
+						fixed top-80 z-50
+						w-10 h-10 p-0
+						bg-white border border-gray-300
+						rounded-md shadow 
+						flex items-center justify-center
+						hover:bg-gray-100
+						transition
+					"
+					sx={{
+						margin: 1,
+					}}
+				>
+					<Menu className="w-6 h-6 text-gray-800" />
+				</IconButton>
+			)}
+
+			<Drawer
+				anchor="right"
+				open={open}
+				variant="persistent"
+				sx={{
+					position: 'relative',
+					flexShrink: 0,
+					'& .MuiDrawer-paper': {
+						position: 'relative',
+						width: open ? 360 : 0,
+						height: '100%',
+						display: 'flex',
+						flexDirection: 'column',
+						borderRadius: '16px 0 0 16px',
+						transition: 'width 0.3s ease',
+						marginLeft: open ? 2 : 0,
+					},
+				}}
 			>
-				≡
-			</button>
-			<aside className={`official-sidebar ${open ? 'open' : 'closed'}`} aria-hidden={!open}>
-				{loading && (
-					<div className="sidebar-spinner-overlay">
-						<div className="sidebar-spinner"></div>
-					</div>
-				)}
-				<div className="sidebar-header">
+				{/* Header */}
+				<div className="flex items-center justify-between gap-3 p-6 pb-0">
 					<div>
-						<h2>{state ? `${state.NAME} ` : 'Federal'}</h2>
-						<h3>{district ? district.NAME : null}</h3>
-						<small>
+						<h1 className="text-3xl font-semibold">{state ? state.NAME : 'Federal'}</h1>
+						{district && (
+							<h3 className="text-base font-semibold text-gray-800 m-0">{district.NAME}</h3>
+						)}
+						<small className="text-sm text-gray-500">
 							{district
 								? 'Representative details'
 								: type === 'cd'
-									? 'Federal Represenation'
+									? 'Federal Representation'
 									: 'Government Details'}
 						</small>
 					</div>
 
-					<div className="sidebar-actions">
-						<button className="close-btn" onClick={onClose} aria-label="Close">
-							✕
-						</button>
-					</div>
+					<IconButton
+						onClick={onClose}
+						aria-label="Close sidebar"
+						className="rounded-md hover:bg-gray-100"
+					>
+						<Close />
+					</IconButton>
 				</div>
-				{official ? (
+
+				{/* Content */}
+				{loading ? (
+					<div className="flex justify-center mt-6">
+						<Spinner />
+					</div>
+				) : official ? (
 					<Representative state={state} district={district} official={official} />
 				) : (
 					summary && <GovSummary summary={summary} type={type} state={state} district={district} />
 				)}
-			</aside>
-		</div>
+			</Drawer>
+		</>
 	);
 };
