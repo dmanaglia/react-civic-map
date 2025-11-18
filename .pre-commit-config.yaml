@@ -4,7 +4,9 @@ repos:
     hooks:
       - id: ruff
       - id: ruff-format
+        files: ^server/
   - repo: https://github.com/psf/black
     rev: stable
     hooks:
       - id: black
+        files: ^server/
