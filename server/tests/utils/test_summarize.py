@@ -1,9 +1,19 @@
-from unittest.mock import AsyncMock, patch
+from unittest.mock import AsyncMock, create_autospec, patch
 
 import pytest
 
-from app.schemas.models import FederalData, Official, SenatorMap, StateData, StateMapData
+from app.schemas.models import (
+    FederalCache,
+    FederalData,
+    Official,
+    SenatorMap,
+    StateCache,
+    StateData,
+    StateMapData,
+)
 from app.utils.summarize import (
+    Get_Federal_Cache,
+    Get_State_Cache,
     Summarize_Federal_Gov_Data,
     Summarize_State_Gov_Data,
 )
@@ -112,3 +122,96 @@ async def test_summarize_state_gov_data_counts():
     assert (
         "3" in result.map.congressional.root and "independent" in result.map.congressional.root["3"]
     )
+
+
+@pytest.mark.asyncio
+async def test_NH_edge_case():
+    mock_NH_house = [
+        Official(
+            name="John Doe", party="Democrat", state="New Hampshire", district="1", metadata={}
+        )
+    ]
+    with patch(
+        "app.utils.summarize.Fetch_All_Congress_Officials_For_State",
+        new_callable=AsyncMock,
+    ) as mock_fed, patch(
+        "app.utils.summarize.Fetch_All_State_Officials", new_callable=AsyncMock
+    ) as mock_state, patch(
+        "app.utils.summarize.format_string"
+    ) as mock_format_str:
+        mock_fed.return_value = ([], [])
+        mock_state.return_value = ([], mock_NH_house, [])
+        mock_format_str.return_value = "1"
+        await Summarize_State_Gov_Data("NH")
+
+    mock_format_str.assert_called_once_with("1")
+
+
+@pytest.mark.asyncio
+async def test_get_federal_cache_cached():
+    mock_cache = create_autospec(FederalCache, instance=True)
+
+    with patch("app.utils.summarize.read_cache", return_value=mock_cache) as mock_read, patch(
+        "app.utils.summarize.Summarize_Federal_Gov_Data"
+    ) as mock_sum, patch("app.utils.summarize.write_federal_cache") as mock_write:
+
+        result = await Get_Federal_Cache()
+
+        assert result is mock_cache
+        mock_read.assert_called_once()
+        mock_sum.assert_not_called()
+        mock_write.assert_not_called()
+
+
+@pytest.mark.asyncio
+async def test_get_federal_cache_not_cached():
+    fake_data = {"fed": "data"}
+    mock_cache = create_autospec(FederalCache, instance=True)
+
+    with patch("app.utils.summarize.read_cache", return_value=None), patch(
+        "app.utils.summarize.Summarize_Federal_Gov_Data", new=AsyncMock(return_value=fake_data)
+    ) as mock_sum, patch(
+        "app.utils.summarize.write_federal_cache", return_value=mock_cache
+    ) as mock_write:
+
+        result = await Get_Federal_Cache()
+
+    assert result is mock_cache
+    mock_sum.assert_awaited_once()
+    mock_write.assert_called_once_with(fake_data)
+
+
+@pytest.mark.asyncio
+async def test_get_state_cache_cached():
+    mock_cache = create_autospec(FederalCache, instance=True)
+    state = "al"
+
+    with patch("app.utils.summarize.read_cache", return_value=mock_cache) as mock_read, patch(
+        "app.utils.summarize.Summarize_State_Gov_Data"
+    ) as mock_sum, patch("app.utils.summarize.write_state_cache") as mock_write:
+
+        result = await Get_State_Cache(state)
+
+    assert result is mock_cache
+    mock_read.assert_called_once_with(model=StateCache, state_abbr="AL")
+    mock_sum.assert_not_called()
+    mock_write.assert_not_called()
+
+
+@pytest.mark.asyncio
+async def test_get_state_cache_not_cached():
+    fake_data = {"state": "data"}
+    mock_cache = create_autospec(FederalCache, instance=True)
+    state = "AL"
+
+    with patch("app.utils.summarize.read_cache", return_value=None), patch(
+        "app.utils.summarize.Summarize_State_Gov_Data", new=AsyncMock(return_value=fake_data)
+    ) as mock_sum, patch(
+        "app.utils.summarize.write_state_cache", return_value=mock_cache
+    ) as mock_write:
+
+        result = await Get_State_Cache(state)
+
+    assert result is mock_cache
+    mock_sum.assert_awaited_once_with("AL")
+    mock_write.assert_called_once_with(fake_data, "AL")
