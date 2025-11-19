@@ -53,7 +53,6 @@ async def get_sldu_service(stateFP: str, stateUSPS: str) -> StateResponse:
         if id == "Chittenden South East":
             id = "Chittenden Southeast"
         # remove starting 0 from single digit districts (01 -> 1) to match DistrictMap
-        # I believe this is always right but double check
         if is_integer(id):
             id = f"{int(id)}"
         feature.properties.update({"party": state_senate_map.get(id, "")})
@@ -82,7 +81,6 @@ async def get_sldl_service(stateFP: str, stateUSPS: str) -> StateResponse:
     for feature in geoJson.features:
         id = feature.properties["NAME"]
         # remove starting 0 from single digit districts (01 -> 1) to match DistrictMap
-        # I believe this is always right but double check
         if is_integer(id):
             id = f"{int(id)}"
         feature.properties.update({"party": state_house_map.get(id, "")})
@@ -111,7 +109,7 @@ async def get_cd_service(stateFP: str, stateUSPS: str) -> StateResponse:
     for feature in geoJson.features:
         id = feature.properties["CD119FP"]
         # remove starting 0 from single digit districts (01 -> 1) to match DistrictMap
-        # I believe this is always right but double check
+        # Congressional districts are never words, unline some state districts
         id = f"{int(id)}"
         feature.properties.update({"party": state_congressional_map.get(id, "")})
 
