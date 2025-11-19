@@ -77,5 +77,7 @@ async def Fetch_State_District_Official(state: str, chamber: str, district_name:
             )
 
         data = response.json()
+        # TODO: sometimes results are empty if district has a current vacancy.
+        # Should raise exception for consistency
         official = normalize_state_legislator(data["results"][0])
         return official
