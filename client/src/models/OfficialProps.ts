@@ -12,5 +12,5 @@ export interface Official {
 	depiction_url?: string;
 	bio_id?: string;
 	terms?: Term[];
-	metadata: unknown;
+	metadata?: unknown;
 }

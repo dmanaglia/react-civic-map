@@ -1,42 +1,26 @@
-import { useCallback, useState } from 'react';
-import type { District, MapType, State } from '../../models/MapProps';
 import { MapHeader } from '../MapHeader';
 import { OfficialSidebar } from '../OfficialsData/OfficialSidebar';
 import { Spinner } from '../Spinner';
 import { UsMap } from '../UsMap/UsMap';
 import { useGeoData } from './hooks/useGeoData';
+import { useMapContainerState } from './hooks/useMapContainerState';
 import { useOfficialsData } from './hooks/useOfficialsData';
 
 export const MapContainer = () => {
-	const [state, setState] = useState<State | null>(null);
-	const [district, setDistrict] = useState<District | null>(null);
-	const [type, setType] = useState<MapType>('cd');
-	const [sidebarOpen, setSidebarOpen] = useState(true);
+	const {
+		state,
+		district,
+		official,
+		type,
+		sidebarOpen,
+		handleSetState,
+		handleSetDistrict,
+		handleSetType,
+		toggleSidebar,
+		setOfficial,
+	} = useMapContainerState();
+	const { loadingOfficial } = useOfficialsData({ district, state, setOfficial });
 	const { nationalMap, districtMap, summary, loadingMap } = useGeoData(type, state);
-	const { official, setOfficial, loadingOfficial } = useOfficialsData(district, state);
-
-	const handleSetState = useCallback(
-		(state: State | null) => {
-			setState(state);
-			setOfficial(null);
-			setSidebarOpen(true);
-		},
-		[setOfficial],
-	);
-
-	const handleSetDistrict = useCallback((district: District | null) => {
-		setDistrict(district);
-		setSidebarOpen(true);
-	}, []);
-
-	const handleSetType = useCallback(
-		(type: MapType) => {
-			setDistrict(null);
-			setOfficial(null);
-			setType(type);
-		},
-		[setOfficial],
-	);
 
 	return (
 		<div>
@@ -59,8 +43,7 @@ export const MapContainer = () => {
 						district={district}
 						loading={loadingOfficial}
 						official={official}
-						onToggle={() => setSidebarOpen((open) => !open)}
-						onClose={() => setSidebarOpen(false)}
+						onToggle={toggleSidebar}
 						open={sidebarOpen}
 						state={state}
 						summary={summary}

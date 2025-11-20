@@ -2,8 +2,13 @@ import { useEffect, useState } from 'react';
 import type { District, State } from '../../../models/MapProps';
 import type { Official } from '../../../models/OfficialProps';
 
-export const useOfficialsData = (district: District | null, state: State | null) => {
-	const [official, setOfficial] = useState<Official | null>(null);
+interface UseOfficialsDataProps {
+	district: District | null;
+	state: State | null;
+	setOfficial: (official: Official | null) => void;
+}
+
+export const useOfficialsData = ({ district, state, setOfficial }: UseOfficialsDataProps) => {
 	const [loadingOfficial, setLoading] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -26,7 +31,7 @@ export const useOfficialsData = (district: District | null, state: State | null)
 			}
 		};
 		fetchOfficial();
-	}, [district, state]);
+	}, [district, setOfficial, state]);
 
-	return { official, loadingOfficial, setOfficial };
+	return { loadingOfficial };
 };
