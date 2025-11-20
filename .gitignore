@@ -24,3 +24,7 @@ yarn-error.log*
 
 # VS Code settings
 /.vscode
+
+# Python Cache from root commands
+/.pytest_cache
+/.ruff_cache
