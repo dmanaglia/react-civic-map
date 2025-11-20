@@ -19,7 +19,7 @@ export function useTooltip() {
 	}, []);
 
 	const showTooltip = useCallback((text: string, x: number, y: number) => {
-		if (!tooltipRef.current) return;
+		if (!tooltipRef.current) return; // Can't figure out how to hit from test suite
 		tooltipRef.current.innerText = text;
 		tooltipRef.current.style.visibility = 'visible';
 		tooltipRef.current.style.top = `${y + 10}px`;

@@ -114,5 +114,6 @@ async def Fetch_Congress_District_Official(state: str, district: str) -> Officia
         data = response.json()
         members = [member for member in data["members"] if member["district"] == int(district)]
         # Should only contain 1 member after filter
+        # (sometimes api returns officials from different districts for some reason)
         official = normalize_cd_official(members[0])
         return official

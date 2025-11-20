@@ -6,9 +6,10 @@ import type {
 	State,
 	FederalResponse,
 	StateResponse,
+	MapType,
 } from '../../../models/MapProps';
 
-export const useGeoData = (type: string, state: State | null) => {
+export const useGeoData = (type: MapType, state: State | null) => {
 	const [nationalMap, setNationalMap] = useState<FeatureCollection | null>(null);
 	const [districtMap, setDistrictMap] = useState<FeatureCollection | null>(null);
 	const [loadingMap, setLoading] = useState<boolean>(false);

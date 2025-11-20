@@ -12,7 +12,6 @@ interface OfficialSidebarProps {
 	loading: boolean;
 	official: Official | null;
 	onToggle: () => void;
-	onClose: () => void;
 	open: boolean;
 	state: State | null;
 	summary: FederalSummary | StateSummary | null;
@@ -23,7 +22,6 @@ export const OfficialSidebar = ({
 	loading,
 	open,
 	onToggle,
-	onClose,
 	state,
 	type,
 	district,
@@ -92,7 +90,7 @@ export const OfficialSidebar = ({
 					</div>
 
 					<IconButton
-						onClick={onClose}
+						onClick={onToggle}
 						aria-label="Close sidebar"
 						className="rounded-md hover:bg-gray-100"
 					>
