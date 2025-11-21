@@ -13,7 +13,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Install & test Vite frontend
+      # Install root & Vite frontend
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
@@ -28,7 +28,7 @@ jobs:
           cd client
           npm ci
 
-      # Install & test Python backend
+      # Install Python backend
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
