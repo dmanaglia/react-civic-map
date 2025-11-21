@@ -47,7 +47,7 @@ export const GovSummary = ({ summary, type, state, district }: GovSummaryDataPro
 				</Tabs>
 			)}
 
-			<div className="branch-content">
+			<div>
 				{activeBranch === 'Legislative' && (
 					<Legislative type={type} summary={summary} state={state} district={district} />
 				)}

@@ -104,7 +104,9 @@ export const OfficialSidebar = ({
 						<Spinner />
 					</div>
 				) : official ? (
-					<Representative state={state} district={district} official={official} />
+					<div className="p-3">
+						<Representative state={state} district={district} official={official} />
+					</div>
 				) : (
 					summary && <GovSummary summary={summary} type={type} state={state} district={district} />
 				)}

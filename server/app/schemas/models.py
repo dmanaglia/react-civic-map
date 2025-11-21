@@ -32,6 +32,7 @@ class Official(BaseModel):
     party: Optional[str] = None
     state: Optional[str] = None
     district: Optional[str] = None
+    title: Optional[str] = None
     depiction_url: Optional[str] = None
     bio_id: Optional[str] = None  # e.g., bioguideId
     terms: Optional[List[Term]] = []

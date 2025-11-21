@@ -9,6 +9,7 @@ export interface Official {
 	party?: string;
 	state?: string;
 	district?: string;
+	title?: string;
 	depiction_url?: string;
 	bio_id?: string;
 	terms?: Term[];
