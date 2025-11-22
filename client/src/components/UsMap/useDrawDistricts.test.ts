@@ -11,11 +11,6 @@ vi.mock('./getDistrictClass', () => ({
 describe('useDrawDistricts (renderHook)', () => {
 	let svgRef: React.RefObject<SVGSVGElement>;
 	let gDistrictRef: React.RefObject<SVGGElement>;
-	let zoomToBounds: (
-		bounds: [[number, number], [number, number]],
-		width: number,
-		height: number,
-	) => void;
 	let applyCurrentTransform: () => void;
 	let setDistrict: (feature: District | null) => void;
 	let showTooltip: (text: string, x: number, y: number) => void;
@@ -28,7 +23,6 @@ describe('useDrawDistricts (renderHook)', () => {
 		gDistrictRef = {
 			current: document.createElement('g') as unknown as SVGGElement,
 		} as React.RefObject<SVGGElement>;
-		zoomToBounds = vi.fn();
 		applyCurrentTransform = vi.fn();
 		setDistrict = vi.fn();
 		showTooltip = vi.fn();
@@ -43,7 +37,6 @@ describe('useDrawDistricts (renderHook)', () => {
 				districtMap: null,
 				type: 'cd',
 				sidebarType: 'summary',
-				zoomToBounds,
 				applyCurrentTransform,
 				setDistrict,
 				showTooltip,
@@ -84,7 +77,6 @@ describe('useDrawDistricts (renderHook)', () => {
 				districtMap,
 				type: 'cd',
 				sidebarType: 'summary',
-				zoomToBounds,
 				applyCurrentTransform,
 				setDistrict,
 				showTooltip,
@@ -104,8 +96,11 @@ describe('useDrawDistricts (renderHook)', () => {
 			TYPE: 'cd',
 			NAME: 'District 1',
 			ID: '01',
+			bounds: [
+				[Infinity, Infinity],
+				[-Infinity, -Infinity],
+			],
 		});
-		expect(zoomToBounds).toHaveBeenCalled();
 
 		// simulate mouseover / mousemove
 		act(() => {
@@ -163,7 +158,6 @@ describe('useDrawDistricts (renderHook)', () => {
 				districtMap,
 				type: 'cd',
 				sidebarType: 'summary',
-				zoomToBounds,
 				applyCurrentTransform,
 				setDistrict,
 				showTooltip,
@@ -206,7 +200,6 @@ describe('useDrawDistricts (renderHook)', () => {
 				districtMap,
 				type: 'sldl',
 				sidebarType: 'summary',
-				zoomToBounds,
 				applyCurrentTransform,
 				setDistrict,
 				showTooltip,
@@ -226,8 +219,11 @@ describe('useDrawDistricts (renderHook)', () => {
 			TYPE: 'sldl',
 			NAME: 'State House District 1',
 			ID: '1',
+			bounds: [
+				[Infinity, Infinity],
+				[-Infinity, -Infinity],
+			],
 		});
-		expect(zoomToBounds).toHaveBeenCalled();
 
 		// simulate mouseover / mousemove
 		act(() => {

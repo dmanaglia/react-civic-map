@@ -11,11 +11,6 @@ interface UseDrawDistrictsProps {
 	districtMap: FeatureCollection | null;
 	type: string;
 	sidebarType: 'address' | 'summary';
-	zoomToBounds: (
-		bounds: [[number, number], [number, number]],
-		width: number,
-		height: number,
-	) => void;
 	applyCurrentTransform: () => void;
 	setDistrict: (feature: District | null) => void;
 	showTooltip: (text: string, x: number, y: number) => void;
@@ -28,7 +23,6 @@ export function useDrawDistricts({
 	districtMap,
 	type,
 	sidebarType,
-	zoomToBounds,
 	applyCurrentTransform,
 	setDistrict,
 	showTooltip,
@@ -45,8 +39,6 @@ export function useDrawDistricts({
 			return;
 		}
 
-		const width = 960;
-		const height = 600;
 		const projection = d3.geoAlbersUsa().scale(1300).translate([480, 300]);
 		const path = d3.geoPath().projection(projection);
 
@@ -60,11 +52,11 @@ export function useDrawDistricts({
 				event.stopPropagation();
 				console.log(feature);
 				const bounds = path.bounds(feature);
-				zoomToBounds(bounds, width, height);
 				setDistrict({
 					TYPE: type,
 					NAME: feature.properties?.NAMELSAD,
 					ID: type === 'cd' ? feature.properties?.CD119FP : feature.properties?.NAME,
+					bounds: bounds,
 				});
 			})
 			.on('mouseover', (event: MouseEvent, feature) =>
@@ -82,7 +74,6 @@ export function useDrawDistricts({
 		districtMap,
 		type,
 		sidebarType,
-		zoomToBounds,
 		applyCurrentTransform,
 		setDistrict,
 		showTooltip,

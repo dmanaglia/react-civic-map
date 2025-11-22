@@ -7,11 +7,6 @@ import { useDrawStates } from './useDrawStates';
 describe('useDrawStates (renderHook)', () => {
 	let svgRef: React.RefObject<SVGSVGElement>;
 	let gStatesRef: React.RefObject<SVGGElement>;
-	let zoomToBounds: (
-		bounds: [[number, number], [number, number]],
-		width: number,
-		height: number,
-	) => void;
 	let applyCurrentTransform: () => void;
 	let setDistrict: (feature: District | null) => void;
 	let setState: (stateId: State | null) => void;
@@ -25,7 +20,6 @@ describe('useDrawStates (renderHook)', () => {
 		gStatesRef = {
 			current: document.createElement('g') as unknown as SVGGElement,
 		} as React.RefObject<SVGGElement>;
-		zoomToBounds = vi.fn();
 		applyCurrentTransform = vi.fn();
 		setDistrict = vi.fn();
 		setState = vi.fn();
@@ -39,7 +33,6 @@ describe('useDrawStates (renderHook)', () => {
 				svgRef,
 				gStatesRef,
 				nationalMap: null,
-				zoomToBounds,
 				applyCurrentTransform,
 				setState,
 				setDistrict,
@@ -79,7 +72,6 @@ describe('useDrawStates (renderHook)', () => {
 				svgRef,
 				gStatesRef,
 				nationalMap,
-				zoomToBounds,
 				applyCurrentTransform,
 				setDistrict,
 				setState,
@@ -99,9 +91,12 @@ describe('useDrawStates (renderHook)', () => {
 			NAME: 'Alabama',
 			STATEFP: '01',
 			USPS: 'AL',
+			bounds: [
+				[Infinity, Infinity],
+				[-Infinity, -Infinity],
+			],
 		});
 		expect(setDistrict).toHaveBeenCalledWith(null);
-		expect(zoomToBounds).toHaveBeenCalled();
 
 		// simulate mouseover / mousemove
 		act(() => {
@@ -157,7 +152,6 @@ describe('useDrawStates (renderHook)', () => {
 				svgRef,
 				gStatesRef: nullgStatesRef,
 				nationalMap,
-				zoomToBounds,
 				applyCurrentTransform,
 				setDistrict,
 				setState,

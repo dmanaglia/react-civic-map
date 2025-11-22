@@ -7,12 +7,14 @@ export interface State {
 	NAME: string;
 	STATEFP: string; //previously id
 	USPS: string; //previously code
+	bounds: [[number, number], [number, number]];
 }
 
 export interface District {
 	TYPE: string;
 	NAME: string;
 	ID: string;
+	bounds: [[number, number], [number, number]];
 }
 
 export interface Chamber {

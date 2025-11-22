@@ -21,7 +21,7 @@ export const useMapZoom = (
 
 		const zoom = d3
 			.zoom<SVGSVGElement, unknown>()
-			.scaleExtent([1, 8])
+			.scaleExtent([1, 100])
 			.on('zoom', (event) => {
 				zoomTransformRef.current = event.transform;
 				gStates.attr('transform', event.transform.toString());
@@ -29,6 +29,7 @@ export const useMapZoom = (
 				gOfficials.attr('transform', event.transform.toString());
 				gStates.selectAll('path').attr('stroke-width', 0.5 / event.transform.k);
 				gDistricts.selectAll('path').attr('stroke-width', 0.5 / event.transform.k);
+				gOfficials.selectAll('path').attr('stroke-width', 0.5 / event.transform.k);
 			});
 
 		// store the same zoom instance so we can reuse its .transform later
@@ -55,9 +56,17 @@ export const useMapZoom = (
 			if (!svgRef.current || !zoomBehaviorRef.current) return;
 			const svg = d3.select(svgRef.current);
 			const [[x0, y0], [x1, y1]] = bounds;
+
+			// compute scale to fit bounds
+			const scale = 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height);
+
+			// clamp to zoomBehavior scaleExtent
+			const [minScale, maxScale] = zoomBehaviorRef.current.scaleExtent();
+			const finalScale = Math.max(minScale, Math.min(maxScale, scale));
+
 			const t = d3.zoomIdentity
 				.translate(width / 2, height / 2)
-				.scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
+				.scale(finalScale)
 				.translate(-(x0 + x1) / 2, -(y0 + y1) / 2);
 
 			svg.transition().duration(750).call(zoomBehaviorRef.current.transform, t);

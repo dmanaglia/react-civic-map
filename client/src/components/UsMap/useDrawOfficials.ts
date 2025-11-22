@@ -86,10 +86,12 @@ export function useDrawOfficials({
 			.attr('class', 'address-point')
 			.attr('cx', px)
 			.attr('cy', py)
-			.attr('r', 0.4)
+			.attr('r', 0.1)
 			.attr('fill', 'black')
 			.attr('stroke', 'white')
-			.attr('stroke', 0);
+			.attr('stroke', 0)
+			.on('mousemove', (event) => showTooltip('Current Address', event.pageX, event.pageY))
+			.on('mouseout', hideTooltip);
 
 		// --- Zoom to the combined district bounds ---
 		const allBounds: [[number, number], [number, number]] = districts.reduce(
