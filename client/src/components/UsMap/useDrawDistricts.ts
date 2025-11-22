@@ -7,9 +7,10 @@ import { getDistrictClass } from './getDistrictClass'; // or './getDistrictClass
 
 interface UseDrawDistrictsProps {
 	svgRef: React.RefObject<SVGSVGElement | null>;
-	gFeatureRef: React.RefObject<SVGGElement | null>;
+	gDistrictRef: React.RefObject<SVGGElement | null>;
 	districtMap: FeatureCollection | null;
 	type: string;
+	sidebarType: 'address' | 'summary';
 	zoomToBounds: (
 		bounds: [[number, number], [number, number]],
 		width: number,
@@ -23,9 +24,10 @@ interface UseDrawDistrictsProps {
 
 export function useDrawDistricts({
 	svgRef,
-	gFeatureRef,
+	gDistrictRef,
 	districtMap,
 	type,
+	sidebarType,
 	zoomToBounds,
 	applyCurrentTransform,
 	setDistrict,
@@ -36,14 +38,19 @@ export function useDrawDistricts({
 		if (!districtMap) return;
 
 		const svg = d3.select(svgRef.current);
-		const gFeature = gFeatureRef.current ? d3.select(gFeatureRef.current) : svg.append('g');
+		const gDistrict = gDistrictRef.current ? d3.select(gDistrictRef.current) : svg.append('g');
+
+		if (sidebarType !== 'summary') {
+			gDistrict.selectAll('*').remove();
+			return;
+		}
 
 		const width = 960;
 		const height = 600;
 		const projection = d3.geoAlbersUsa().scale(1300).translate([480, 300]);
 		const path = d3.geoPath().projection(projection);
 
-		gFeature
+		gDistrict
 			.selectAll('path')
 			.data(districtMap.features)
 			.join('path')
@@ -70,14 +77,15 @@ export function useDrawDistricts({
 
 		applyCurrentTransform();
 	}, [
+		svgRef,
+		gDistrictRef,
 		districtMap,
 		type,
+		sidebarType,
 		zoomToBounds,
 		applyCurrentTransform,
 		setDistrict,
 		showTooltip,
 		hideTooltip,
-		svgRef,
-		gFeatureRef,
 	]);
 }

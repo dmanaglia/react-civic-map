@@ -6,7 +6,7 @@ from shapely.geometry import Point, shape
 
 from app.fetch.congress import Fetch_Congress_District_Official
 from app.fetch.openStates import Fetch_State_District_Official
-from app.schemas.models import FeatureCollection, Official
+from app.schemas.models import AddressFeature, AddressOfficials, FeatureCollection
 from app.utils.summarize import Get_State_Cache
 
 load_dotenv()
@@ -39,57 +39,51 @@ def fetch_coords_from_address(address: str):
     return lat, lng, state_code
 
 
-def find_district(
-    point_lat: float, point_lng: float, geojson_data: FeatureCollection, district_type: str
-):
+def find_district(point, geojson_data: FeatureCollection, district_type: str):
     """
     geojson_data: dict loaded from GeoJSON
     district_type: string for logging, e.g., "congressional", "state_senate"
     """
-    point = Point(point_lng, point_lat)  # Note: GeoJSON uses [lng, lat]
     for feature in geojson_data.features:
         polygon = shape(feature.geometry.model_dump())
         if polygon.contains(point):
-            dist_name = feature.properties.get("NAME", "")
-            print(f"Point is in {district_type} district: {dist_name}")
-            return feature.properties  # You can extract the district ID here
+            return feature
     print(f"No {district_type} district found for point")
     return None
 
 
-async def fetch_all_officials_by_address(address: str) -> list[Official]:
+async def fetch_all_officials_by_address(address: str) -> AddressOfficials:
     lat, lng, state_code = fetch_coords_from_address(address)
 
+    point = Point(lng, lat)
     stateData = await Get_State_Cache(state_code)
 
     # TODO
     # It's possible state maps will not be feature collection;
     # in which case extra fetch calls will be needed
-
     state_house_geojson = stateData.map.house
     state_senate_geojson = stateData.map.senate
     congressional_geojson = stateData.map.congressional
 
-    address_officials: list[Official] = []
-    for official in stateData.summary.federal.senators:
-        address_officials.append(official)
-
     # Find districts
-    cd_properties = find_district(lat, lng, congressional_geojson, "congressional")
-    senate_properties = find_district(lat, lng, state_senate_geojson, "state_senate")
-    house_properties = find_district(lat, lng, state_house_geojson, "state_house")
+    cd_feature = find_district(point, congressional_geojson, "congressional")
+    senate_feature = find_district(point, state_senate_geojson, "state_senate")
+    house_feature = find_district(point, state_house_geojson, "state_house")
 
     congressional_official = await Fetch_Congress_District_Official(
-        state_code, cd_properties.get("CD119FP", "")
+        state_code, cd_feature.properties.get("CD119FP", "")
     )
-    address_officials.append(congressional_official)
     state_senate_official = await Fetch_State_District_Official(
-        state_code, "upper", senate_properties.get("NAME", "")
+        state_code, "upper", senate_feature.properties.get("NAME", "")
     )
-    address_officials.append(state_senate_official)
     state_house_official = await Fetch_State_District_Official(
-        state_code, "lower", house_properties.get("NAME", "")
+        state_code, "lower", house_feature.properties.get("NAME", "")
     )
-    address_officials.append(state_house_official)
 
-    return address_officials
+    return AddressOfficials(
+        point=point.__geo_interface__,
+        senate=AddressFeature(feature=senate_feature, official=state_senate_official),
+        house=AddressFeature(feature=house_feature, official=state_house_official),
+        congressional=AddressFeature(feature=cd_feature, official=congressional_official),
+        senators=stateData.summary.federal.senators,
+    )

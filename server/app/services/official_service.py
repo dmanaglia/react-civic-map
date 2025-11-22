@@ -1,10 +1,10 @@
 from app.fetch.address import fetch_all_officials_by_address
 from app.fetch.congress import Fetch_Congress_District_Official
 from app.fetch.openStates import Fetch_State_District_Official
-from app.schemas.models import Official
+from app.schemas.models import AddressOfficials, Official
 
 
-async def get_all_your_officials_service(address: str) -> list[Official]:
+async def get_all_your_officials_service(address: str) -> AddressOfficials:
     officials = await fetch_all_officials_by_address(address)
     return officials
 

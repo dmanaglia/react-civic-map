@@ -119,3 +119,16 @@ class FederalResponse(BaseModel):
 class StateResponse(BaseModel):
     summary: StateSummary
     map: FeatureCollection
+
+
+class AddressFeature(BaseModel):
+    feature: Feature
+    official: Official
+
+
+class AddressOfficials(BaseModel):
+    point: Any
+    senate: AddressFeature
+    house: AddressFeature
+    congressional: AddressFeature
+    senators: List[Official]

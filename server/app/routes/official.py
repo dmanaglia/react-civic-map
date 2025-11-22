@@ -15,10 +15,7 @@ router = APIRouter()
 @router.get("/{address}")
 async def get_all_your_officials(address: str):
     officials = await get_all_your_officials_service(address)
-    o_list = []
-    for official in officials:
-        o_list.append(official.model_dump())
-    return JSONResponse(content=o_list)
+    return JSONResponse(content=officials.model_dump())
 
 
 # Congressional District Official

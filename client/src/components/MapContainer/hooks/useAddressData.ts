@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import type { Official } from '../../../models/OfficialProps';
+import type { AddressOfficials } from '../../../models/OfficialProps';
 
 export const useAddressData = () => {
-	const [officialList, setOfficialList] = useState<Official[]>([]);
+	const [officialList, setOfficialList] = useState<AddressOfficials | null>(null);
 	const [loadingAddressOfficials, setLoading] = useState<boolean>(false);
 
 	const findOfficials = async (address: string) => {
@@ -13,7 +13,7 @@ export const useAddressData = () => {
 			setOfficialList(data);
 			console.log(data);
 		} catch (err) {
-			setOfficialList([]);
+			setOfficialList(null);
 			console.error(err);
 		} finally {
 			setLoading(false);
