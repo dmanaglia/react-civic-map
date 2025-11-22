@@ -40,9 +40,13 @@ describe('<UsMap />', () => {
 			<UsMap
 				nationalMap={null}
 				districtMap={null}
+				district={null}
+				state={null}
 				type="cd"
 				setState={() => {}}
 				setDistrict={() => {}}
+				officialList={null}
+				sidebarType={'summary'}
 			/>,
 		);
 
