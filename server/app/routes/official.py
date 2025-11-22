@@ -2,12 +2,20 @@ from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
 from app.services.official_service import (
+    get_all_your_officials_service,
     get_cd_official_service,
     get_sldl_official_service,
     get_sldu_official_service,
 )
 
 router = APIRouter()
+
+
+# All your representatives given an address
+@router.get("/{address}")
+async def get_all_your_officials(address: str):
+    officials = await get_all_your_officials_service(address)
+    return JSONResponse(content=officials.model_dump())
 
 
 # Congressional District Official

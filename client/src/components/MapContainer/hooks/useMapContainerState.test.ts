@@ -54,4 +54,6 @@ describe('useMapContainerState', () => {
 		act(() => result.current.toggleSidebar());
 		expect(result.current.sidebarOpen).toBe(true);
 	});
+
+	// TODO: add test for left sidebar... or wait until it is moved to the right...
 });

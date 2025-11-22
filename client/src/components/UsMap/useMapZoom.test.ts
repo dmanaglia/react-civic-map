@@ -7,22 +7,27 @@ function createSvgRefs() {
 	const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
 	const gStates = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 	const gDistricts = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+	const gOfficials = document.createElementNS('http://www.w3.org/2000/svg', 'g');
 
 	// Add paths to verify stroke-width logic
 	const statePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
 	const districtPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+	const officialPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
 
 	gStates.appendChild(statePath);
 	gDistricts.appendChild(districtPath);
+	gOfficials.appendChild(officialPath);
 
 	document.body.appendChild(svg);
 	svg.appendChild(gStates);
 	svg.appendChild(gDistricts);
+	svg.appendChild(gOfficials);
 
 	return {
 		svgRef: { current: svg },
 		gStatesRef: { current: gStates },
-		gFeatureRef: { current: gDistricts },
+		gDistrictRef: { current: gDistricts },
+		gOfficialRef: { current: gOfficials },
 	};
 }
 
@@ -37,7 +42,9 @@ describe('useMapZoom', () => {
 	it('initializes without errors and returns API', () => {
 		const refs = createSvgRefs();
 
-		const { result } = renderHook(() => useMapZoom(refs.svgRef, refs.gStatesRef, refs.gFeatureRef));
+		const { result } = renderHook(() =>
+			useMapZoom(refs.svgRef, refs.gStatesRef, refs.gDistrictRef, refs.gOfficialRef),
+		);
 
 		// returned API should exist
 		expect(result.current).toHaveProperty('zoomTransformRef');
@@ -49,9 +56,10 @@ describe('useMapZoom', () => {
 	it('returns early if any ref is null (effect does not crash)', () => {
 		const svgRef = { current: null };
 		const gStatesRef = { current: null };
-		const gFeatureRef = { current: null };
+		const gDistrictRef = { current: null };
+		const gOfficialRef = { current: null };
 
-		const { result } = renderHook(() => useMapZoom(svgRef, gStatesRef, gFeatureRef));
+		const { result } = renderHook(() => useMapZoom(svgRef, gStatesRef, gDistrictRef, gOfficialRef));
 
 		// hook should still return its API
 		expect(result.current).toHaveProperty('resetZoom');
@@ -67,15 +75,18 @@ describe('useMapZoom', () => {
 
 		const { g: gStates, path: statesPath } = makeG();
 		const { g: gDistricts, path: districtsPath } = makeG();
+		const { g: gOfficials, path: officialPath } = makeG();
 
 		svg.appendChild(gStates);
 		svg.appendChild(gDistricts);
+		svg.appendChild(gOfficials);
 
 		const svgRef = { current: svg };
 		const gStatesRef = { current: gStates };
-		const gFeatureRef = { current: gDistricts };
+		const gDistrictRef = { current: gDistricts };
+		const gOfficialRef = { current: gOfficials };
 
-		const { result } = renderHook(() => useMapZoom(svgRef, gStatesRef, gFeatureRef));
+		const { result } = renderHook(() => useMapZoom(svgRef, gStatesRef, gDistrictRef, gOfficialRef));
 
 		// mock zoom transform
 		const mockTransform = {
@@ -95,5 +106,6 @@ describe('useMapZoom', () => {
 		// 0.5 / k = 0.25
 		expect(statesPath.getAttribute('stroke-width')).toBe('0.25');
 		expect(districtsPath.getAttribute('stroke-width')).toBe('0.25');
+		expect(officialPath.getAttribute('stroke-width')).toBe('0.25');
 	});
 });

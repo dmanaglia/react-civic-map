@@ -2,6 +2,7 @@ import { MapHeader } from '../MapHeader';
 import { OfficialSidebar } from '../OfficialsData/OfficialSidebar';
 import { Spinner } from '../Spinner';
 import { UsMap } from '../UsMap/UsMap';
+import { useAddressData } from './hooks/useAddressData';
 import { useGeoData } from './hooks/useGeoData';
 import { useMapContainerState } from './hooks/useMapContainerState';
 import { useOfficialsData } from './hooks/useOfficialsData';
@@ -13,43 +14,53 @@ export const MapContainer = () => {
 		official,
 		type,
 		sidebarOpen,
+		sidebarType,
 		handleSetState,
 		handleSetDistrict,
 		handleSetType,
 		toggleSidebar,
 		setOfficial,
+		setSidebarType,
 	} = useMapContainerState();
 	const { loadingOfficial } = useOfficialsData({ district, state, setOfficial });
 	const { nationalMap, districtMap, summary, loadingMap } = useGeoData(type, state);
+	const { officialList, loadingAddressOfficials, findOfficials } = useAddressData();
 
 	return (
 		<div>
 			<MapHeader type={type} setType={handleSetType} />
 			{nationalMap && (
-				<main
+				<div
 					className={`flex relative`}
 					style={{
 						maxHeight: '80vh',
 					}}
 				>
 					<UsMap
+						officialList={officialList}
 						districtMap={districtMap}
 						nationalMap={nationalMap}
 						type={type}
+						sidebarType={sidebarType}
 						setState={handleSetState}
 						setDistrict={handleSetDistrict}
+						// setSidebarType={setSidebarType}
 					/>
 					<OfficialSidebar
 						district={district}
-						loading={loadingOfficial}
+						loading={loadingOfficial || loadingAddressOfficials}
 						official={official}
-						onToggle={toggleSidebar}
+						officialList={officialList}
 						open={sidebarOpen}
 						state={state}
 						summary={summary}
 						type={type}
+						sidebarType={sidebarType}
+						onToggle={toggleSidebar}
+						findOfficials={findOfficials}
+						setSidebarType={setSidebarType}
 					/>
-				</main>
+				</div>
 			)}
 
 			{loadingMap && <Spinner fullscreen />}

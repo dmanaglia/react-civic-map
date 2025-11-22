@@ -26,6 +26,7 @@ def normalize_state_legislator(data: dict) -> Official:
         name=data.get("name") or f"{data.get('given_name')} {data.get('family_name')}",
         party=data.get("party"),
         state=data.get("jurisdiction", {}).get("name"),
+        title=data.get("current_role", {}).get("title", ""),
         district=data.get("current_role", {}).get("district"),
         depiction_url=data.get("image"),
         metadata=data,

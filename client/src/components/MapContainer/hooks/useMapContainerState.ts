@@ -8,6 +8,7 @@ export function useMapContainerState() {
 	const [official, setOfficial] = useState<Official | null>(null);
 	const [type, setType] = useState<MapType>('cd');
 	const [sidebarOpen, setSidebarOpen] = useState(true);
+	const [sidebarType, setSidebarType] = useState<'address' | 'summary'>('summary');
 
 	const handleSetState = useCallback(
 		(newState: State | null) => {
@@ -40,10 +41,12 @@ export function useMapContainerState() {
 		official,
 		type,
 		sidebarOpen,
+		sidebarType,
 		handleSetState,
 		handleSetDistrict,
 		handleSetType,
 		toggleSidebar,
 		setOfficial,
+		setSidebarType,
 	};
 }

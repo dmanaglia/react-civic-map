@@ -1,33 +1,45 @@
 import { Close, Menu } from '@mui/icons-material';
-import { Drawer } from '@mui/material';
+import { Drawer, Tab, Tabs } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import type { District, FederalSummary, MapType, StateSummary, State } from '../../models/MapProps';
-import type { Official } from '../../models/OfficialProps';
+import type { AddressOfficials, Official } from '../../models/OfficialProps';
 import { Spinner } from '../Spinner';
+import { AddressLookupSidebar } from './AddressLookup/AddressLookupSidebar';
 import { GovSummary } from './GovSummary/GovSummary';
-import { Representative } from './Representative';
 
 interface OfficialSidebarProps {
 	district: District | null;
 	loading: boolean;
 	official: Official | null;
-	onToggle: () => void;
+	officialList: AddressOfficials | null;
 	open: boolean;
 	state: State | null;
 	summary: FederalSummary | StateSummary | null;
 	type: MapType;
+	sidebarType: 'summary' | 'address';
+	onToggle: () => void;
+	findOfficials: (address: string) => Promise<void>;
+	setSidebarType: (type: 'summary' | 'address') => void;
 }
 
 export const OfficialSidebar = ({
 	loading,
 	open,
-	onToggle,
 	state,
-	type,
+	summary,
 	district,
 	official,
-	summary,
+	officialList,
+	type,
+	sidebarType,
+	onToggle,
+	findOfficials,
+	setSidebarType,
 }: OfficialSidebarProps) => {
+	const handleChange = (_: React.SyntheticEvent, activeTab: 'summary' | 'address') => {
+		setSidebarType(activeTab);
+	};
+
 	return (
 		<>
 			{/* Toggle handle when closed */}
@@ -73,21 +85,39 @@ export const OfficialSidebar = ({
 					},
 				}}
 			>
+				{/* Sidebar switch */}
+				<Tabs
+					value={sidebarType}
+					onChange={handleChange}
+					aria-label="Branches of Government"
+					variant="fullWidth"
+					textColor="primary"
+					indicatorColor="primary"
+					className="border-b border-gray-200 mb-3"
+				>
+					<Tab label="Address Lookup" value="address" className="font-semibold normal-case" />
+					<Tab label="Gov Summary" value="summary" className="font-semibold normal-case" />
+				</Tabs>
+
 				{/* Header */}
 				<div className="flex items-center justify-between gap-3 p-6 pb-0">
-					<div>
-						<h1 className="text-3xl font-semibold">{state ? state.NAME : 'Federal'}</h1>
-						{district && (
-							<h3 className="text-base font-semibold text-gray-800 m-0">{district.NAME}</h3>
-						)}
-						<small className="text-sm text-gray-500">
-							{district
-								? 'Representative details'
-								: type === 'cd'
-									? 'Federal Representation'
-									: 'Government Details'}
-						</small>
-					</div>
+					{sidebarType === 'address' ? (
+						<h2 className="text-l font-semibold">Lookup Your Representatives:</h2>
+					) : (
+						<div>
+							<h1 className="text-3xl font-semibold">{state ? state.NAME : 'Federal'}</h1>
+							{district && (
+								<h3 className="text-base font-semibold text-gray-800 m-0">{district.NAME}</h3>
+							)}
+							<small className="text-sm text-gray-500">
+								{district
+									? 'Representative details'
+									: type === 'cd'
+										? 'Federal Representation'
+										: 'Government Details'}
+							</small>
+						</div>
+					)}
 
 					<IconButton
 						onClick={onToggle}
@@ -99,14 +129,22 @@ export const OfficialSidebar = ({
 				</div>
 
 				{/* Content */}
-				{loading ? (
+				{loading && (
 					<div className="flex justify-center mt-6">
 						<Spinner />
 					</div>
-				) : official ? (
-					<Representative state={state} district={district} official={official} />
+				)}
+
+				{sidebarType === 'address' ? (
+					<AddressLookupSidebar findOfficials={findOfficials} officialList={officialList} />
 				) : (
-					summary && <GovSummary summary={summary} type={type} state={state} district={district} />
+					<GovSummary
+						summary={summary}
+						type={type}
+						state={state}
+						district={district}
+						official={official}
+					/>
 				)}
 			</Drawer>
 		</>

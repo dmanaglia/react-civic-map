@@ -28,17 +28,23 @@ export const Representative = ({ official }: RepresentativeProps) => {
 				/>
 			)}
 			<CardContent className="p-0 flex flex-col">
-				<Typography variant="h6" component="h2" className="text-gray-900 leading-tight">
-					{official.name}
-				</Typography>
+				{official.title && (
+					<Typography variant="body1" component="h4" className="text-gray-900 leading-tight">
+						{official.title}
+					</Typography>
+				)}
 
 				{/* @ts-expect-error need to adjust the official object to include title on the backend */}
-				{official?.metadata?.current_role?.title && (
+				{!official.title && official?.metadata?.current_role?.title && (
 					<Typography variant="body1" component="h4" className="text-gray-900 leading-tight">
 						{/* @ts-expect-error need to adjust the official object to include title on the backend */}
 						{official?.metadata?.current_role?.title}
 					</Typography>
 				)}
+
+				<Typography variant="h6" component="h4" className="text-gray-900 leading-tight">
+					{official.name}
+				</Typography>
 
 				{official.party && (
 					<Typography variant="body2" className="mt-1 text-gray-500 font-medium">
