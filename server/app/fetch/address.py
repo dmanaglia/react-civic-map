@@ -13,10 +13,15 @@ load_dotenv()
 GEOCODING_APIKEY = os.getenv("GEOCODING_APIKEY")
 
 
-gmaps = googlemaps.Client(key=GEOCODING_APIKEY)
+def get_gmaps_client():
+    if not GEOCODING_APIKEY:
+        raise RuntimeError("GEOCODING_APIKEY is not set.")
+
+    return googlemaps.Client(key=GEOCODING_APIKEY)
 
 
 def fetch_coords_from_address(address: str):
+    gmaps = get_gmaps_client()
     geocode_result = gmaps.geocode(address)
     if not geocode_result:
         raise ValueError("No geocode results found")
