@@ -17,9 +17,9 @@ export const AddressInput = ({ findOfficials }: AddressInputProps) => {
 	};
 
 	return (
-		<>
+		<div className="p-3 flex flex-col">
 			<TextField variant="standard" value={address} onChange={updateAddress} />
 			<Button onClick={submit}>Submit</Button>
-		</>
+		</div>
 	);
 };

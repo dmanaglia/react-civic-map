@@ -7,20 +7,23 @@ export function useMapContainerState() {
 	const [district, setDistrict] = useState<District | null>(null);
 	const [official, setOfficial] = useState<Official | null>(null);
 	const [type, setType] = useState<MapType>('cd');
-	const [sidebarOpen, setSidebarOpen] = useState(true);
+	const [sidebarOpenR, setSidebarOpenR] = useState(true);
+	const [sidebarOpenL, setSidebarOpenL] = useState(false);
 
 	const handleSetState = useCallback(
 		(newState: State | null) => {
 			setState(newState);
 			setOfficial(null);
-			setSidebarOpen(true);
+			setSidebarOpenR(true);
+			setSidebarOpenL(false);
 		},
 		[setOfficial],
 	);
 
 	const handleSetDistrict = useCallback((newDistrict: District | null) => {
 		setDistrict(newDistrict);
-		setSidebarOpen(true);
+		setSidebarOpenR(true);
+		setSidebarOpenL(false);
 	}, []);
 
 	const handleSetType = useCallback(
@@ -32,18 +35,29 @@ export function useMapContainerState() {
 		[setOfficial],
 	);
 
-	const toggleSidebar = () => setSidebarOpen((open) => !open);
+	const toggleSidebarR = () =>
+		setSidebarOpenR((open) => {
+			if (sidebarOpenL) setSidebarOpenL(false);
+			return !open;
+		});
+	const toggleSidebarL = () =>
+		setSidebarOpenL((open) => {
+			if (sidebarOpenR) setSidebarOpenR(false);
+			return !open;
+		});
 
 	return {
 		state,
 		district,
 		official,
 		type,
-		sidebarOpen,
+		sidebarOpenR,
+		sidebarOpenL,
 		handleSetState,
 		handleSetDistrict,
 		handleSetType,
-		toggleSidebar,
+		toggleSidebarR,
+		toggleSidebarL,
 		setOfficial,
 	};
 }

@@ -7,16 +7,16 @@ describe('useMapContainerState', () => {
 		const { result } = renderHook(() => useMapContainerState());
 
 		// sidebarOpen is initially true
-		expect(result.current.sidebarOpen).toBe(true);
+		expect(result.current.sidebarOpenR).toBe(true);
 
 		// Close sidebar first to test toggle
-		act(() => result.current.toggleSidebar());
-		expect(result.current.sidebarOpen).toBe(false);
+		act(() => result.current.toggleSidebarR());
+		expect(result.current.sidebarOpenR).toBe(false);
 
 		// Set district
 		act(() => result.current.handleSetDistrict({ TYPE: 'sldu', NAME: 'Mock', ID: '1' }));
 		expect(result.current.district?.NAME).toBe('Mock');
-		expect(result.current.sidebarOpen).toBe(true); // should open automatically
+		expect(result.current.sidebarOpenR).toBe(true); // should open automatically
 	});
 
 	it('handleSetState sets state, clears official, and opens sidebar', () => {
@@ -28,7 +28,7 @@ describe('useMapContainerState', () => {
 		act(() => result.current.handleSetState({ NAME: 'Alabama', STATEFP: 'AL', USPS: '01' }));
 		expect(result.current.state?.NAME).toBe('Alabama');
 		expect(result.current.official).toBeNull();
-		expect(result.current.sidebarOpen).toBe(true);
+		expect(result.current.sidebarOpenR).toBe(true);
 	});
 
 	it('handleSetType resets district and official', () => {
@@ -46,12 +46,14 @@ describe('useMapContainerState', () => {
 	it('toggleSidebar toggles the sidebarOpen state', () => {
 		const { result } = renderHook(() => useMapContainerState());
 
-		expect(result.current.sidebarOpen).toBe(true);
+		expect(result.current.sidebarOpenR).toBe(true);
 
-		act(() => result.current.toggleSidebar());
-		expect(result.current.sidebarOpen).toBe(false);
+		act(() => result.current.toggleSidebarR());
+		expect(result.current.sidebarOpenR).toBe(false);
 
-		act(() => result.current.toggleSidebar());
-		expect(result.current.sidebarOpen).toBe(true);
+		act(() => result.current.toggleSidebarR());
+		expect(result.current.sidebarOpenR).toBe(true);
 	});
+
+	// TODO: add test for left sidebar... or wait until it is moved to the right...
 });
