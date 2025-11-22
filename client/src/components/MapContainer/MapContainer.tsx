@@ -42,9 +42,10 @@ export const MapContainer = () => {
 						nationalMap={nationalMap}
 						type={type}
 						sidebarType={sidebarType}
+						state={state}
+						district={district}
 						setState={handleSetState}
 						setDistrict={handleSetDistrict}
-						// setSidebarType={setSidebarType}
 					/>
 					<OfficialSidebar
 						district={district}

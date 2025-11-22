@@ -1,5 +1,5 @@
 import type { FeatureCollection } from 'geojson';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import type { District, State } from '../../models/MapProps';
 import type { AddressOfficials } from '../../models/OfficialProps';
 import { SvgWrapper } from './SvgWrapper';
@@ -15,6 +15,8 @@ interface UsMapProps {
 	nationalMap: FeatureCollection | null;
 	type: string;
 	sidebarType: 'summary' | 'address';
+	state: State | null;
+	district: District | null;
 	setState: (stateId: State | null) => void;
 	setDistrict: (feature: District | null) => void;
 }
@@ -25,14 +27,17 @@ export const UsMap: React.FC<UsMapProps> = ({
 	districtMap,
 	type,
 	sidebarType,
+	state,
+	district,
 	setState,
 	setDistrict,
 }) => {
+	const width = 960;
+	const height = 600;
 	const svgRef = useRef<SVGSVGElement | null>(null);
 	const gStatesRef = useRef<SVGGElement | null>(null);
 	const gDistrictRef = useRef<SVGGElement | null>(null);
 	const gOfficialsRef = useRef<SVGGElement | null>(null);
-
 	const { showTooltip, hideTooltip } = useTooltip();
 	const { zoomToBounds, applyCurrentTransform } = useMapZoom(
 		svgRef,
@@ -40,6 +45,15 @@ export const UsMap: React.FC<UsMapProps> = ({
 		gDistrictRef,
 		gOfficialsRef,
 	);
+
+	useEffect(() => {
+		if (sidebarType === 'address') return;
+		if (district) {
+			zoomToBounds(district.bounds, width, height);
+			return;
+		}
+		if (state) zoomToBounds(state.bounds, width, height);
+	}, [state, district, type, sidebarType, zoomToBounds]);
 
 	// draw address point and districts containing it
 	useDrawOfficials({
@@ -58,7 +72,6 @@ export const UsMap: React.FC<UsMapProps> = ({
 		svgRef,
 		gStatesRef,
 		nationalMap,
-		zoomToBounds,
 		applyCurrentTransform,
 		setState,
 		setDistrict,
@@ -73,7 +86,6 @@ export const UsMap: React.FC<UsMapProps> = ({
 		districtMap,
 		type,
 		sidebarType,
-		zoomToBounds,
 		applyCurrentTransform,
 		setDistrict,
 		showTooltip,
