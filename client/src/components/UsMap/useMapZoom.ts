@@ -17,7 +17,7 @@ export const useMapZoom = (
 		const svg = d3.select(svgRef.current);
 		const gStates = d3.select(gStatesRef.current);
 		const gDistricts = d3.select(gDistrictRef.current);
-		const gOfficial = d3.select(gOfficialRef.current);
+		const gOfficials = d3.select(gOfficialRef.current);
 
 		const zoom = d3
 			.zoom<SVGSVGElement, unknown>()
@@ -26,7 +26,7 @@ export const useMapZoom = (
 				zoomTransformRef.current = event.transform;
 				gStates.attr('transform', event.transform.toString());
 				gDistricts.attr('transform', event.transform.toString());
-				gOfficial.attr('transform', event.transform.toString());
+				gOfficials.attr('transform', event.transform.toString());
 				gStates.selectAll('path').attr('stroke-width', 0.5 / event.transform.k);
 				gDistricts.selectAll('path').attr('stroke-width', 0.5 / event.transform.k);
 			});
@@ -69,15 +69,15 @@ export const useMapZoom = (
 		if (!zoomTransformRef.current) return;
 		const gStates = d3.select(gStatesRef.current);
 		const gDistricts = d3.select(gDistrictRef.current);
-		const gOfficial = d3.select(gOfficialRef.current);
+		const gOfficials = d3.select(gOfficialRef.current);
 		const t = zoomTransformRef.current;
 
 		gStates.attr('transform', t.toString());
 		gDistricts.attr('transform', t.toString());
-		gOfficial.attr('transform', t.toString());
+		gOfficials.attr('transform', t.toString());
 		gStates.selectAll('path').attr('stroke-width', 0.5 / t.k);
 		gDistricts.selectAll('path').attr('stroke-width', 0.5 / t.k);
-		gOfficial.selectAll('path').attr('stroke-width', 0.5 / t.k);
+		gOfficials.selectAll('path').attr('stroke-width', 0.5 / t.k);
 	}, [gDistrictRef, gStatesRef, gOfficialRef]);
 
 	return { zoomTransformRef, zoomToBounds, resetZoom, applyCurrentTransform };

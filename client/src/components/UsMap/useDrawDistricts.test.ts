@@ -10,7 +10,7 @@ vi.mock('./getDistrictClass', () => ({
 
 describe('useDrawDistricts (renderHook)', () => {
 	let svgRef: React.RefObject<SVGSVGElement>;
-	let gFeatureRef: React.RefObject<SVGGElement>;
+	let gDistrictRef: React.RefObject<SVGGElement>;
 	let zoomToBounds: (
 		bounds: [[number, number], [number, number]],
 		width: number,
@@ -25,7 +25,7 @@ describe('useDrawDistricts (renderHook)', () => {
 		svgRef = {
 			current: document.createElement('svg') as unknown as SVGSVGElement,
 		} as React.RefObject<SVGSVGElement>;
-		gFeatureRef = {
+		gDistrictRef = {
 			current: document.createElement('g') as unknown as SVGGElement,
 		} as React.RefObject<SVGGElement>;
 		zoomToBounds = vi.fn();
@@ -39,9 +39,10 @@ describe('useDrawDistricts (renderHook)', () => {
 		renderHook(() =>
 			useDrawDistricts({
 				svgRef,
-				gFeatureRef,
+				gDistrictRef,
 				districtMap: null,
 				type: 'cd',
+				sidebarType: 'summary',
 				zoomToBounds,
 				applyCurrentTransform,
 				setDistrict,
@@ -79,9 +80,10 @@ describe('useDrawDistricts (renderHook)', () => {
 		renderHook(() =>
 			useDrawDistricts({
 				svgRef,
-				gFeatureRef,
+				gDistrictRef,
 				districtMap,
 				type: 'cd',
+				sidebarType: 'summary',
 				zoomToBounds,
 				applyCurrentTransform,
 				setDistrict,
@@ -90,7 +92,7 @@ describe('useDrawDistricts (renderHook)', () => {
 			}),
 		);
 
-		const path = gFeatureRef.current.querySelector('path')!;
+		const path = gDistrictRef.current.querySelector('path')!;
 		expect(path).toBeTruthy();
 		expect(path.getAttribute('class')).toBe('mock-class');
 
@@ -127,8 +129,8 @@ describe('useDrawDistricts (renderHook)', () => {
 		expect(applyCurrentTransform).toHaveBeenCalled();
 	});
 
-	it('appends a <g> to svg if gFeatureRef.current is null', () => {
-		const nullgFeatureRef = {
+	it('appends a <g> to svg if gDistrictRef.current is null', () => {
+		const nullgDistrictRef = {
 			current: null,
 		} as React.RefObject<SVGGElement | null>;
 
@@ -157,9 +159,10 @@ describe('useDrawDistricts (renderHook)', () => {
 		renderHook(() =>
 			useDrawDistricts({
 				svgRef,
-				gFeatureRef: nullgFeatureRef,
+				gDistrictRef: nullgDistrictRef,
 				districtMap,
 				type: 'cd',
+				sidebarType: 'summary',
 				zoomToBounds,
 				applyCurrentTransform,
 				setDistrict,
@@ -199,9 +202,10 @@ describe('useDrawDistricts (renderHook)', () => {
 		renderHook(() =>
 			useDrawDistricts({
 				svgRef,
-				gFeatureRef,
+				gDistrictRef,
 				districtMap,
 				type: 'sldl',
+				sidebarType: 'summary',
 				zoomToBounds,
 				applyCurrentTransform,
 				setDistrict,
@@ -210,7 +214,7 @@ describe('useDrawDistricts (renderHook)', () => {
 			}),
 		);
 
-		const path = gFeatureRef.current.querySelector('path')!;
+		const path = gDistrictRef.current.querySelector('path')!;
 		expect(path).toBeTruthy();
 		expect(path.getAttribute('class')).toBe('mock-class');
 

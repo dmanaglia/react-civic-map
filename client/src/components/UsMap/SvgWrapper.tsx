@@ -5,7 +5,6 @@ interface SvgWrapperProps {
 	gStatesRef: React.RefObject<SVGGElement | null>;
 	gDistrictRef: React.RefObject<SVGGElement | null>;
 	gOfficialsRef: React.RefObject<SVGGElement | null>;
-	sidebarType: 'summary' | 'address';
 }
 
 export const SvgWrapper: React.FC<SvgWrapperProps> = ({

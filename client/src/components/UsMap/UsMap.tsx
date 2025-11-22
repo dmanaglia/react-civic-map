@@ -86,7 +86,6 @@ export const UsMap: React.FC<UsMapProps> = ({
 			gOfficialsRef={gOfficialsRef}
 			gStatesRef={gStatesRef}
 			gDistrictRef={gDistrictRef}
-			sidebarType={sidebarType}
 		/>
 	);
 };
