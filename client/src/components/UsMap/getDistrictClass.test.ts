@@ -5,11 +5,11 @@ describe('getDistrictClass', () => {
 	const base = 'cursor-pointer stroke-black hover:drop-shadow transition-all transition-stroke ';
 
 	const classes = {
-		unknown: base + 'fill-unknown hover:fill-gray-600',
-		dem: base + 'fill-democrat hover:fill-blue-600',
-		rep: base + 'fill-republican hover:fill-red-700',
-		ind: base + 'fill-independent hover:fill-green-600',
-		other: base + 'fill-unknown hover:fill-orange-600',
+		unknown: base + 'fill-unknown hover:fill-unknown-hover',
+		dem: base + 'fill-democrat hover:fill-democrat-hover',
+		rep: base + 'fill-republican hover:fill-republican-hover',
+		ind: base + 'fill-independent hover:fill-independent-hover',
+		other: base + 'fill-unknown hover:fill-unknown-hover',
 	};
 
 	// --- Unknown -----
