@@ -93,7 +93,7 @@ export const OfficialSidebar = ({
 					variant="fullWidth"
 					textColor="primary"
 					indicatorColor="primary"
-					className="border-b border-gray-200 mb-3"
+					className="border-b mb-3"
 				>
 					<Tab label="Address Lookup" value="address" className="font-semibold normal-case" />
 					<Tab label="Gov Summary" value="summary" className="font-semibold normal-case" />
@@ -106,10 +106,8 @@ export const OfficialSidebar = ({
 					) : (
 						<div>
 							<h1 className="text-3xl font-semibold">{state ? state.NAME : 'Federal'}</h1>
-							{district && (
-								<h3 className="text-base font-semibold text-gray-800 m-0">{district.NAME}</h3>
-							)}
-							<small className="text-sm text-gray-500">
+							{district && <h3 className="text-base font-semibold m-0">{district.NAME}</h3>}
+							<small className="text-sm">
 								{district
 									? 'Representative details'
 									: type === 'cd'
@@ -119,11 +117,7 @@ export const OfficialSidebar = ({
 						</div>
 					)}
 
-					<IconButton
-						onClick={onToggle}
-						aria-label="Close sidebar"
-						className="rounded-md hover:bg-gray-100"
-					>
+					<IconButton onClick={onToggle} aria-label="Close sidebar" className="rounded-md">
 						<Close />
 					</IconButton>
 				</div>

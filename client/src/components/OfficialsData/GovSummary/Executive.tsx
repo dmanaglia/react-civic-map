@@ -13,10 +13,10 @@ interface ExecutiveProps {
 export const Executive = ({ officials, state, district }: ExecutiveProps) => {
 	return !officials.length ? (
 		<Box className="text-center py-6">
-			<Typography variant="h6" className="font-semibold text-gray-900 mb-1">
+			<Typography variant="h6" className="font-semibold text-foreground mb-1">
 				Executive Branch
 			</Typography>
-			<Typography variant="body2" className="text-gray-500">
+			<Typography variant="body2" className="text-foreground">
 				Work in progress…
 			</Typography>
 		</Box>
