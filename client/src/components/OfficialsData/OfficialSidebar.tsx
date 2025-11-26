@@ -52,17 +52,15 @@ export const OfficialSidebar = ({
 					className="
 						fixed top-80 z-50
 						w-10 h-10 p-0
-						bg-white border border-gray-300
 						rounded-md shadow 
 						flex items-center justify-center
-						hover:bg-gray-100
 						transition
 					"
 					sx={{
 						margin: 1,
 					}}
 				>
-					<Menu className="w-6 h-6 text-gray-800" />
+					<Menu className="w-6 h-6" />
 				</IconButton>
 			)}
 
