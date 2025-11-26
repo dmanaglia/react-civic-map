@@ -17,7 +17,7 @@ interface MapHeaderProps {
 
 export const MapHeader = ({ type, setType }: MapHeaderProps) => {
 	return (
-		<div className="bg-white/95 m-4 px-4 py-3 rounded-xl flex justify-between flex-wrap">
+		<div className="bg-card m-4 px-4 py-3 rounded-xl flex justify-between flex-wrap">
 			{featureTypes.map((feature) => (
 				<Chip
 					key={feature.id}

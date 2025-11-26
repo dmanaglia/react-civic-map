@@ -14,7 +14,7 @@ export const SvgWrapper: React.FC<SvgWrapperProps> = ({
 	gOfficialsRef,
 }) => {
 	return (
-		<div className="relative w-full max-h-11/12 border-4 border-double border-blue-800 bg-red-50">
+		<div className="relative w-full max-h-11/12 border-4 border-double">
 			<div className="w-full h-full">
 				<svg
 					ref={svgRef}

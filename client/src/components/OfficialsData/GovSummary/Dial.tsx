@@ -1,31 +1,35 @@
-const computePercents = (dem: number, rep: number, ind: number, vac: number = 0) => {
+const computePercents = (dem: number, rep: number, ind: number, oth: number, vac: number = 0) => {
 	const total = Math.max(1, dem + rep + ind + vac || 0); // avoid divide-by-zero
 	const d = (dem / total) * 100;
 	const r = (rep / total) * 100;
 	const i = (ind / total) * 100;
+	const o = (oth / total) * 100;
 	const v = (vac / total) * 100;
-	return [d, r, i, v];
+	return [d, r, i, o, v];
 };
 
 export const Dial = ({
 	dem,
 	rep,
 	ind,
+	oth,
 	vac = 0,
 }: {
 	dem: number;
 	rep: number;
 	ind: number;
+	oth: number;
 	vac: number;
 }) => {
-	const [dPerc, rPerc, iPerc, vPerc] = computePercents(dem, rep, ind, vac);
+	const [dPerc, rPerc, iPerc, oPerc, vPerc] = computePercents(dem, rep, ind, oth, vac);
 	// Convert percent-of-360 to stroke-dasharray values where circumference is 100
 	// We'll draw arcs with strokeDasharray = "<portion> 100"
 	// To stack arcs we use strokeDashoffset to shift start points.
 	const offsetDem = 0;
 	const offsetRep = dPerc;
 	const offsetInd = dPerc + rPerc;
-	const offsetVac = dPerc + rPerc + vPerc;
+	const offsetOth = dPerc + rPerc + iPerc;
+	const offsetVac = dPerc + rPerc + iPerc + oPerc;
 
 	const totalSeats = dem + rep + ind + vac;
 
@@ -38,7 +42,7 @@ export const Dial = ({
 				aria-label="Seat distribution dial"
 			>
 				{/* Background track */}
-				<circle cx="18" cy="18" r="15.9" strokeWidth="3" fill="none" className="stroke-gray-200" />
+				<circle cx="18" cy="18" r="15.9" strokeWidth="3" fill="none" />
 
 				{/* Democrats */}
 				<circle
@@ -49,7 +53,7 @@ export const Dial = ({
 					fill="none"
 					strokeDasharray={`${dPerc} ${100 - dPerc}`}
 					strokeDashoffset={100 - offsetDem}
-					className="stroke-blue-600 transition-all duration-700 ease-out stroke-linecap-round"
+					className="stroke-democrat transition-all duration-700 ease-out stroke-linecap-round"
 					transform="rotate(-90 18 18)"
 				/>
 
@@ -63,7 +67,7 @@ export const Dial = ({
 						fill="none"
 						strokeDasharray={`${rPerc} ${100 - rPerc}`}
 						strokeDashoffset={100 - offsetRep}
-						className="stroke-red-500 transition-all duration-700 ease-out stroke-linecap-round"
+						className="stroke-republican transition-all duration-700 ease-out stroke-linecap-round"
 						transform="rotate(-90 18 18)"
 					/>
 				)}
@@ -78,10 +82,23 @@ export const Dial = ({
 						fill="none"
 						strokeDasharray={`${iPerc} ${100 - iPerc}`}
 						strokeDashoffset={100 - offsetInd}
-						className="stroke-gray-500 transition-all duration-700 ease-out stroke-linecap-round"
+						className="stroke-independent transition-all duration-700 ease-out stroke-linecap-round"
 						transform="rotate(-90 18 18)"
 					/>
 				)}
+
+				{/* Other */}
+				<circle
+					cx="18"
+					cy="18"
+					r="15.9"
+					strokeWidth="3"
+					fill="none"
+					strokeDasharray={`${oPerc} ${100 - oPerc}`}
+					strokeDashoffset={100 - offsetOth}
+					className="stroke-unknown transition-all duration-700 ease-out stroke-linecap-round"
+					transform="rotate(-90 18 18)"
+				/>
 
 				{/* Vacancies */}
 				{vPerc > 0 && (
@@ -93,7 +110,7 @@ export const Dial = ({
 						fill="none"
 						strokeDasharray={`${vPerc} ${100 - vPerc}`}
 						strokeDashoffset={100 - offsetVac}
-						className="stroke-amber-500 transition-all duration-700 ease-out stroke-linecap-round"
+						className="stroke-vacant transition-all duration-700 ease-out stroke-linecap-round"
 						transform="rotate(-90 18 18)"
 					/>
 				)}
@@ -101,8 +118,8 @@ export const Dial = ({
 
 			{/* Center Count */}
 			<div className="absolute flex flex-col items-center pointer-events-none text-center">
-				<div className="text-lg font-bold text-slate-900">{totalSeats}</div>
-				<div className="text-xs text-gray-500">Seats</div>
+				<div className="text-lg font-bold text-foreground">{totalSeats}</div>
+				<div className="text-xs text-foreground">Seats</div>
 			</div>
 		</div>
 	);

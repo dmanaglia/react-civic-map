@@ -1,25 +1,24 @@
-// src/components/UsMap/getDistrictClass.ts
 export const getDistrictClass = (party?: string) => {
 	const baseClass =
 		'cursor-pointer stroke-black hover:drop-shadow transition-all transition-stroke ';
 
-	if (!party) return baseClass + 'fill-unknown hover:fill-gray-600';
+	if (!party) return baseClass + 'fill-unknown hover:fill-unknown-hover';
 
 	const p = party.toLowerCase();
 
 	if (p.includes('democratic')) {
-		return baseClass + 'fill-democrat hover:fill-blue-600';
+		return baseClass + 'fill-democrat hover:fill-democrat-hover';
 	}
 
 	if (p.includes('republican')) {
-		return baseClass + 'fill-republican hover:fill-red-700';
+		return baseClass + 'fill-republican hover:fill-republican-hover';
 	}
 
 	if (p.includes('independent')) {
-		return baseClass + 'fill-independent hover:fill-green-600';
+		return baseClass + 'fill-independent hover:fill-independent-hover';
 	}
 
-	return baseClass + 'fill-unknown hover:fill-orange-600';
+	return baseClass + 'fill-unknown hover:fill-unknown-hover';
 };
 
 export default getDistrictClass;

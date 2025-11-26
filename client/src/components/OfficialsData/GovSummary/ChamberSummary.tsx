@@ -19,11 +19,11 @@ export const ChamberSummary = ({ chamber }: ChamberSummaryProps) => {
 			.filter(({ value }) => value > 0);
 
 	const swatchColors: Record<string, string> = {
-		democrat: 'bg-blue-600',
-		republican: 'bg-red-500',
-		independent: 'bg-gray-500',
-		other: 'bg-gray-400',
-		vacant: 'bg-amber-500',
+		democrat: 'bg-democrat',
+		republican: 'bg-republican',
+		independent: 'bg-independent',
+		other: 'bg-unknown',
+		vacant: 'bg-vacant',
 	};
 
 	return (
@@ -33,6 +33,7 @@ export const ChamberSummary = ({ chamber }: ChamberSummaryProps) => {
 				dem={chamber.democrat}
 				rep={chamber.republican}
 				ind={chamber.independent}
+				oth={chamber.other}
 				vac={chamber.vacant}
 			/>
 
@@ -41,15 +42,15 @@ export const ChamberSummary = ({ chamber }: ChamberSummaryProps) => {
 				{chamberToSortedArray().map(({ key, value }) => (
 					<Box
 						key={key}
-						className="flex items-center justify-between p-2 mb-1 rounded-md bg-white border border-gray-200"
+						className="flex items-center justify-between p-2 mb-1 rounded-md bg-card border border-border"
 					>
 						<Box className="flex items-center">
 							<span
-								className={`w-3 h-3 rounded-sm inline-block mr-2 ${swatchColors[key] ?? 'bg-gray-300'}`}
+								className={`w-3 h-3 rounded-sm inline-block mr-2 ${swatchColors[key] ?? 'bg-muted'}`}
 							/>
-							<Typography className="text-gray-700 text-sm capitalize">{key}</Typography>
+							<Typography className="text-foreground text-sm capitalize">{key}</Typography>
 						</Box>
-						<Typography className="font-bold text-slate-900 text-sm">{value}</Typography>
+						<Typography className="font-bold text-foreground text-sm">{value}</Typography>
 					</Box>
 				))}
 			</Box>

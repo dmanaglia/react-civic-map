@@ -50,7 +50,7 @@ export const Legislative = ({ summary, type, state, district }: LegislativeProps
 
 	if (!data) {
 		return (
-			<Box className="text-gray-600 text-sm text-center py-4">No legislative data available.</Box>
+			<Box className="text-foreground text-sm text-center py-4">No legislative data available.</Box>
 		);
 	}
 
@@ -63,12 +63,9 @@ export const Legislative = ({ summary, type, state, district }: LegislativeProps
 		px: 3,
 		py: 1,
 		transition: 'background-color 0.2s ease',
-		backgroundColor: isActive ? '#2563eb' : '#e5e7eb',
-		color: isActive ? '#fff' : '#374151',
-		'&:hover': {
-			backgroundColor: isActive ? '#1e4fd8' : '#d6d8dd',
-		},
-		boxShadow: isActive ? '0 2px 6px rgba(37, 99, 235, 0.4)' : 'none',
+		backgroundColor: isActive ? 'var(--color-primary)' : 'var(--color-muted)',
+		color: isActive ? 'var(--color-primary-foreground)' : 'var(--color-muted-foreground)',
+		boxShadow: isActive ? '0 2px 6px rgba(59, 130, 246, 0.4)' : 'none',
 	});
 
 	return (

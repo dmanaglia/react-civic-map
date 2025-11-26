@@ -39,7 +39,7 @@ export function useDrawStates({
 			.join('path')
 			.attr(
 				'class',
-				'cursor-pointer fill-light-blue stroke-gray-700 hover:fill-dark-blue hover:drop-shadow transition-all transition-stroke',
+				'cursor-pointer fill-light-blue stroke-map-stroke hover:fill-dark-blue hover:drop-shadow transition-all transition-stroke',
 			)
 			.attr('d', path)
 			.on('click', (event: MouseEvent, feature) => {
