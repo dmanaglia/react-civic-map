@@ -1,8 +1,8 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { UseTheme } from './ThemeContext';
+import { UseSettings } from '../context/SettingsContext';
 
 export const MuiThemeWrapper = ({ children }: React.PropsWithChildren) => {
-	const { isDarkMode } = UseTheme();
+	const { isDarkMode } = UseSettings();
 
 	const theme = createTheme({
 		palette: {

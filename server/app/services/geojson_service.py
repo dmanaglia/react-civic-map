@@ -1,5 +1,7 @@
+from app.fetch.backdrop import Get_Backdrop_Cache
 from app.fetch.census import fetch_and_filter_geojson
 from app.schemas.models import (
+    BackdropData,
     FeatureCollection,
     FederalData,
     FederalResponse,
@@ -155,3 +157,10 @@ async def get_cousub_service(stateFP: str, stateUSPS: str) -> StateResponse:
     geoJson = await fetch_and_filter_geojson(url, state_filter=stateFP)
 
     return StateResponse(summary=state_data.summary, map=geoJson)
+
+
+async def get_backdrop_service() -> BackdropData:
+    backdrop_data = await Get_Backdrop_Cache()
+    return BackdropData(
+        cities=backdrop_data.cities, roads=backdrop_data.roads, water=backdrop_data.water
+    )

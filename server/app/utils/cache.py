@@ -5,23 +5,34 @@ from typing import Optional, Type, TypeVar
 
 import orjson
 
-from app.schemas.models import FederalCache, FederalData, StateCache, StateData
+from app.schemas.models import (
+    BackdropCache,
+    BackdropData,
+    FederalCache,
+    FederalData,
+    StateCache,
+    StateData,
+)
 
 # ---------- CONFIG ----------
 CACHE_DIR = Path("app/cache")
 STATE_CACHE_DIR = CACHE_DIR / "state_cache"
 CACHE_EXPIRATION_DAYS = 30
 STATE_CACHE_DIR.mkdir(parents=True, exist_ok=True)
-T = TypeVar("T", FederalCache, StateCache)
+T = TypeVar("T", FederalCache, StateCache, BackdropCache)
 
 
-def read_cache(model: Type[T], state_abbr: Optional[str] = None) -> Optional[T]:
+def read_cache(
+    model: Type[T], backdrop: Optional[bool] = False, state_abbr: Optional[str] = None
+) -> Optional[T]:
     """
     Reads and validates cached data.
     Returns a parsed Pydantic model instance if valid and fresh.
     """
     if state_abbr:
         file_path = STATE_CACHE_DIR / f"{state_abbr.upper()}.json.gz"
+    elif backdrop:
+        file_path = CACHE_DIR / "BACK.json.gz"
     else:
         file_path = CACHE_DIR / "FED.json.gz"
 
@@ -55,7 +66,6 @@ def read_cache(model: Type[T], state_abbr: Optional[str] = None) -> Optional[T]:
         return None
 
 
-# TODO can probably merge these two functions back into one but this is okay for now
 def write_federal_cache(data: FederalData) -> FederalCache:
     """
     Serializes FederalData instance and writes to cache.
@@ -78,7 +88,6 @@ def write_federal_cache(data: FederalData) -> FederalCache:
     return federalCache
 
 
-# TODO can probably merge these two functions back into one but this is okay for now
 def write_state_cache(data: StateData, state_abbr: str) -> StateCache:
     """
     Serializes StateData instance and writes to cache.
@@ -98,3 +107,20 @@ def write_state_cache(data: StateData, state_abbr: str) -> StateCache:
         f.write(orjson.dumps(stateCache.model_dump()))
 
     return stateCache
+
+
+def write_backdrop_cache(data: BackdropData) -> BackdropCache:
+    backdropCache = BackdropCache(
+        cities=data.cities,
+        roads=data.roads,
+        water=data.water,
+        lastUpdated=datetime.now(timezone.utc).isoformat(),
+    )
+
+    file_path = CACHE_DIR / "BACK.json.gz"
+    file_path.parent.mkdir(parents=True, exist_ok=True)
+
+    with gzip.open(file_path, "wb") as f:
+        f.write(orjson.dumps(backdropCache.model_dump()))
+
+    return backdropCache

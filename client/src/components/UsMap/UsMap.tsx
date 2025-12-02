@@ -2,12 +2,12 @@ import type { FeatureCollection } from 'geojson';
 import React, { useEffect, useRef } from 'react';
 import type { District, State } from '../../models/MapProps';
 import type { AddressOfficials } from '../../models/OfficialProps';
+import { useDrawDistricts } from './DistrictLayer/useDrawDistricts';
+import { useDrawOfficials } from './OfficialLayer/useDrawOfficials';
+import { useDrawStates } from './StateLayer/useDrawStates';
 import { SvgWrapper } from './SvgWrapper';
-import { useDrawDistricts } from './useDrawDistricts';
-import { useDrawOfficials } from './useDrawOfficials';
-import { useDrawStates } from './useDrawStates';
-import { useMapZoom } from './useMapZoom';
-import { useTooltip } from './useTooltip';
+import { useMapZoom } from './utils/useMapZoom';
+import { useTooltip } from './utils/useTooltip';
 
 interface UsMapProps {
 	officialList: AddressOfficials | null;
