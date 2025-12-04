@@ -1,11 +1,10 @@
-import * as d3 from 'd3';
 import type { FeatureCollection } from 'geojson';
 import L from 'leaflet';
 import React, { useEffect, useRef, useState } from 'react';
 import type { District, MapType, State } from '../../../models/MapProps';
 import type { AddressOfficials } from '../../../models/OfficialProps';
 import { useDrawDistrictsLeaflet } from '../DistrictLayer/useDrawDistrictsLeaflet';
-// import { useDrawOfficialsLeaflet } from '../OfficialLayer/useDrawOfficialsLeaflet';
+import { useDrawOfficialsLeaflet } from '../OfficialLayer/useDrawOfficialsLeaflet';
 import { useDrawStatesLeaflet } from '../StateLayer/useDrawStatesLeaflet';
 import 'leaflet/dist/leaflet.css';
 
@@ -22,21 +21,19 @@ interface LeafletMapModeProps {
 }
 
 export const LeafletMap: React.FC<LeafletMapModeProps> = ({
-	// officialList,
+	officialList,
 	nationalMap,
 	districtMap,
 	type,
+	sidebarType,
 	setState,
 	setDistrict,
 }) => {
 	const mapContainerRef = useRef<HTMLDivElement>(null);
 	const [map, setMap] = useState<L.Map | null>(null);
 
-	// const { showTooltip, hideTooltip } = useTooltip();
-
 	useEffect(() => {
 		if (!mapContainerRef.current) return;
-		// if (mapContainerRef.current) return;
 
 		const leafletMap = L.map(mapContainerRef.current, {
 			center: [39.8283, -98.5795],
@@ -64,9 +61,10 @@ export const LeafletMap: React.FC<LeafletMapModeProps> = ({
 		districtMap,
 		leafletMap: map,
 		type,
+		sidebarType,
 		setDistrict,
 	});
-	// useDrawOfficialsLeaflet({ officialList, leafletMap: map, showTooltip, hideTooltip });
+	useDrawOfficialsLeaflet({ officialList, leafletMap: map, sidebarType });
 
 	return (
 		<div ref={mapContainerRef} className="relative w-full h-full" style={{ height: '600px' }} />

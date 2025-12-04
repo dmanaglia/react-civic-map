@@ -27,15 +27,22 @@ export const useDrawStatesLeaflet = ({
 				fillOpacity: 0.3,
 			}),
 			onEachFeature: (feature, layer) => {
+				const stateName = feature.properties?.NAME;
+				layer.bindTooltip(stateName, {
+					sticky: true,
+					direction: 'top',
+				});
 				layer.on({
 					mouseover: (e) => {
 						e.target.setStyle({
 							weight: 3,
 							fillOpacity: 0.5,
 						});
+						e.target.openTooltip();
 					},
-					mouseout: () => {
+					mouseout: (e) => {
 						geojsonLayer.resetStyle(layer);
+						e.target.closeTooltip();
 					},
 					click: (e) => {
 						const props = feature.properties;
@@ -48,7 +55,7 @@ export const useDrawStatesLeaflet = ({
 							USPS: props?.STUSPS,
 							bounds: [
 								[0, 0],
-								[900, 800],
+								[960, 600],
 							],
 						});
 						setDistrict(null);

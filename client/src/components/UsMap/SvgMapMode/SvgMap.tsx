@@ -68,8 +68,9 @@ export const SvgMap: React.FC<SvgMapModeProps> = ({
 	useDrawDistricts({
 		gDistrictRef,
 		districtMap,
-		pathGenerator: pathGenerator,
+		pathGenerator,
 		type,
+		sidebarType,
 		setDistrict,
 		showTooltip,
 		hideTooltip,
@@ -78,10 +79,12 @@ export const SvgMap: React.FC<SvgMapModeProps> = ({
 	useDrawOfficials({
 		gOfficialsRef,
 		officialList,
-		pathGenerator: pathGenerator,
-		projection: projection,
+		pathGenerator,
+		projection,
+		sidebarType,
 		showTooltip,
 		hideTooltip,
+		zoomToBounds,
 	});
 
 	return (

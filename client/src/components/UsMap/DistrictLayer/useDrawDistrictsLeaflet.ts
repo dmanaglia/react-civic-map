@@ -2,12 +2,13 @@ import type { FeatureCollection } from 'geojson';
 import L from 'leaflet';
 import { useEffect } from 'react';
 import type { District, MapType } from '../../../models/MapProps';
-// import getDistrictClass from '../utils/getDistrictClass';
+import { getDistrictColor } from '../utils/getDistrictClass';
 
 interface UseDrawDistrictsLeafletProps {
 	districtMap: FeatureCollection | null;
 	leafletMap: L.Map | null;
 	type: MapType;
+	sidebarType: 'summary' | 'address';
 	setDistrict: (district: District | null) => void;
 }
 
@@ -15,24 +16,36 @@ export const useDrawDistrictsLeaflet = ({
 	districtMap,
 	leafletMap,
 	type,
+	sidebarType,
 	setDistrict,
 }: UseDrawDistrictsLeafletProps) => {
 	useEffect(() => {
-		if (!districtMap || !leafletMap) return;
+		if (!districtMap || !leafletMap || sidebarType !== 'summary') return;
 
 		const geojsonLayer = L.geoJson(districtMap, {
-			style: () => ({
-				color: '#2563eb',
-				weight: 1,
-				fillOpacity: 0.2,
-			}),
+			style: (feature) => {
+				const colors = getDistrictColor(feature?.properties?.party);
+				return {
+					color: '#ffffff',
+					weight: 1,
+					fillColor: colors.base,
+					fillOpacity: 0.2,
+				};
+			},
 			onEachFeature: (feature, layer) => {
+				const districtName = feature.properties?.NAMELSAD;
+				layer.bindTooltip(districtName, {
+					sticky: true,
+					direction: 'top',
+				});
 				layer.on({
 					mouseover: (e) => {
 						e.target.setStyle({ weight: 2, fillOpacity: 0.4 });
+						e.target.openTooltip();
 					},
-					mouseout: () => {
+					mouseout: (e) => {
 						geojsonLayer.resetStyle(layer);
+						e.target.closeTooltip();
 					},
 					click: (e) => {
 						const props = feature.properties;
@@ -44,7 +57,7 @@ export const useDrawDistrictsLeaflet = ({
 							TYPE: type,
 							bounds: [
 								[0, 0],
-								[900, 800],
+								[960, 600],
 							],
 						});
 
@@ -58,5 +71,5 @@ export const useDrawDistrictsLeaflet = ({
 		return () => {
 			geojsonLayer.remove();
 		};
-	}, [districtMap, leafletMap, type, setDistrict]);
+	}, [districtMap, leafletMap, type, sidebarType, setDistrict]);
 };
