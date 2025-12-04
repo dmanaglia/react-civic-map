@@ -1,7 +1,6 @@
 import SettingsIcon from '@mui/icons-material/Settings';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import { useState } from 'react';
 import { LoginModal } from './LoginModal';
@@ -14,14 +13,14 @@ export const PageHeader = () => {
 	return (
 		<>
 			<AppBar position="sticky" color="default" className="shadow-md">
-				<Toolbar className="flex justify-between items-center px-4">
-					<Button variant="text" onClick={() => setLogin(true)}>
+				<Toolbar className="flex justify-end items-center px-4">
+					{/* <Button variant="text" onClick={() => setLogin(true)}>
 						Login /Sign Up
-					</Button>
+					</Button> */}
 
-					<IconButton onClick={() => setSettings(true)}>
+					<Button variant="text" onClick={() => setSettings(true)}>
 						<SettingsIcon />
-					</IconButton>
+					</Button>
 				</Toolbar>
 			</AppBar>
 
