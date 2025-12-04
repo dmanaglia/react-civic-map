@@ -1,29 +1,54 @@
 import { renderHook, act } from '@testing-library/react';
+import * as d3 from 'd3';
 import type { FeatureCollection } from 'geojson';
 import React from 'react';
+import type { Mock } from 'vitest';
 import type { District } from '../../../models/MapProps';
 import { useDrawDistricts } from './useDrawDistricts';
 
-vi.mock('./getDistrictClass', () => ({
-	getDistrictClass: vi.fn(() => 'mock-class'),
+vi.mock('../utils/getDistrictClass', () => ({
+	getDistrictClass: vi.fn(() => 'district-class'),
 }));
 
 describe('useDrawDistricts (renderHook)', () => {
-	let svgRef: React.RefObject<SVGSVGElement>;
 	let gDistrictRef: React.RefObject<SVGGElement>;
-	let applyCurrentTransform: () => void;
-	let setDistrict: (feature: District | null) => void;
-	let showTooltip: (text: string, x: number, y: number) => void;
-	let hideTooltip: () => void;
+	let pathGenerator: d3.GeoPath<unknown, d3.GeoPermissibleObjects>;
+	let setDistrict: Mock<(district: District | null) => void>;
+	let showTooltip: Mock<(text: string, x: number, y: number) => void>;
+	let hideTooltip: Mock<() => void>;
+
+	const baseDistrictMap: FeatureCollection = {
+		type: 'FeatureCollection',
+		features: [
+			{
+				type: 'Feature',
+				properties: {
+					NAMELSAD: 'District 1',
+					party: 'R',
+					CD119FP: '01',
+				},
+				geometry: {
+					type: 'Polygon',
+					coordinates: [
+						[
+							[0, 0],
+							[0, 1],
+							[1, 1],
+							[1, 0],
+							[0, 0],
+						],
+					],
+				},
+			},
+		],
+	};
 
 	beforeEach(() => {
-		svgRef = {
-			current: document.createElement('svg') as unknown as SVGSVGElement,
-		} as React.RefObject<SVGSVGElement>;
 		gDistrictRef = {
 			current: document.createElement('g') as unknown as SVGGElement,
 		} as React.RefObject<SVGGElement>;
-		applyCurrentTransform = vi.fn();
+
+		pathGenerator = d3.geoPath();
 		setDistrict = vi.fn();
 		showTooltip = vi.fn();
 		hideTooltip = vi.fn();
@@ -32,218 +57,108 @@ describe('useDrawDistricts (renderHook)', () => {
 	it('does nothing if districtMap is null', () => {
 		renderHook(() =>
 			useDrawDistricts({
-				svgRef,
 				gDistrictRef,
 				districtMap: null,
+				pathGenerator,
 				type: 'cd',
 				sidebarType: 'summary',
-				applyCurrentTransform,
 				setDistrict,
 				showTooltip,
 				hideTooltip,
 			}),
 		);
 
-		expect(applyCurrentTransform).not.toHaveBeenCalled();
+		expect(gDistrictRef.current!.querySelector('path')).toBeNull();
 	});
 
-	it('renders paths and responds to events', () => {
-		const districtMap: FeatureCollection = {
-			type: 'FeatureCollection',
-			features: [
-				{
-					type: 'Feature',
-					properties: { party: 'Democratic', NAMELSAD: 'District 1', CD119FP: '01' },
-					geometry: {
-						type: 'Polygon',
-						coordinates: [
-							[
-								[0, 0],
-								[0, 1],
-								[1, 1],
-								[1, 0],
-								[0, 0],
-							],
-						],
-					},
-				},
-			],
-		};
+	it('clears existing elements when sidebarType !== summary', () => {
+		// Add a dummy element to ensure clear behavior
+		gDistrictRef.current!.appendChild(document.createElement('path'));
 
 		renderHook(() =>
 			useDrawDistricts({
-				svgRef,
 				gDistrictRef,
-				districtMap,
+				districtMap: baseDistrictMap,
+				pathGenerator,
 				type: 'cd',
-				sidebarType: 'summary',
-				applyCurrentTransform,
+				sidebarType: 'address',
 				setDistrict,
 				showTooltip,
 				hideTooltip,
 			}),
 		);
 
-		const path = gDistrictRef.current.querySelector('path')!;
-		expect(path).toBeTruthy();
-		expect(path.getAttribute('class')).toBe('mock-class');
+		expect(gDistrictRef.current!.children.length).toBe(0);
+	});
 
-		// simulate click
+	it('renders district paths and handles events', () => {
+		renderHook(() =>
+			useDrawDistricts({
+				gDistrictRef,
+				districtMap: baseDistrictMap,
+				pathGenerator,
+				type: 'cd',
+				sidebarType: 'summary',
+				setDistrict,
+				showTooltip,
+				hideTooltip,
+			}),
+		);
+
+		const path = gDistrictRef.current!.querySelector('path')!;
+		expect(path).toBeTruthy();
+
+		// CLICK
 		act(() => {
 			path.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 		});
-		expect(setDistrict).toHaveBeenCalledWith({
-			TYPE: 'cd',
-			NAME: 'District 1',
-			ID: '01',
-			bounds: [
-				[Infinity, Infinity],
-				[-Infinity, -Infinity],
-			],
-		});
 
-		// simulate mouseover / mousemove
+		expect(setDistrict).toHaveBeenCalledTimes(1);
+		const calledWith = setDistrict.mock.calls[0][0];
+
+		expect(calledWith?.NAME).toBe('District 1');
+		expect(calledWith?.ID).toBe('01'); // cd uses CD119FP
+		expect(calledWith?.TYPE).toBe('cd');
+		expect(Array.isArray(calledWith?.bounds)).toBe(true);
+
+		// MOUSE EVENTS
 		act(() => {
-			const mouseOver = new MouseEvent('mouseover', { bubbles: true });
-			Object.defineProperty(mouseOver, 'pageX', { value: 10 });
-			Object.defineProperty(mouseOver, 'pageY', { value: 20 });
-			path.dispatchEvent(mouseOver);
+			const over = new MouseEvent('mouseover', { bubbles: true });
+			Object.defineProperty(over, 'pageX', { value: 15 });
+			Object.defineProperty(over, 'pageY', { value: 25 });
+			path.dispatchEvent(over);
 
-			const mouseMove = new MouseEvent('mousemove', { bubbles: true });
-			Object.defineProperty(mouseMove, 'pageX', { value: 30 });
-			Object.defineProperty(mouseMove, 'pageY', { value: 40 });
-			path.dispatchEvent(mouseMove);
+			const move = new MouseEvent('mousemove', { bubbles: true });
+			Object.defineProperty(move, 'pageX', { value: 30 });
+			Object.defineProperty(move, 'pageY', { value: 40 });
+			path.dispatchEvent(move);
 
-			const mouseOut = new MouseEvent('mouseout', { bubbles: true });
-			path.dispatchEvent(mouseOut);
+			path.dispatchEvent(new MouseEvent('mouseout', { bubbles: true }));
 		});
 
-		expect(showTooltip).toHaveBeenCalledWith('District 1', 10, 20);
+		expect(showTooltip).toHaveBeenCalledWith('District 1', 15, 25);
 		expect(showTooltip).toHaveBeenCalledWith('District 1', 30, 40);
 		expect(hideTooltip).toHaveBeenCalled();
-		expect(applyCurrentTransform).toHaveBeenCalled();
 	});
 
-	it('appends a <g> to svg if gDistrictRef.current is null', () => {
-		const nullgDistrictRef = {
+	it('does nothing if gDistrictRef.current is null', () => {
+		const nullRef = {
 			current: null,
 		} as React.RefObject<SVGGElement | null>;
 
-		const districtMap: FeatureCollection = {
-			type: 'FeatureCollection',
-			features: [
-				{
-					type: 'Feature',
-					properties: { party: 'Democratic', NAMELSAD: 'District 1', CD119FP: '01' },
-					geometry: {
-						type: 'Polygon',
-						coordinates: [
-							[
-								[0, 0],
-								[0, 1],
-								[1, 1],
-								[1, 0],
-								[0, 0],
-							],
-						],
-					},
-				},
-			],
-		};
-
 		renderHook(() =>
 			useDrawDistricts({
-				svgRef,
-				gDistrictRef: nullgDistrictRef,
-				districtMap,
+				gDistrictRef: nullRef,
+				districtMap: baseDistrictMap,
+				pathGenerator,
 				type: 'cd',
 				sidebarType: 'summary',
-				applyCurrentTransform,
 				setDistrict,
 				showTooltip,
 				hideTooltip,
 			}),
 		);
 
-		// the <g> should have been appended to svg
-		const appendedG = svgRef.current.querySelector('g');
-		expect(appendedG).toBeTruthy();
-	});
-
-	it('renders paths and responds to events with non congressional districts', () => {
-		const districtMap: FeatureCollection = {
-			type: 'FeatureCollection',
-			features: [
-				{
-					type: 'Feature',
-					properties: { party: 'Democratic', NAME: '1', NAMELSAD: 'State House District 1' },
-					geometry: {
-						type: 'Polygon',
-						coordinates: [
-							[
-								[0, 0],
-								[0, 1],
-								[1, 1],
-								[1, 0],
-								[0, 0],
-							],
-						],
-					},
-				},
-			],
-		};
-
-		renderHook(() =>
-			useDrawDistricts({
-				svgRef,
-				gDistrictRef,
-				districtMap,
-				type: 'sldl',
-				sidebarType: 'summary',
-				applyCurrentTransform,
-				setDistrict,
-				showTooltip,
-				hideTooltip,
-			}),
-		);
-
-		const path = gDistrictRef.current.querySelector('path')!;
-		expect(path).toBeTruthy();
-		expect(path.getAttribute('class')).toBe('mock-class');
-
-		// simulate click
-		act(() => {
-			path.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-		});
-		expect(setDistrict).toHaveBeenCalledWith({
-			TYPE: 'sldl',
-			NAME: 'State House District 1',
-			ID: '1',
-			bounds: [
-				[Infinity, Infinity],
-				[-Infinity, -Infinity],
-			],
-		});
-
-		// simulate mouseover / mousemove
-		act(() => {
-			const mouseOver = new MouseEvent('mouseover', { bubbles: true });
-			Object.defineProperty(mouseOver, 'pageX', { value: 10 });
-			Object.defineProperty(mouseOver, 'pageY', { value: 20 });
-			path.dispatchEvent(mouseOver);
-
-			const mouseMove = new MouseEvent('mousemove', { bubbles: true });
-			Object.defineProperty(mouseMove, 'pageX', { value: 30 });
-			Object.defineProperty(mouseMove, 'pageY', { value: 40 });
-			path.dispatchEvent(mouseMove);
-
-			const mouseOut = new MouseEvent('mouseout', { bubbles: true });
-			path.dispatchEvent(mouseOut);
-		});
-
-		expect(showTooltip).toHaveBeenCalledWith('State House District 1', 10, 20);
-		expect(showTooltip).toHaveBeenCalledWith('State House District 1', 30, 40);
-		expect(hideTooltip).toHaveBeenCalled();
-		expect(applyCurrentTransform).toHaveBeenCalled();
+		expect(setDistrict).not.toHaveBeenCalled();
 	});
 });

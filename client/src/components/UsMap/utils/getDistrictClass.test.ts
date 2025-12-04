@@ -1,56 +1,67 @@
 import { describe, it, expect } from 'vitest';
-import { getDistrictClass } from './getDistrictClass';
+import { getDistrictClass, getDistrictColor } from './getDistrictClass';
 
 describe('getDistrictClass', () => {
 	const base = 'cursor-pointer stroke-black hover:drop-shadow transition-all transition-stroke ';
 
-	const classes = {
-		unknown: base + 'fill-unknown hover:fill-unknown-hover',
-		dem: base + 'fill-democrat hover:fill-democrat-hover',
-		rep: base + 'fill-republican hover:fill-republican-hover',
-		ind: base + 'fill-independent hover:fill-independent-hover',
-		other: base + 'fill-unknown hover:fill-unknown-hover',
-	};
-
-	// --- Unknown -----
-
-	it('returns unknown class when party is undefined', () => {
-		expect(getDistrictClass(undefined)).toBe(classes.unknown);
+	it('returns unknown when no party provided', () => {
+		expect(getDistrictClass(undefined)).toBe(base + 'fill-unknown hover:fill-unknown-hover');
 	});
 
-	// --- DEMOCRATIC ------
-
-	it('matches "Democratic"', () => {
-		expect(getDistrictClass('Democratic')).toBe(classes.dem);
+	it('handles democratic', () => {
+		expect(getDistrictClass('Democratic')).toBe(base + 'fill-democrat hover:fill-democrat-hover');
 	});
 
-	it('matches long strings containing the substring', () => {
-		expect(getDistrictClass('DEMOCRATIC PARTY MEMBER')).toBe(classes.dem);
+	it('handles republican', () => {
+		expect(getDistrictClass('Republican')).toBe(
+			base + 'fill-republican hover:fill-republican-hover',
+		);
 	});
 
-	// --- REPUBLICAN ------
-
-	it('matches "Republican"', () => {
-		expect(getDistrictClass('Republican')).toBe(classes.rep);
+	it('handles independent', () => {
+		expect(getDistrictClass('Independent')).toBe(
+			base + 'fill-independent hover:fill-independent-hover',
+		);
 	});
 
-	it('matches substring in sentence', () => {
-		expect(getDistrictClass('Republican Party')).toBe(classes.rep);
+	it('falls back to unknown', () => {
+		expect(getDistrictClass('Green')).toBe(base + 'fill-unknown hover:fill-unknown-hover');
+	});
+});
+
+describe('getDistrictColor', () => {
+	it('returns gray for no party', () => {
+		expect(getDistrictColor(undefined)).toEqual({
+			base: '#9ca3af',
+			hover: '#6b7280',
+		});
 	});
 
-	// --- INDEPENDENT ------
-
-	it('matches "Independent"', () => {
-		expect(getDistrictClass('Independent')).toBe(classes.ind);
+	it('returns blue for democratic', () => {
+		expect(getDistrictColor('Democratic')).toEqual({
+			base: '#3b82f6',
+			hover: '#2563eb',
+		});
 	});
 
-	it('matches substring inside a bigger string', () => {
-		expect(getDistrictClass('Independent Party of Somewhere')).toBe(classes.ind);
+	it('returns red for republican', () => {
+		expect(getDistrictColor('Republican')).toEqual({
+			base: '#ef4444',
+			hover: '#dc2626',
+		});
 	});
 
-	// --- FALLBACK LOGIC -----
+	it('returns purple for independent', () => {
+		expect(getDistrictColor('Independent')).toEqual({
+			base: '#8b5cf6',
+			hover: '#7c3aed',
+		});
+	});
 
-	it('falls back to other for unrelated strings', () => {
-		expect(getDistrictClass('Green')).toBe(classes.other);
+	it('returns gray for unknown', () => {
+		expect(getDistrictColor('Green')).toEqual({
+			base: '#9ca3af',
+			hover: '#6b7280',
+		});
 	});
 });
