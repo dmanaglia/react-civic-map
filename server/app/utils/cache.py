@@ -5,7 +5,12 @@ from typing import Optional, Type, TypeVar
 
 import orjson
 
-from app.schemas.models import FederalCache, FederalData, StateCache, StateData
+from app.schemas.models import (
+    FederalCache,
+    FederalData,
+    StateCache,
+    StateData,
+)
 
 # ---------- CONFIG ----------
 CACHE_DIR = Path("app/cache")
@@ -55,7 +60,6 @@ def read_cache(model: Type[T], state_abbr: Optional[str] = None) -> Optional[T]:
         return None
 
 
-# TODO can probably merge these two functions back into one but this is okay for now
 def write_federal_cache(data: FederalData) -> FederalCache:
     """
     Serializes FederalData instance and writes to cache.
@@ -78,7 +82,6 @@ def write_federal_cache(data: FederalData) -> FederalCache:
     return federalCache
 
 
-# TODO can probably merge these two functions back into one but this is okay for now
 def write_state_cache(data: StateData, state_abbr: str) -> StateCache:
     """
     Serializes StateData instance and writes to cache.

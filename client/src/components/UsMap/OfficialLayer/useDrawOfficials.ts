@@ -1,48 +1,37 @@
-// src/components/UsMap/useDrawStates.ts
 import * as d3 from 'd3';
 import { useEffect } from 'react';
-import type { AddressOfficials } from '../../models/OfficialProps';
+import type { AddressOfficials } from '../../../models/OfficialProps';
 
 interface UseDrawOfficialsProps {
-	svgRef: React.RefObject<SVGSVGElement | null>;
 	gOfficialsRef: React.RefObject<SVGGElement | null>;
 	officialList: AddressOfficials | null;
+	projection: d3.GeoProjection;
+	pathGenerator: d3.GeoPath;
 	sidebarType: 'address' | 'summary';
-	zoomToBounds: (
-		bounds: [[number, number], [number, number]],
-		width: number,
-		height: number,
-	) => void;
-	applyCurrentTransform: () => void;
 	showTooltip: (text: string, x: number, y: number) => void;
 	hideTooltip: () => void;
+	zoomToBounds: (bounds: [[number, number], [number, number]]) => void;
 }
 
 export function useDrawOfficials({
-	svgRef,
 	gOfficialsRef,
 	officialList,
+	projection,
+	pathGenerator,
 	sidebarType,
-	zoomToBounds,
-	applyCurrentTransform,
 	showTooltip,
 	hideTooltip,
+	zoomToBounds,
 }: UseDrawOfficialsProps) {
 	useEffect(() => {
-		if (!officialList) return;
+		if (!officialList || !gOfficialsRef.current) return;
 
-		const svg = d3.select(svgRef.current);
-		const gOfficials = gOfficialsRef.current ? d3.select(gOfficialsRef.current) : svg.append('g');
+		const g = d3.select(gOfficialsRef.current);
 
 		if (sidebarType !== 'address') {
-			gOfficials.selectAll('*').remove();
+			g.selectAll('*').remove();
 			return;
 		}
-
-		const width = 960;
-		const height = 600;
-		const projection = d3.geoAlbersUsa().scale(1300).translate([480, 300]);
-		const path = d3.geoPath().projection(projection);
 
 		const districts = [
 			{ type: 'congressional', feature: officialList.congressional.feature },
@@ -56,17 +45,16 @@ export function useDrawOfficials({
 			.range(['#1f77b4', '#2ca02c', '#d62728']);
 
 		// --- Draw districts ---
-		gOfficials
-			.selectAll('path.district')
+		g.selectAll('path.district')
 			.data(districts)
 			.join('path')
 			.attr('class', 'district cursor-pointer transition-all')
 			.attr('fill', (d) => color(d.type))
 			.attr('stroke', '#333')
-			.attr('d', (d) => path(d.feature))
-			.on('click', (event: MouseEvent, d) => {
+			.attr('d', (d) => pathGenerator(d.feature))
+			.on('click', (event: MouseEvent) => {
 				event.stopPropagation();
-				zoomToBounds(path.bounds(d.feature), width, height);
+				// zoomToBounds(pathGenerator.bounds(d.feature), width, height);
 			})
 			.on('mouseover', (event, d) =>
 				showTooltip(d.feature.properties?.NAMELSAD, event.pageX, event.pageY),
@@ -79,8 +67,7 @@ export function useDrawOfficials({
 		// --- Draw address point ---
 		const [px, py] = projection(officialList.point.coordinates as [number, number])!;
 
-		gOfficials
-			.selectAll('circle.address-point')
+		g.selectAll('circle.address-point')
 			.data([officialList.point])
 			.join('circle')
 			.attr('class', 'address-point')
@@ -96,7 +83,7 @@ export function useDrawOfficials({
 		// --- Zoom to the combined district bounds ---
 		const allBounds: [[number, number], [number, number]] = districts.reduce(
 			(acc, d) => {
-				const b = path.bounds(d.feature); // also a [[number, number], [number, number]]
+				const b = pathGenerator.bounds(d.feature); // also a [[number, number], [number, number]]
 
 				return [
 					[Math.min(acc[0][0], b[0][0]), Math.min(acc[0][1], b[0][1])],
@@ -109,16 +96,16 @@ export function useDrawOfficials({
 				[-Infinity, -Infinity],
 			] as [[number, number], [number, number]],
 		);
-		applyCurrentTransform();
-		zoomToBounds(allBounds, width, height);
+		// applyCurrentTransform();
+		zoomToBounds(allBounds);
 	}, [
-		officialList,
-		svgRef,
 		gOfficialsRef,
+		pathGenerator,
+		officialList,
+		projection,
 		sidebarType,
-		zoomToBounds,
 		showTooltip,
 		hideTooltip,
-		applyCurrentTransform,
+		zoomToBounds,
 	]);
 }

@@ -9,9 +9,9 @@ import type {
 } from '../../../models/MapProps';
 import type { Official } from '../../../models/OfficialProps';
 import { Representative } from '../Representative';
-import { Executive } from './Executive';
-import { Judicial } from './Judicial';
-import { Legislative } from './Legislative';
+import { Executive } from './Executive/Executive';
+import { Judicial } from './Judicial/Judicial';
+import { Legislative } from './Legislative/Legislative';
 
 interface GovSummaryDataProps {
 	summary: FederalSummary | StateSummary | null;

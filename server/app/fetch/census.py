@@ -9,8 +9,6 @@ from fastapi import HTTPException
 
 from app.schemas.models import FeatureCollection
 
-BASE_URL = "https://www2.census.gov/geo/tiger/GENZ2024/shp/"
-
 
 async def fetch_and_filter_geojson(
     zip_url: str, state_filter: str | None = None

@@ -52,3 +52,9 @@ export interface StateResponse {
 	summary: StateSummary;
 	map: FeatureCollection;
 }
+
+export interface BackdropMap {
+	cities?: FeatureCollection;
+	roads: FeatureCollection;
+	water?: FeatureCollection;
+}

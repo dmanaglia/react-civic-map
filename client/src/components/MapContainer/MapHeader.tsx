@@ -1,5 +1,5 @@
 import Chip from '@mui/material/Chip';
-import type { MapType } from '../models/MapProps';
+import type { MapType } from '../../models/MapProps';
 
 const featureTypes: { id: MapType; label: string }[] = [
 	{ id: 'county', label: 'Counties' },

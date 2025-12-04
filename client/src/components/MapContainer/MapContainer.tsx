@@ -1,11 +1,13 @@
-import { MapHeader } from '../MapHeader';
+// import type { State, District } from '../../models/MapProps';
 import { OfficialSidebar } from '../OfficialsData/OfficialSidebar';
 import { Spinner } from '../Spinner';
+// import LeafletUsMap from '../UsMap/Leaflet/LeafletUsMap';
 import { UsMap } from '../UsMap/UsMap';
 import { useAddressData } from './hooks/useAddressData';
 import { useGeoData } from './hooks/useGeoData';
 import { useMapContainerState } from './hooks/useMapContainerState';
 import { useOfficialsData } from './hooks/useOfficialsData';
+import { MapHeader } from './MapHeader';
 
 export const MapContainer = () => {
 	const {

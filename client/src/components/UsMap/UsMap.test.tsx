@@ -1,56 +1,50 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import UsMap from './UsMap';
+import type { MapType } from '../../models/MapProps';
+import { UsMap } from './UsMap';
 
-// ---- minimal mocks ----
-vi.mock('./SvgWrapper', () => ({
-	SvgWrapper: ({
-		svgRef,
-		gStatesRef,
-		gFeatureRef,
-	}: {
-		svgRef: unknown;
-		gStatesRef: unknown;
-		gFeatureRef: unknown;
-	}) => {
-		return (
-			<div
-				data-testid="svg-wrapper"
-				data-svg-ref={!!svgRef}
-				data-gstates-ref={!!gStatesRef}
-				data-gfeature-ref={!!gFeatureRef}
-			/>
-		);
-	},
+// Mock children so we can detect which one renders
+vi.mock('./LeafletMapMode/LeafletMap', () => ({
+	LeafletMap: () => <div data-testid="leaflet-map" />,
+}));
+vi.mock('./SvgMapMode/SvgMap', () => ({
+	SvgMap: () => <div data-testid="svg-map" />,
 }));
 
-// The hooks are mocked only so that the render does not execute D3
-vi.mock('./useDrawStates', () => ({ useDrawStates: vi.fn() }));
-vi.mock('./useDrawDistricts', () => ({ useDrawDistricts: vi.fn() }));
-vi.mock('./useMapZoom', () => ({
-	useMapZoom: () => ({ zoomToBounds: vi.fn(), applyCurrentTransform: vi.fn() }),
+// Mock Settings Context hook
+const mockUseSettings = vi.fn();
+vi.mock('../../context/SettingsContext', () => ({
+	UseSettings: () => mockUseSettings(),
 }));
-vi.mock('./useTooltip', () => ({
-	useTooltip: () => ({ showTooltip: vi.fn(), hideTooltip: vi.fn() }),
-}));
+
+const baseProps = {
+	officialList: null,
+	districtMap: null,
+	nationalMap: null,
+	type: 'cd' as MapType,
+	sidebarType: 'summary' as 'summary' | 'address',
+	state: null,
+	district: null,
+	setState: () => {},
+	setDistrict: () => {},
+};
 
 describe('<UsMap />', () => {
-	it('renders the SvgWrapper', () => {
-		render(
-			<UsMap
-				nationalMap={null}
-				districtMap={null}
-				district={null}
-				state={null}
-				type="cd"
-				setState={() => {}}
-				setDistrict={() => {}}
-				officialList={null}
-				sidebarType={'summary'}
-			/>,
-		);
+	it('renders LeafletMap when backdropEnabled = true', () => {
+		mockUseSettings.mockReturnValue({ backdropEnabled: true });
 
-		const wrapper = screen.getByTestId('svg-wrapper');
-		expect(wrapper).toBeInTheDocument();
+		render(<UsMap {...baseProps} />);
+
+		expect(screen.getByTestId('leaflet-map')).toBeInTheDocument();
+		expect(screen.queryByTestId('svg-map')).not.toBeInTheDocument();
+	});
+
+	it('renders SvgMap when backdropEnabled = false', () => {
+		mockUseSettings.mockReturnValue({ backdropEnabled: false });
+
+		render(<UsMap {...baseProps} />);
+
+		expect(screen.getByTestId('svg-map')).toBeInTheDocument();
+		expect(screen.queryByTestId('leaflet-map')).not.toBeInTheDocument();
 	});
 });

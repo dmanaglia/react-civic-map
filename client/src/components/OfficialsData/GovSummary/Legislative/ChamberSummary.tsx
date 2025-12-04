@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import type { Chamber } from '../../../models/MapProps';
+import type { Chamber } from '../../../../models/MapProps';
 import { Dial } from './Dial';
 
 interface ChamberSummaryProps {

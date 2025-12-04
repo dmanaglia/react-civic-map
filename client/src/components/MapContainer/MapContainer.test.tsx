@@ -4,7 +4,7 @@ import { MapContainer } from './MapContainer';
 
 describe('MapContainer', () => {
 	// --- Mock child components so we don't need their implementations ---
-	vi.mock('../MapHeader', () => ({
+	vi.mock('./MapHeader', () => ({
 		MapHeader: () => <div data-testid="map-header">MapHeader</div>,
 	}));
 

@@ -7,8 +7,8 @@ import type {
 	State,
 	StateSummary,
 	Chamber,
-} from '../../../models/MapProps';
-import { Representative } from '../Representative';
+} from '../../../../models/MapProps';
+import { Representative } from '../../Representative';
 import { ChamberSummary } from './ChamberSummary';
 
 interface LegislativeProps {

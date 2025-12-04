@@ -67,3 +67,7 @@
 
 	--color-map-stroke: #e2e8f0;
 }
+
+.leaflet-interactive:focus {
+	outline: none;
+}

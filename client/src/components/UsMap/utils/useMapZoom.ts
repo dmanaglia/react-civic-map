@@ -52,7 +52,7 @@ export const useMapZoom = (
 	};
 
 	const zoomToBounds = useCallback(
-		(bounds: [[number, number], [number, number]], width: number, height: number) => {
+		(bounds: [[number, number], [number, number]], width: number = 960, height: number = 600) => {
 			if (!svgRef.current || !zoomBehaviorRef.current) return;
 			const svg = d3.select(svgRef.current);
 			const [[x0, y0], [x1, y1]] = bounds;

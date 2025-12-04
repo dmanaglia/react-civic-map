@@ -1,26 +1,25 @@
 import { renderHook, act } from '@testing-library/react';
+import * as d3 from 'd3';
 import type { FeatureCollection } from 'geojson';
 import React from 'react';
-import type { District, State } from '../../models/MapProps';
+import { vi, type Mock } from 'vitest';
+import type { District, State } from '../../../models/MapProps';
 import { useDrawStates } from './useDrawStates';
 
 describe('useDrawStates (renderHook)', () => {
-	let svgRef: React.RefObject<SVGSVGElement>;
 	let gStatesRef: React.RefObject<SVGGElement>;
-	let applyCurrentTransform: () => void;
-	let setDistrict: (feature: District | null) => void;
-	let setState: (stateId: State | null) => void;
-	let showTooltip: (text: string, x: number, y: number) => void;
-	let hideTooltip: () => void;
+	let pathGenerator: d3.GeoPath<unknown, d3.GeoPermissibleObjects>;
+	let setDistrict: Mock<(feature: District | null) => void>;
+	let setState: Mock<(stateId: State | null) => void>;
+	let showTooltip: Mock<(text: string, x: number, y: number) => void>;
+	let hideTooltip: Mock<() => void>;
 
 	beforeEach(() => {
-		svgRef = {
-			current: document.createElement('svg') as unknown as SVGSVGElement,
-		} as React.RefObject<SVGSVGElement>;
 		gStatesRef = {
 			current: document.createElement('g') as unknown as SVGGElement,
 		} as React.RefObject<SVGGElement>;
-		applyCurrentTransform = vi.fn();
+
+		pathGenerator = d3.geoPath();
 		setDistrict = vi.fn();
 		setState = vi.fn();
 		showTooltip = vi.fn();
@@ -30,10 +29,9 @@ describe('useDrawStates (renderHook)', () => {
 	it('does nothing if nationalMap is null', () => {
 		renderHook(() =>
 			useDrawStates({
-				svgRef,
 				gStatesRef,
 				nationalMap: null,
-				applyCurrentTransform,
+				pathGenerator,
 				setState,
 				setDistrict,
 				showTooltip,
@@ -41,7 +39,8 @@ describe('useDrawStates (renderHook)', () => {
 			}),
 		);
 
-		expect(applyCurrentTransform).not.toHaveBeenCalled();
+		// Nothing should be added to gStatesRef
+		expect(gStatesRef.current!.querySelector('path')).toBeNull();
 	});
 
 	it('renders paths and responds to events', () => {
@@ -69,36 +68,35 @@ describe('useDrawStates (renderHook)', () => {
 
 		renderHook(() =>
 			useDrawStates({
-				svgRef,
 				gStatesRef,
 				nationalMap,
-				applyCurrentTransform,
-				setDistrict,
+				pathGenerator,
 				setState,
+				setDistrict,
 				showTooltip,
 				hideTooltip,
 			}),
 		);
 
-		const path = gStatesRef.current.querySelector('path')!;
+		const path = gStatesRef.current!.querySelector('path')!;
 		expect(path).toBeTruthy();
 
 		// simulate click
 		act(() => {
 			path.dispatchEvent(new MouseEvent('click', { bubbles: true }));
 		});
-		expect(setState).toHaveBeenCalledWith({
-			NAME: 'Alabama',
-			STATEFP: '01',
-			USPS: 'AL',
-			bounds: [
-				[Infinity, Infinity],
-				[-Infinity, -Infinity],
-			],
-		});
+
+		expect(setState).toHaveBeenCalledTimes(1);
+		const calledWith = setState.mock.calls[0][0];
+
+		expect(calledWith?.NAME).toBe('Alabama');
+		expect(calledWith?.STATEFP).toBe('01');
+		expect(calledWith?.USPS).toBe('AL');
+		expect(Array.isArray(calledWith?.bounds)).toBe(true);
+
 		expect(setDistrict).toHaveBeenCalledWith(null);
 
-		// simulate mouseover / mousemove
+		// simulate mouse events
 		act(() => {
 			const mouseOver = new MouseEvent('mouseover', { bubbles: true });
 			Object.defineProperty(mouseOver, 'pageX', { value: 10 });
@@ -117,11 +115,10 @@ describe('useDrawStates (renderHook)', () => {
 		expect(showTooltip).toHaveBeenCalledWith('Alabama', 10, 20);
 		expect(showTooltip).toHaveBeenCalledWith('Alabama', 30, 40);
 		expect(hideTooltip).toHaveBeenCalled();
-		expect(applyCurrentTransform).toHaveBeenCalled();
 	});
 
-	it('appends a <g> to svg if gStatesRef.current is null', () => {
-		const nullgStatesRef = {
+	it('does nothing if gStatesRef.current is null', () => {
+		const nullRef = {
 			current: null,
 		} as React.RefObject<SVGGElement | null>;
 
@@ -149,10 +146,9 @@ describe('useDrawStates (renderHook)', () => {
 
 		renderHook(() =>
 			useDrawStates({
-				svgRef,
-				gStatesRef: nullgStatesRef,
+				gStatesRef: nullRef,
 				nationalMap,
-				applyCurrentTransform,
+				pathGenerator,
 				setDistrict,
 				setState,
 				showTooltip,
@@ -160,8 +156,7 @@ describe('useDrawStates (renderHook)', () => {
 			}),
 		);
 
-		// the <g> should have been appended to svg
-		const appendedG = svgRef.current.querySelector('g');
-		expect(appendedG).toBeTruthy();
+		// Just ensure no errors and no DOM updates attempted
+		expect(setState).not.toHaveBeenCalled();
 	});
 });
