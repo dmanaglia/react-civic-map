@@ -1,75 +1,62 @@
-import * as d3 from 'd3';
 import type { FeatureCollection } from 'geojson';
 import L from 'leaflet';
 import { useEffect } from 'react';
 import type { District, MapType } from '../../../models/MapProps';
-import { createLeafletProjection } from '../utils/createLeafletProjection';
+// import getDistrictClass from '../utils/getDistrictClass';
 
 interface UseDrawDistrictsLeafletProps {
-	gDistrictRef: React.RefObject<SVGGElement | null>;
 	districtMap: FeatureCollection | null;
 	leafletMap: L.Map | null;
 	type: MapType;
 	setDistrict: (district: District | null) => void;
-	showTooltip: (text: string, x: number, y: number) => void;
-	hideTooltip: () => void;
 }
 
-export function useDrawDistrictsLeaflet({
-	gDistrictRef,
+export const useDrawDistrictsLeaflet = ({
 	districtMap,
 	leafletMap,
 	type,
 	setDistrict,
-	showTooltip,
-	hideTooltip,
-}: UseDrawDistrictsLeafletProps) {
+}: UseDrawDistrictsLeafletProps) => {
 	useEffect(() => {
-		if (!districtMap || !gDistrictRef.current || !leafletMap) return;
+		if (!districtMap || !leafletMap) return;
 
-		const g = d3.select(gDistrictRef.current);
-		const projection = createLeafletProjection(leafletMap);
-		const pathGenerator = d3.geoPath().projection(projection);
+		const geojsonLayer = L.geoJson(districtMap, {
+			style: () => ({
+				color: '#2563eb',
+				weight: 1,
+				fillOpacity: 0.2,
+			}),
+			onEachFeature: (feature, layer) => {
+				layer.on({
+					mouseover: (e) => {
+						e.target.setStyle({ weight: 2, fillOpacity: 0.4 });
+					},
+					mouseout: () => {
+						geojsonLayer.resetStyle(layer);
+					},
+					click: (e) => {
+						const props = feature.properties;
+						const bounds = e.target.getBounds();
 
-		const paths = g
-			.selectAll<SVGPathElement, unknown>('path')
-			.data(districtMap.features)
-			.join('path')
-			.attr(
-				'class',
-				'cursor-pointer fill-light-green stroke-map-stroke hover:fill-dark-green transition-all',
-			)
-			.attr('d', pathGenerator)
-			.on('click', (event: MouseEvent, feature) => {
-				event.stopPropagation();
-				const bounds = pathGenerator.bounds(feature);
-				setDistrict({
-					NAME: feature.properties?.NAMELSAD,
-					ID: type === 'cd' ? feature.properties?.CD119FP : feature.properties?.NAME,
-					TYPE: type,
-					bounds,
+						setDistrict({
+							NAME: props?.NAMELSAD,
+							ID: type === 'cd' ? props?.CD119FP : props?.NAME,
+							TYPE: type,
+							bounds: [
+								[0, 0],
+								[900, 800],
+							],
+						});
+
+						// Zoom/pan map to selected district
+						leafletMap.fitBounds(bounds);
+					},
 				});
-			})
-			.on('mouseover', (event: MouseEvent, feature) =>
-				showTooltip(feature.properties?.NAMELSAD, event.pageX, event.pageY),
-			)
-			.on('mousemove', (event: MouseEvent, feature) =>
-				showTooltip(feature.properties?.NAMELSAD, event.pageX, event.pageY),
-			)
-			.on('mouseout', hideTooltip);
-
-		const update = () => {
-			const newProjection = createLeafletProjection(leafletMap);
-			const newPath = d3.geoPath().projection(newProjection);
-			paths.attr('d', (d) => newPath(d));
-		};
-
-		leafletMap.on('moveend', update);
-		leafletMap.on('zoomend', update);
+			},
+		}).addTo(leafletMap);
 
 		return () => {
-			leafletMap.off('moveend', update);
-			leafletMap.off('zoomend', update);
+			geojsonLayer.remove();
 		};
-	}, [gDistrictRef, districtMap, leafletMap, type, setDistrict, showTooltip, hideTooltip]);
-}
+	}, [districtMap, leafletMap, type, setDistrict]);
+};

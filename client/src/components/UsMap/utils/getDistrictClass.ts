@@ -1,6 +1,7 @@
-export const getDistrictClass = (party?: string) => {
-	const baseClass =
-		'cursor-pointer stroke-black hover:drop-shadow transition-all transition-stroke ';
+export const getDistrictClass = (party?: string, transparent: boolean = false) => {
+	let baseClass = 'cursor-pointer stroke-black hover:drop-shadow transition-all transition-stroke ';
+
+	if (transparent) baseClass += 'opacity-25 ';
 
 	if (!party) return baseClass + 'fill-unknown hover:fill-unknown-hover';
 

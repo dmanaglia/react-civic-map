@@ -7,8 +7,9 @@ export function useTooltip() {
 		// Create tooltip once on mount
 		const tooltip = document.createElement('div');
 		tooltip.className =
-			'absolute pointer-events-none bg-black/80 text-white px-3 py-1.5 rounded-md text-xs font-medium shadow-md';
+			'absolute pointer-events-none bg-black/80 text-white px-3 py-1.5 rounded-md text-xs font-medium shadow-md z-99';
 		tooltip.style.visibility = 'hidden'; // keep visibility inline
+
 		document.body.appendChild(tooltip);
 
 		tooltipRef.current = tooltip;
