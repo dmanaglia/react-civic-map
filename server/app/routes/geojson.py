@@ -2,7 +2,6 @@ from fastapi import APIRouter, Query
 from fastapi.responses import JSONResponse
 
 from app.services.geojson_service import (
-    get_backdrop_service,
     get_cd_service,
     get_county_service,
     get_cousub_service,
@@ -73,11 +72,4 @@ async def get_cousub(
     stateFP: str, stateUSPS: str = Query(..., description="Two-letter USPS state code")
 ):
     response = await get_cousub_service(stateFP, stateUSPS)
-    return JSONResponse(content=response.model_dump())
-
-
-# Backdrop (cities, roads, water)
-@router.get("/backdrop")
-async def get_backdrop():
-    response = await get_backdrop_service()
     return JSONResponse(content=response.model_dump())

@@ -4,7 +4,6 @@ import { Spinner } from '../Spinner';
 // import LeafletUsMap from '../UsMap/Leaflet/LeafletUsMap';
 import { UsMap } from '../UsMap/UsMap';
 import { useAddressData } from './hooks/useAddressData';
-import { useBackdropData } from './hooks/useBackdropData';
 import { useGeoData } from './hooks/useGeoData';
 import { useMapContainerState } from './hooks/useMapContainerState';
 import { useOfficialsData } from './hooks/useOfficialsData';
@@ -28,7 +27,6 @@ export const MapContainer = () => {
 	const { loadingOfficial } = useOfficialsData({ district, state, setOfficial });
 	const { nationalMap, districtMap, summary, loadingMap } = useGeoData(type, state);
 	const { officialList, loadingAddressOfficials, findOfficials } = useAddressData();
-	const { backdropData, loadingBackdrop } = useBackdropData();
 
 	return (
 		<div>
@@ -44,7 +42,6 @@ export const MapContainer = () => {
 						officialList={officialList}
 						districtMap={districtMap}
 						nationalMap={nationalMap}
-						backdropData={backdropData}
 						type={type}
 						sidebarType={sidebarType}
 						state={state}
@@ -69,7 +66,7 @@ export const MapContainer = () => {
 				</div>
 			)}
 
-			{(loadingMap || loadingBackdrop) && <Spinner fullscreen />}
+			{loadingMap && <Spinner fullscreen />}
 		</div>
 	);
 };

@@ -132,13 +132,3 @@ class AddressOfficials(BaseModel):
     house: AddressFeature
     congressional: AddressFeature
     senators: List[Official]
-
-
-class BackdropData(BaseModel):
-    cities: Optional[FeatureCollection] = None
-    roads: FeatureCollection
-    water: Optional[FeatureCollection] = None
-
-
-class BackdropCache(BackdropData):
-    lastUpdated: str
