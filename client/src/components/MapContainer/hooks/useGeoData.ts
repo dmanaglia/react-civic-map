@@ -17,8 +17,7 @@ export const useGeoData = (type: MapType, state: State | null) => {
 
 	useEffect(() => {
 		const fetchStateMap = async () => {
-			// Only used to get a single Official from a given district
-			setLoading(true); // now inside async function
+			setLoading(true);
 			try {
 				const res = await fetch(
 					`http://localhost:8000/geojson/${type}/${state?.STATEFP}?stateUSPS=${state?.USPS}`,

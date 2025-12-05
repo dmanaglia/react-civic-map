@@ -62,6 +62,7 @@ export const MapContainer = () => {
 						onToggle={toggleSidebar}
 						findOfficials={findOfficials}
 						setSidebarType={setSidebarType}
+						handleSetType={handleSetType}
 					/>
 				</div>
 			)}

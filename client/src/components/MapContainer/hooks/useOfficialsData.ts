@@ -15,7 +15,6 @@ export const useOfficialsData = ({ district, state, setOfficial }: UseOfficialsD
 		if (!district || !state) return;
 
 		const fetchOfficial = async () => {
-			// Only used to get a single Official from a given district
 			setLoading(true);
 			try {
 				const res = await fetch(

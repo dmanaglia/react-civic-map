@@ -13,7 +13,7 @@ export const AddressInput = ({ findOfficials }: AddressInputProps) => {
 	};
 
 	const submit = () => {
-		findOfficials(address);
+		if (address) findOfficials(address);
 	};
 
 	return (

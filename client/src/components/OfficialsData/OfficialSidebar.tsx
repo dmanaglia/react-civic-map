@@ -20,6 +20,7 @@ interface OfficialSidebarProps {
 	onToggle: () => void;
 	findOfficials: (address: string) => Promise<void>;
 	setSidebarType: (type: 'summary' | 'address') => void;
+	handleSetType: (type: MapType) => void;
 }
 
 export const OfficialSidebar = ({
@@ -35,6 +36,7 @@ export const OfficialSidebar = ({
 	onToggle,
 	findOfficials,
 	setSidebarType,
+	handleSetType,
 }: OfficialSidebarProps) => {
 	const handleChange = (_: React.SyntheticEvent, activeTab: 'summary' | 'address') => {
 		setSidebarType(activeTab);
@@ -136,6 +138,7 @@ export const OfficialSidebar = ({
 						state={state}
 						district={district}
 						official={official}
+						handleSetType={handleSetType}
 					/>
 				)}
 			</Drawer>

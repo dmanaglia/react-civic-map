@@ -16,9 +16,16 @@ interface LegislativeProps {
 	type: MapType;
 	state: State | null;
 	district: District | null;
+	handleSetType: (type: MapType) => void;
 }
 
-export const Legislative = ({ summary, type, state, district }: LegislativeProps) => {
+export const Legislative = ({
+	summary,
+	type,
+	state,
+	district,
+	handleSetType,
+}: LegislativeProps) => {
 	const [activeChamber, setActiveChamber] = useState<'House' | 'Senate'>('House');
 
 	const data = useMemo(() => {
@@ -48,6 +55,14 @@ export const Legislative = ({ summary, type, state, district }: LegislativeProps
 		return stateSummary.federal;
 	}, [state, summary]);
 
+	const handleChamberChange = (chamber: 'House' | 'Senate') => {
+		//No need to update chamber here because of useEffect
+		//unless type is congressional since senators have no district
+		if (type === 'cd') setActiveChamber(chamber);
+		else if (chamber === 'House') handleSetType('sldl');
+		else handleSetType('sldu');
+	};
+
 	if (!data) {
 		return (
 			<Box className="text-foreground text-sm text-center py-4">No legislative data available.</Box>
@@ -73,7 +88,7 @@ export const Legislative = ({ summary, type, state, district }: LegislativeProps
 			{/* Chamber tabs */}
 			<Box className="flex justify-center gap-6 mb-4">
 				<Button
-					onClick={() => setActiveChamber('House')}
+					onClick={() => handleChamberChange('House')}
 					aria-pressed={activeChamber === 'House'}
 					sx={pillStyles(activeChamber === 'House')}
 				>
@@ -81,7 +96,7 @@ export const Legislative = ({ summary, type, state, district }: LegislativeProps
 				</Button>
 
 				<Button
-					onClick={() => setActiveChamber('Senate')}
+					onClick={() => handleChamberChange('Senate')}
 					aria-pressed={activeChamber === 'Senate'}
 					sx={pillStyles(activeChamber === 'Senate')}
 				>
