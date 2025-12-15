@@ -21,6 +21,7 @@ interface OfficialSidebarProps {
 	findOfficials: (address: string) => Promise<void>;
 	setSidebarType: (type: 'summary' | 'address') => void;
 	handleSetType: (type: MapType) => void;
+	setOfficial: (official: Official | null) => void;
 }
 
 export const OfficialSidebar = ({
@@ -37,6 +38,7 @@ export const OfficialSidebar = ({
 	findOfficials,
 	setSidebarType,
 	handleSetType,
+	setOfficial,
 }: OfficialSidebarProps) => {
 	const handleChange = (_: React.SyntheticEvent, activeTab: 'summary' | 'address') => {
 		setSidebarType(activeTab);
@@ -52,7 +54,7 @@ export const OfficialSidebar = ({
 					size="small"
 					//top-80 needs to be adjusted...
 					className="
-						fixed top-80 z-50
+						fixed top-80
 						w-10 h-10 p-0
 						rounded-md shadow 
 						flex items-center justify-center
@@ -81,6 +83,7 @@ export const OfficialSidebar = ({
 						flexDirection: 'column',
 						borderRadius: '16px 0 0 16px',
 						transition: 'width 0.3s ease',
+						zIndex: 1,
 						marginLeft: open ? 2 : 0,
 					},
 				}}
@@ -130,7 +133,11 @@ export const OfficialSidebar = ({
 				)}
 
 				{sidebarType === 'address' ? (
-					<AddressLookupSidebar findOfficials={findOfficials} officialList={officialList} />
+					<AddressLookupSidebar
+						findOfficials={findOfficials}
+						officialList={officialList}
+						setOfficial={setOfficial}
+					/>
 				) : (
 					<GovSummary
 						summary={summary}
@@ -139,6 +146,7 @@ export const OfficialSidebar = ({
 						district={district}
 						official={official}
 						handleSetType={handleSetType}
+						setOfficial={setOfficial}
 					/>
 				)}
 			</Drawer>

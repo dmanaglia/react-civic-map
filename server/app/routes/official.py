@@ -4,6 +4,8 @@ from fastapi.responses import JSONResponse
 from app.services.official_service import (
     get_all_your_officials_service,
     get_cd_official_service,
+    get_official_campaign_data_service,
+    get_official_fec_service,
     get_sldl_official_service,
     get_sldu_official_service,
 )
@@ -37,3 +39,16 @@ async def get_state_senate(stateUSPS: str, districtID: str):
 async def get_state_house(stateUSPS: str, districtID):
     official = await get_sldl_official_service(stateUSPS, districtID)
     return JSONResponse(content=official.model_dump())
+
+
+# Official FEC (Federal Election Commission) Data
+@router.get("/fec/{officialName}")
+async def get_official_fec(officialName: str):
+    details = await get_official_fec_service(officialName)
+    return JSONResponse(content=details.model_dump())
+
+
+@router.get("/fec/{officialID}/{cycle}")
+async def get_official_campaign_data(officialID: str, cycle: int):
+    details = await get_official_campaign_data_service(officialID, cycle)
+    return JSONResponse(content=details.model_dump())

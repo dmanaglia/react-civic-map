@@ -8,9 +8,10 @@ interface ExecutiveProps {
 	type: MapType;
 	state: State | null;
 	district: District | null;
+	setOfficial: (official: Official | null) => void;
 }
 
-export const Executive = ({ officials, state, district }: ExecutiveProps) => {
+export const Executive = ({ officials, state, district, setOfficial }: ExecutiveProps) => {
 	return !officials.length ? (
 		<Box className="text-center py-6">
 			<Typography variant="h6" className="font-semibold text-foreground mb-1">
@@ -23,7 +24,13 @@ export const Executive = ({ officials, state, district }: ExecutiveProps) => {
 	) : (
 		<>
 			{officials.map((official, index) => (
-				<Representative key={index} official={official} state={state} district={district} />
+				<Representative
+					key={index}
+					official={official}
+					state={state}
+					district={district}
+					setOfficial={setOfficial}
+				/>
 			))}
 		</>
 	);

@@ -12,7 +12,7 @@ export const PageHeader = () => {
 
 	return (
 		<>
-			<AppBar position="sticky" color="default" className="shadow-md">
+			<AppBar position="sticky" color="default" className="shadow-md z-100">
 				<Toolbar className="flex justify-end items-center px-4">
 					{/* <Button variant="text" onClick={() => setLogin(true)}>
 						Login /Sign Up

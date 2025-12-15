@@ -8,13 +8,31 @@ interface RepresentativeProps {
 	official: Official;
 	state: State | null;
 	district: District | null;
+	setOfficial: (official: Official | null) => void;
 }
 
-export const Representative = ({ official }: RepresentativeProps) => {
+export const Representative = ({ official, setOfficial }: RepresentativeProps) => {
 	const [imgError, setImgError] = useState(false);
 
+	const fetchFEC = () => {
+		setOfficial(official);
+		const targetElement = document.getElementById('FEC-info');
+		if (targetElement) {
+			const elementPosition = targetElement.getBoundingClientRect().top;
+			const offsetPosition = elementPosition + window.pageYOffset - 75;
+
+			window.scrollTo({
+				top: offsetPosition,
+				behavior: 'smooth',
+			});
+		}
+	};
+
 	return (
-		<Card className="flex items-center gap-4 p-3 shadow-sm border-b  mb-4 last:mb-0">
+		<Card
+			className="flex items-center gap-4 p-3 shadow-sm border-b mb-4 last:mb-0 cursor-pointer"
+			onClick={fetchFEC}
+		>
 			{imgError ? (
 				<div className="w-28 h-36 rounded-xl  flex items-center justify-center">
 					<Person sx={{ fontSize: 48, opacity: 0.6 }} />

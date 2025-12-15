@@ -8,6 +8,7 @@ import type {
 	StateSummary,
 	Chamber,
 } from '../../../../models/MapProps';
+import type { Official } from '../../../../models/OfficialProps';
 import { Representative } from '../../Representative';
 import { ChamberSummary } from './ChamberSummary';
 
@@ -17,6 +18,7 @@ interface LegislativeProps {
 	state: State | null;
 	district: District | null;
 	handleSetType: (type: MapType) => void;
+	setOfficial: (official: Official | null) => void;
 }
 
 export const Legislative = ({
@@ -25,6 +27,7 @@ export const Legislative = ({
 	state,
 	district,
 	handleSetType,
+	setOfficial,
 }: LegislativeProps) => {
 	const [activeChamber, setActiveChamber] = useState<'House' | 'Senate'>('House');
 
@@ -119,6 +122,7 @@ export const Legislative = ({
 									official={official}
 									state={state}
 									district={district}
+									setOfficial={setOfficial}
 								/>
 							))}
 						</Box>

@@ -132,3 +132,48 @@ class AddressOfficials(BaseModel):
     house: AddressFeature
     congressional: AddressFeature
     senators: List[Official]
+
+
+class FECSummary(BaseModel):
+    name: str
+    prefix: str
+    suffix: str
+    candidate_id: str
+    party: str
+    address_street: str
+    address_city: str
+    address_state: str
+    address_zip: str
+    office: str
+    district: int
+    cycles: List[int]
+    election_districts: List[str]
+    election_years: List[int]
+
+
+class CampaignSummary(BaseModel):
+    # Top-line numbers
+    total_raised: float
+    total_spent: float
+    cash_on_hand: float
+    total_debt: float
+
+    # Funding sources (amounts)
+    individual_contributions: float
+    pac_contributions: float
+    party_contributions: float
+    self_funded: float
+
+    # Funding sources (percentages)
+    individual_percent: float
+    pac_percent: float
+
+    # Donor breakdown
+    small_donor_amount: float  # <$200
+    large_donor_amount: float  # >$200
+    small_donor_percent: float
+
+    # Calculated metrics
+    burn_rate: float  # Spending vs raising
+    financial_health_score: float  # Cash - Debt
+    pac_dependency_level: str  # "Low", "Moderate", "High"

@@ -20,6 +20,7 @@ interface GovSummaryDataProps {
 	district: District | null;
 	official: Official | null;
 	handleSetType: (type: MapType) => void;
+	setOfficial: (official: Official | null) => void;
 }
 
 export const GovSummary = ({
@@ -29,6 +30,7 @@ export const GovSummary = ({
 	district,
 	official,
 	handleSetType,
+	setOfficial,
 }: GovSummaryDataProps) => {
 	const [activeBranch, setActiveBranch] = useState<'Legislative' | 'Executive' | 'Judicial'>(
 		'Legislative',
@@ -42,9 +44,14 @@ export const GovSummary = ({
 
 	return (
 		<>
-			{official ? (
+			{state && district && official ? (
 				<div className="p-3">
-					<Representative state={state} district={district} official={official} />
+					<Representative
+						state={state}
+						district={district}
+						official={official}
+						setOfficial={setOfficial}
+					/>
 				</div>
 			) : (
 				summary && (
@@ -77,6 +84,7 @@ export const GovSummary = ({
 									state={state}
 									district={district}
 									handleSetType={handleSetType}
+									setOfficial={setOfficial}
 								/>
 							)}
 							{activeBranch === 'Executive' && (
@@ -85,6 +93,7 @@ export const GovSummary = ({
 									type={type}
 									state={state}
 									district={district}
+									setOfficial={setOfficial}
 								/>
 							)}
 							{activeBranch === 'Judicial' && (
