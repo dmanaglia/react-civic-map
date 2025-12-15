@@ -8,6 +8,7 @@ interface UseDrawDistrictsLeafletProps {
 	districtMap: FeatureCollection | null;
 	leafletMap: L.Map | null;
 	type: MapType;
+	district: District | null;
 	sidebarType: 'summary' | 'address';
 	setDistrict: (district: District | null) => void;
 }
@@ -16,6 +17,7 @@ export const useDrawDistrictsLeaflet = ({
 	districtMap,
 	leafletMap,
 	type,
+	district,
 	sidebarType,
 	setDistrict,
 }: UseDrawDistrictsLeafletProps) => {
@@ -24,12 +26,15 @@ export const useDrawDistrictsLeaflet = ({
 
 		const geojsonLayer = L.geoJson(districtMap, {
 			style: (feature) => {
-				const colors = getDistrictColor(feature?.properties?.party);
+				const props = feature?.properties;
+				const active =
+					type === 'cd' ? props?.CD119FP === district?.ID : props?.NAME === district?.ID;
+				const color = getDistrictColor(props?.party);
 				return {
 					color: '#ffffff',
-					weight: 1,
-					fillColor: colors.base,
-					fillOpacity: 0.2,
+					weight: active ? 2 : 1,
+					fillColor: color,
+					fillOpacity: active ? 0.4 : 0.2,
 				};
 			},
 			onEachFeature: (feature, layer) => {
@@ -71,5 +76,5 @@ export const useDrawDistrictsLeaflet = ({
 		return () => {
 			geojsonLayer.remove();
 		};
-	}, [districtMap, leafletMap, type, sidebarType, setDistrict]);
+	}, [districtMap, leafletMap, type, district, sidebarType, setDistrict]);
 };

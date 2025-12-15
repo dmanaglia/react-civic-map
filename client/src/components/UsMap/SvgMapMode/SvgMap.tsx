@@ -54,7 +54,6 @@ export const SvgMap: React.FC<SvgMapModeProps> = ({
 		if (state) zoomToBounds(state.bounds, width, height);
 	}, [state, district, type, sidebarType, zoomToBounds]);
 
-	// Draw map layers
 	useDrawStates({
 		gStatesRef,
 		nationalMap,
@@ -70,6 +69,7 @@ export const SvgMap: React.FC<SvgMapModeProps> = ({
 		districtMap,
 		pathGenerator,
 		type,
+		district,
 		sidebarType,
 		setDistrict,
 		showTooltip,

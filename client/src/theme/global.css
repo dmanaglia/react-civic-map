@@ -21,12 +21,16 @@
 
 	--color-democrat: #3b82f6;
 	--color-democrat-hover: #2563eb;
+
 	--color-republican: #ef4444;
 	--color-republican-hover: #b91c1c;
+
 	--color-independent: #22c55e;
 	--color-independent-hover: #16a34a;
+
 	--color-unknown: #9ca3af;
 	--color-unknown-hover: #4b5563;
+
 	--color-vacant: #f59e0b;
 
 	--color-map-stroke: #000000;
@@ -57,12 +61,16 @@
 
 	--color-democrat: #2563eb;
 	--color-democrat-hover: #1e40af;
+
 	--color-republican: #dc2626;
 	--color-republican-hover: #991b1b;
+
 	--color-independent: #16a34a;
 	--color-independent-hover: #15803d;
+
 	--color-unknown: #4b5563;
 	--color-unknown-hover: #374151;
+
 	--color-vacant: #d97706;
 
 	--color-map-stroke: #e2e8f0;

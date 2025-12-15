@@ -25,6 +25,7 @@ export const LeafletMap: React.FC<LeafletMapModeProps> = ({
 	nationalMap,
 	districtMap,
 	type,
+	district,
 	sidebarType,
 	setState,
 	setDistrict,
@@ -61,6 +62,7 @@ export const LeafletMap: React.FC<LeafletMapModeProps> = ({
 		districtMap,
 		leafletMap: map,
 		type,
+		district,
 		sidebarType,
 		setDistrict,
 	});

@@ -9,6 +9,7 @@ interface UseDrawDistrictsProps {
 	districtMap: FeatureCollection | null;
 	pathGenerator: d3.GeoPath;
 	type: MapType;
+	district: District | null;
 	sidebarType: 'address' | 'summary';
 	setDistrict: (district: District | null) => void;
 	showTooltip: (text: string, x: number, y: number) => void;
@@ -20,6 +21,7 @@ export function useDrawDistricts({
 	districtMap,
 	pathGenerator,
 	type,
+	district,
 	sidebarType,
 	setDistrict,
 	showTooltip,
@@ -38,11 +40,19 @@ export function useDrawDistricts({
 		g.selectAll<SVGPathElement, unknown>('path')
 			.data(districtMap.features)
 			.join('path')
-			.attr('class', (d) => getDistrictClass(d.properties?.party))
+			.attr('class', (d) =>
+				getDistrictClass(
+					type === 'cd'
+						? d.properties?.CD119FP === district?.ID
+						: d.properties?.NAME === district?.ID,
+					d.properties?.party,
+				),
+			)
 			.attr('d', pathGenerator)
 			.on('click', (event: MouseEvent, feature) => {
 				event.stopPropagation();
 				const bounds = pathGenerator.bounds(feature);
+				console.log(feature);
 				setDistrict({
 					NAME: feature.properties?.NAMELSAD,
 					ID: type === 'cd' ? feature.properties?.CD119FP : feature.properties?.NAME,
@@ -63,6 +73,7 @@ export function useDrawDistricts({
 		districtMap,
 		pathGenerator,
 		sidebarType,
+		district,
 		setDistrict,
 		showTooltip,
 		hideTooltip,
