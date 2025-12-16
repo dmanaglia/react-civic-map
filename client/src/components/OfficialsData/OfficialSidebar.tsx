@@ -140,6 +140,7 @@ export const OfficialSidebar = ({
 					/>
 				) : (
 					<GovSummary
+						key={type}
 						summary={summary}
 						type={type}
 						state={state}

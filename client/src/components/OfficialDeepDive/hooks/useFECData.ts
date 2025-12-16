@@ -1,32 +1,32 @@
 import { useEffect, useState } from 'react';
+import type { MapType } from '../../../models/MapProps';
 import type { Official, OfficialFECSummary } from '../../../models/OfficialProps';
 
 interface UseFECDataProps {
 	official: Official | null;
+	type: MapType;
 }
 
-export const useFECData = ({ official }: UseFECDataProps) => {
+export const useFECData = ({ official, type }: UseFECDataProps) => {
 	const [officialFECSummary, setOfficialFEC] = useState<OfficialFECSummary | null>(null);
-	const [loadingFEC, setLoading] = useState<boolean>(false);
+	const [cycle, setCycle] = useState<number | null>(null);
 
 	useEffect(() => {
-		if (!official) return;
+		if (!official || type !== 'cd') return;
 
-		const fetchOfficial = async () => {
-			setLoading(true);
+		const fetchSummary = async () => {
 			try {
 				const res = await fetch(`http://localhost:8000/official/fec/${official.name}`);
 				const data = await res.json();
+				setCycle(data?.cycles?.at(-1) || null);
 				setOfficialFEC(data);
 			} catch (err) {
 				setOfficialFEC(null);
 				console.error(err);
-			} finally {
-				setLoading(false);
 			}
 		};
-		fetchOfficial();
-	}, [official]);
+		fetchSummary();
+	}, [official, type]);
 
-	return { officialFECSummary, loadingFEC };
+	return { officialFECSummary, cycle, setCycle };
 };

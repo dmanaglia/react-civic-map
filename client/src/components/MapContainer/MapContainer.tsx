@@ -1,11 +1,8 @@
-// import type { State, District } from '../../models/MapProps';
-import { FECData } from '../FECData/FECData';
+import { OfficialDeepDive } from '../OfficialDeepDive/OfficialDeepDive';
 import { OfficialSidebar } from '../OfficialsData/OfficialSidebar';
 import { Spinner } from '../Spinner';
-// import LeafletUsMap from '../UsMap/Leaflet/LeafletUsMap';
 import { UsMap } from '../UsMap/UsMap';
 import { useAddressData } from './hooks/useAddressData';
-import { useFECData } from './hooks/useFECData';
 import { useGeoData } from './hooks/useGeoData';
 import { useMapContainerState } from './hooks/useMapContainerState';
 import { useOfficialsData } from './hooks/useOfficialsData';
@@ -29,7 +26,6 @@ export const MapContainer = () => {
 	const { loadingOfficial } = useOfficialsData({ district, state, setOfficial });
 	const { nationalMap, districtMap, summary, loadingMap } = useGeoData(type, state);
 	const { officialList, loadingAddressOfficials, findOfficials } = useAddressData();
-	const { officialFECSummary, loadingFEC } = useFECData({ official });
 
 	return (
 		<div>
@@ -70,7 +66,7 @@ export const MapContainer = () => {
 							setOfficial={setOfficial}
 						/>
 					</div>
-					<FECData officialFECSummary={officialFECSummary} loadingSummary={loadingFEC} />
+					<OfficialDeepDive official={official} type={type} />
 				</>
 			)}
 

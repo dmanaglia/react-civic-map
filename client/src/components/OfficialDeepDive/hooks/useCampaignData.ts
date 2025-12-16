@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
-import type { CampaignSummary, OfficialFECSummary } from '../../models/OfficialProps';
+import type { CampaignSummary, OfficialFECSummary } from '../../../models/OfficialProps';
 
 interface UseCampaignDataProps {
 	officialFECSummary: OfficialFECSummary | null;
 	cycle: number | null;
 }
 
-export const UseCampaignData = ({ officialFECSummary, cycle }: UseCampaignDataProps) => {
+export const useCampaignData = ({ officialFECSummary, cycle }: UseCampaignDataProps) => {
 	const [campaignSummary, setCampaignSummary] = useState<CampaignSummary | null>(null);
 	const [loadingCampaign, setLoading] = useState<boolean>(false);
 
 	useEffect(() => {
 		if (!officialFECSummary || !cycle) return;
 
-		const fetchOfficial = async () => {
+		const fetchCampaign = async () => {
 			setLoading(true);
 			try {
 				const res = await fetch(
@@ -29,7 +29,7 @@ export const UseCampaignData = ({ officialFECSummary, cycle }: UseCampaignDataPr
 				setLoading(false);
 			}
 		};
-		fetchOfficial();
+		fetchCampaign();
 	}, [officialFECSummary, cycle]);
 
 	return { campaignSummary, loadingCampaign };
