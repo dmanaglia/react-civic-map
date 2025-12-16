@@ -25,8 +25,8 @@ async def get_sldl_official_service(stateUSPS: str, districtID: str) -> Official
     return official
 
 
-async def get_official_fec_service(officialName: str) -> FECSummary:
-    details = await Fetch_Official_FEC_Summary(officialName)
+async def get_official_fec_service(officialName: str, state: str, district: str) -> FECSummary:
+    details = await Fetch_Official_FEC_Summary(officialName, state, district)
     return details
 
 

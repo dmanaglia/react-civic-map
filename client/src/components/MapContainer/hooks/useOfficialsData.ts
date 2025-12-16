@@ -21,7 +21,8 @@ export const useOfficialsData = ({ district, state, setOfficial }: UseOfficialsD
 					`http://localhost:8000/official/${district.TYPE}/${state.USPS}/${district.ID}`,
 				);
 				const data = await res.json();
-				setOfficial(data);
+				console.log({ ...data, stateUSPS: state.USPS });
+				setOfficial({ ...data, stateUSPS: state.USPS });
 			} catch (err) {
 				setOfficial(null);
 				console.error(err);

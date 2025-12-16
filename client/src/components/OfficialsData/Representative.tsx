@@ -11,11 +11,11 @@ interface RepresentativeProps {
 	setOfficial: (official: Official | null) => void;
 }
 
-export const Representative = ({ official, setOfficial }: RepresentativeProps) => {
+export const Representative = ({ official, setOfficial, state }: RepresentativeProps) => {
 	const [imgError, setImgError] = useState(false);
 
 	const fetchFEC = () => {
-		setOfficial(official);
+		setOfficial({ ...official, stateUSPS: state?.USPS });
 		const targetElement = document.getElementById('FEC-info');
 		if (targetElement) {
 			const elementPosition = targetElement.getBoundingClientRect().top;

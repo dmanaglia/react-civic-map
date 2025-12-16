@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Query
 from fastapi.responses import JSONResponse
 
 from app.services.official_service import (
@@ -43,8 +43,12 @@ async def get_state_house(stateUSPS: str, districtID):
 
 # Official FEC (Federal Election Commission) Data
 @router.get("/fec/{officialName}")
-async def get_official_fec(officialName: str):
-    details = await get_official_fec_service(officialName)
+async def get_official_fec(
+    officialName: str,
+    state: str = Query(..., description="State Name"),
+    district: str = Query(..., description="District Number or 'None'"),
+):
+    details = await get_official_fec_service(officialName, state, district)
     return JSONResponse(content=details.model_dump())
 
 

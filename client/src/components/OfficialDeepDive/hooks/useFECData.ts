@@ -13,10 +13,13 @@ export const useFECData = ({ official, type }: UseFECDataProps) => {
 
 	useEffect(() => {
 		if (!official || type !== 'cd') return;
+		console.log(official);
 
 		const fetchSummary = async () => {
 			try {
-				const res = await fetch(`http://localhost:8000/official/fec/${official.name}`);
+				const res = await fetch(
+					`http://localhost:8000/official/fec/${official.name}?state=${official.stateUSPS}&district=${official.district}`,
+				);
 				const data = await res.json();
 				setCycle(data?.cycles?.at(-1) || null);
 				setOfficialFEC(data);

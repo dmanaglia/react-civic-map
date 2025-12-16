@@ -10,6 +10,7 @@ export interface Official {
 	name: string;
 	party?: string;
 	state?: string;
+	stateUSPS?: string;
 	district?: string;
 	title?: string;
 	depiction_url?: string;

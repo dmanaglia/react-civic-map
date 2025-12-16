@@ -11,7 +11,34 @@ OPEN_FEC_APIKEY = os.getenv("OPEN_FEC_APIKEY")
 BASE_URL = "https://api.open.fec.gov/v1"
 
 
-async def search_candidates_by_name(name: str) -> str:
+async def get_candidates_by_district(name: str, state: str, district: str) -> str:
+    """Search for candidates by state and district"""
+    office = "S" if district == "None" else "H"
+    districtNum = "0" if office == "S" else district.zfill(2)
+    async with httpx.AsyncClient() as client:
+        response = await client.get(
+            f"{BASE_URL}/candidates/search/",
+            params={
+                "state": state,
+                "district": districtNum,
+                "office": office,
+                # Not sure if this will cause issues for first time election winners
+                "incumbent_challenge": "I",
+                "api_key": OPEN_FEC_APIKEY,
+            },
+        )
+        response.raise_for_status()
+        data = response.json()
+        # print(json.dumps(data, indent=4))
+        lName = name.split()[1].upper()
+        for result in data.get("results", []):
+            if lName in result.get("name", ""):
+                print("FOUND BY DISTRICT SEARCH")
+                return result
+        return {}
+
+
+async def search_candidates_by_name(name: str, state: str, district: str) -> str:
     """Search for candidates by name"""
     async with httpx.AsyncClient() as client:
         response = await client.get(
@@ -19,8 +46,18 @@ async def search_candidates_by_name(name: str) -> str:
         )
         response.raise_for_status()
         data = response.json()
-        result = data.get("results", [])[0]
-        return result.get("candidate_id", "")
+
+        results = data.get("results", [])
+        if len(results) == 0:
+            print("FALLBACK ON DISTRICT SEARCH")
+            result = await get_candidates_by_district(name, state, district)
+            return result.get("candidate_id", "")
+        elif results[0].get("state") != state:
+            print("FALLBACK ON DISTRICT SEARCH")
+            result = await get_candidates_by_district(name, state, district)
+            return result.get("candidate_id", "")
+        else:
+            return results[0].get("candidate_id", "")
 
 
 async def get_candidate_details(candidate_id: str) -> FECSummary:
@@ -31,7 +68,12 @@ async def get_candidate_details(candidate_id: str) -> FECSummary:
         )
         response.raise_for_status()
         data = response.json()
-        result = data.get("results", [])[0]
+        results = data.get("results", [])
+        if len(results) == 0:
+            return None
+
+        result = results[0]
+
         return FECSummary(
             name=result.get("name", ""),
             prefix=result.get("prefix", ""),
@@ -105,29 +147,7 @@ async def get_campaign_totals(candidate_id: str, cycle: int) -> CampaignSummary:
         )
 
 
-# async def get_candidates_by_district(
-#     state: str,
-#     district: str,
-#     office: str = "H",
-#     cycle: int = 2024
-# ) -> Dict:
-#     """Search for candidates by state and district"""
-#     async with httpx.AsyncClient() as client:
-#         response = await client.get(
-#             f"{BASE_URL}/candidates/search/",
-#             params={
-#                 "state": state,
-#                 "district": district.zfill(2),  # Pad district to 2 digits
-#                 "office": office,
-#                 "election_year": cycle,
-#                 "api_key": OPEN_FEC_APIKEY
-#             }
-#         )
-#         response.raise_for_status()
-#         return response.json()
-
-
-async def Fetch_Official_FEC_Summary(officialName: str) -> FECSummary:
-    candidate_id = await search_candidates_by_name(officialName)
+async def Fetch_Official_FEC_Summary(officialName: str, state: str, district: str) -> FECSummary:
+    candidate_id = await search_candidates_by_name(officialName, state, district)
     details = await get_candidate_details(candidate_id)
     return details

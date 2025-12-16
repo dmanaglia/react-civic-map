@@ -1,4 +1,5 @@
 import asyncio
+import json
 import os
 from typing import List, Tuple
 
@@ -77,6 +78,7 @@ async def Fetch_State_District_Official(state: str, chamber: str, district_name:
             )
 
         data = response.json()
+        print(json.dumps(data["results"][0], indent=2))
         # TODO: sometimes results are empty if district has a current vacancy.
         # Should raise exception for consistency
         official = normalize_state_legislator(data["results"][0])
